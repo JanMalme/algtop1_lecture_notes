@@ -7,6 +7,172 @@
 
 \begin{document}
 
+\subsection*{Organizatorial}
+
+For this term we will be doing unstable homotopy theory. Next term we will be doing stable homotopy theory. Note that there were 2 previous courses. Note that all important information is shared on the website \url{https://www.math.uni-bonn.de/people/schwede/at1-ws2526}. You can sign up for the previous topology courses und see the lecture videos for these courses there.
+
+There are no lecture notes for this lecture specifically, but some similar materials are linked on the webpage.
+
+Exercise sheets will be uploaded fridays and handed in 11 days later via eCampus. Registration for eCampus opens at 4 today.
+
+For exam admission you will have to score 50\% of the points on the exercise sheets and have presented 2 exercises in tutorial.
+
+The first exam will be written in the last week of semester.
+
+I fear I will not be able to copy pictures here.
+
+\newpage
+
+\setcounter{chapter}{1}
+
+\section{Blakiers-Massy theorem/Homotopy excision}
+
+We start with a reminder on relative homotopy groups.
+
+\begin{defi}{Relative Homotopy Groups}{relative Homotopy groups}
+    Let \((X,A)\) be a space pair i.e. \(A\) is a subspace of a topological space \(X\). We write
+    \[I = [0,1] \quad I^{n} = [0,1]^n \text{ the } n\text{-cube}\]
+    \[\partial(I^n) = \text{ boundary of } I^n\]
+    \[I^{n-1} \subseteq I^n\]
+    via Inclusion on the first \(n-1\) coordinates.
+    \[J^{n-1} = I^{n-1}\times \set{1} \cup (\partial I^{n-1})\times [0,1]\]
+    He draws a picture for \(n = 2\).
+
+    For \(n \geq 1\) the \(n\)-th relative homotopy groups \(\pi_n(X,A,x)\) is the set of triple homotopy classes of trible maps \(x \in A\subseteq X\)
+    \[(I^n, \partial I^n,J^{n-1}) \to (X,A, \set{x})\]
+    where a triple map takes each subset on the left into the subset on the right. A triple-homotopy must also conserve these conditions.
+
+    For \(n \geq 2\) or \(n = 1\) and \(A = \set{x}\) the set \(\pi_n(X,A,\set{x})\) has a group structure by concatenation in the first coordinate. He again draws a picture.
+
+    The group structure is commutative if \(n \geq 3\) or \(n = 2\) and \(A = \set{x}\).
+\end{defi}
+
+\begin{defi}{n-Connectedness}{n-Connectedness}
+    Let \(n \geq 0\). A space pair \((X,A)\) is \emph{\(n\)-connected}, if the following equivalent conditions hold:
+    \begin{enumerate}
+        \item For all \(0 \leq q\leq n\) every pair map \((I^q, \partial I^q) \to (X,A)\) is homotpic relative \(\partial(I^q)\) to a map with image in \(A\)
+        \item For all \(a \in A\), \(\incl_*\colon \pi_q(A,a) \to \pi_q(X,a)\) is bijective for \(q \leq n\) and surjective for \(q = n\).
+        \item \(\pi_0(A) \to \pi_0(X)\) is bijective and for all \(1 \leq q \leq n\) the relative homotopy group
+        \[\pi_q(X,A,x) \cong 0\]
+    \end{enumerate}
+\end{defi}
+
+\begin{proof}
+    You proof the equivalence using the LES\footnote{Long exact sequence} of homotopy groups.
+\end{proof}
+
+
+Let \(Y\) be a space, \(Y_1, Y_2\) open subsets of \(Y = Y_1 \cup Y_2\), \(Y_0 \coloneq Y_1\cap Y_2\).
+
+Excision in homology shows that for all abelian groups \(B\), \(i \geq 0\)
+\[H_i(Y_2; Y_0, B) \to H_i(Y,Y_1; B)\]
+is an isomorphism.
+
+Excision does not generally hold for homotopy groups, i.e. for \(x \in Y_0\)
+\[\incl_*\colon \pi_i(Y_2, Y_0; x) \to \pi_i(Y, Y_1; x)\]
+is \textbf{not} generally an isomorphism.
+
+\enquote {Blakiers mAssing theorem implies that excision holds for homotopy groups in a range.}
+
+\begin{thm}{Blakiers Massey}{Blakiers Massey}
+    Let \(Y\) be a space, \(Y_1, Y_2\) open subsets with \(Y= Y_1 \cup Y_2, Y_0 \coloneq Y_1 \cap Y_2\). Let \(p, q \geq 0\), such that for all \(y \in Y_0\)
+    \[\pi_i(Y_1, Y_0, y) = 0 \text{ for all } 1 \leq i \leq p\]
+    and
+    \[\pi_i(Y_2, Y_0, y) = 0 \text{ for all } 1 \leq i \leq q\]
+    Then for all \(y \in Y_0\), the map
+    \[\incl_*\colon \pi_i(Y_2, Y_0, y) \to \pi_i(Y, Y_1, y)\]
+    is an isomorphism for \(1 \leq i < p+q\) and surjective for \(i = p+q\). He notes how the referenced literature uses different indices. They have proofs in more detail and pictures, however Lücks script contains typos
+\end{thm}
+
+\begin{proof}
+    Schwede explains he doesn't like the proof, it is to technical and not very enlightening.
+
+    We define what cubes are
+
+    Cubes in \(\ir^n\), \(n \geq 1\).
+    \(a = (a_1, \dots, a_n) \in \ir^n\) the \enquote{lower left corner of the cube}
+
+    \(\partial \in \IR_{\geq 0}\) \enquote{side length of the cube}
+
+    \(L \subset \set{1, \dots n}\) \enquote{relevant dimensions}
+    \[W = W(a, \delta, L) = \set{x = (x_1, \dots, x_n)\in \ir^n : a_i\leq x_1\leq a_i + \delta \text{ for all } i \in L, \; x_i = a_i \text{ for all } i \in \set{1, \dots n} \setminus L}\]\footnote{W weil Würfel}
+    A face \(W'\) of \(W\) is a subset of the form
+    \[W' = \set{x \in W : x_i = a_i \text{ for all } i \in L_0, x_i = a_i + \delta \text{ for all } i \in L_1}\]
+    for some subsets \(L_0, L_1 \subseteq L\)
+
+    Let \(1 \leq p \leq n\) we define two subsets of a cube \(W = ^(a, \delta, L)\).
+    \[K_p(W) = \set{x \in W : x_i < a_i + \delta/2 \text{ for at least} p \text{values of} i \text{ in } L}\]
+    We call these \enquote{\(p\) small coordinates}
+    \[G_p(W) = \set{x \in W : x_i > a_i + \delta/2 \text{ for at least } p \text{ coordinates } i \text{ in } L}\]
+    these are \enquote{\(p\)-big coordinates}.
+
+    For \(p > \dim(W), K_p(W) = G_p(W)= \emptyset \) If \(p+ q \geq \dim(W)\), then \(K_p(W) \cap G_q(W) = \emptyset\).%Help
+
+    He draws pictures.
+
+    \begin{lem}{1.14}{1.14}
+        It is Lemma 1.14 in Lücks Script.
+
+        Let \((Y,A)\) be a space pair, \(W \subseteq \ir^n\) a cube, \(f \colon W \to Y\) continuous. Suppose that for some \(p\leq \dim(W)\), \(f^{-1}(A) \cap W' \subseteq K_p(W')\) for all proper\footnote{subcube of the boundary} faces \(W'\) of \(W\).
+        
+        Then there is a continuous map \(g \colon W \to Y\) homotopic to \(f\) relative \(\partial W\) such that all \(g^{-1}(A)\subseteq K_p(W)\)
+    \end{lem}
+    \begin{proof}
+        Wlog: \(W = I^n = W(0, 1, \set{1,\dots ,n})\)
+
+        Let \(I_2^n\) be the subcube \([0, 1/2]^n\). He draws a picture. \(x_4 = (1/4, \dots 1/4) \in I_2^n\). We define a continuous map \(h \colon I^n \to I^n\) by radical projection away from \(x_4\). Picture. Let \(r(y)\) be the ray from \(x\) to \(y\). We map all of \(r(y) \cap I^n\setminus I^n_2\) to the intersection point of \(r(y)\) and \(\partial I^n\) and the rest linearly extends as far as required.\footnote{I hope this description is clear, hard without the picture.}
+
+        Obviously\footnote{Meaning he's too lazy to come up with formulas for the map.} \(h\) is homotopic relative boundary \(\partial I^n\) to the identity.
+
+        We set \(g \colon f \circ h\colon I^n \to Y\), which is then homotopic relative \(\partial(I^n)\footnote{I am very inconsistent in remembering these parantheses with the boundary operator. Just imagine it always being as here.}\) to \(f\).
+
+        It remains to show that \(g^{-1}(A) \subseteq K_p(W)\). Consider \(z \in I^n\) with \(g(z) \in A\).
+        \begin{description}
+            \item[Case 1] for all \(i = 1, \dots, n, z_1 < 1/2\), i.e. \(z \in I_2^n\), then \(z \in K_n(I^n) \subseteq K_p(I^n)\).
+            \item[Case 2] There is an \(i \in \set{1, \dots,n}\), s.t. \(z \geq 1/2\). Then \(h(z) \in \partial(I^n)\). Let \(W'\) be some proper face of \(W\), with \(h(z) \in W'\). Since \(f(h(z)) = g(z)\in A\), by hypothesis, \(h(z) \in K_p(W')\), so \(h(z) < 1/2\) for at least \(p\) coordinates. By expansion\footnote{no idea if this is the word he wrote} property of \(h\), also \(p\) coordinates of \(z\) are small coordinates. 
+        \end{description}
+    \end{proof}
+
+    \begin{proposition}
+        Let \(Y_1, Y_2\) be open subsets of \(Y, Y_0\coloneq Y_1 \cap Y_2\). Suppose that \((Y_1, Y_0)\) is \(p\)-connected, \((Y_2, Y_0)\) is \(q\)-connected. Let \(f \colon I^n \to Y\) be continuous. Let \(\cW = \set{W}\) be a subdivision of \(I^n\) into subcubest of the same side length s.t. for all \(W \in \cW\) \(f(W) \subseteq Y_1\) or \(f(W) \subseteq Y_2\). Then there is a homotopy \(h \colon I^n \times I \to Y\) with \(h_0 = f\) such that for all \(W \in \cW\):
+        \begin{enumerate}
+            \item If \(f(W) \subseteq Y_j, j \in {0,1,2}\), then \(h_t(W) \subseteq Y_j\) for all \(t \in [0,1]\)
+            \item If \(f(W) \subseteq Y_0\), then \(h_t\rvert_{W} = f\rvert_W\), i.e. \(h\) is constant on \(W\).
+            \item If \(f(W) \subseteq Y_1\), then \(h_1^{-1}(Y_1 \setminus Y_0) K_{p+1}(W)\).
+            \item If \(f(W) \subseteq Y_2\), then \(h_1^{-1}(Y_2\setminus Y_0) \subseteq G_{q+1}(W)\).
+        \end{enumerate}
+    \end{proposition}
+    \begin{proof}
+        We let \(C^k \subseteq I^n\) be the union of all cubes in \(\cW\) of dimension at most \(k\). We construct homotopies \(h[k]\colon C_k\times I \to Y\), such that for all \(W \in \cW, W \subseteq C_k\) conditions 1. to 4. hold, and \(h[k]\) is constant on \(C_{k-1}\times I\). Then the final \(h[n]\) does the job.
+
+        \textbf{Note.} If \(W \in \cW\) and \(f(W)\subseteq Y_0\) and 2. holds, then also 3. and 4. hold.
+
+        \[h^{-1}(Y_1\setminus Y_0) = h_1^{-1}(Y_2\setminus Y_0) = \emptyset\]
+        If \(W \in \cW\), is such that \(f(W) \subseteq Y_1\) and \(f(W) \subseteq Y_2\), then \(f(W)\subseteq Y_1\cap Y_2 = Y_0\). So each \(W \in \cW\) is in excactly one of the following cases
+        \begin{itemize}
+            \item \(f(W) \subseteq Y_0\)
+            \item \(f(W) \subseteq Y_1\) and \(f(W) \not\subseteq Y_1\)
+            \item \(f(W) \subseteq Y_2\) and \(f(^)\not \subseteq Y_2\)
+        \end{itemize}
+        Inductive construction \(k = 0\), i.e. vertexes of the cubes \(w \in \cW\). If \(w\in Y_2\), take \(h[0]_t = \const_{w_0}\).
+
+        Suppose \(f(W_0)\in Y_1\), but \(f(w_0) \not \in Y_2\). Since \(Y_1,Y_0\) is \(0\)-connected, there is a path \(\pi\colon I \to Y_1\) from \(w_0\) to a point in \(Y_0\). We take \(h[0]\) as the path on \(w_0\). Analoguos if \(f(W_0)\in Y_2\setminus Y_1\).
+
+        \textbf{Inductive Step} Let \(W \in \cW\) be a cube of ecact dimenios \(k\). Then \(\partial W = W \cap C_{k-1}\). Since \((W, \partial W)\) has the HEP, we can extend the previous homotopy \(h[k-1]\rvert_{\partial W}\) to some homotopy on \(W\) relative to \(f\rvert_W\). Let this be \(h'[k]\colon C_k\times I \to Y\): this satisfies conditions 1. and 2. but not yet 3. and 4.
+
+        We produce another homotopy \(h[k]''\) and set \(h[k] = h[k]' * h[k]''\).
+
+        Consider a cube \(W \in \cW\) of dimension \(k\).
+
+        If \(f(W) \subseteq Y_0\) set \(h[k]''\) as the constand homotopy on \(W\).
+
+        If \(h[k]_1'(W) \subseteq Y_1\), but \(h[k]_1'(W) \not \subseteq Y_2\) there is a homotopy relative \(\partial W\) from \(h[k]_1'\) to a map \(f_1(W)\subseteq Y_0\).
+
+        If \(k = \dim(W) > p\) the we use the lemma \ref{lem:1.14} for \(f = h[k]_1'\rvert_W\) and the resulting homotopy is \(h[k]''\rvert_W\).
+
+        If \(h[k]_1'(W)\subseteq Y_2\) but \(h[k]_1'(W) \not \subseteq Y_1\), use the complement case of the lemma\footnote{rest of the proof next lecture. I am very sure some words won't make sense, as they were unreadable on the board.}
+    \end{proof}
+\end{proof}
 
 
 
