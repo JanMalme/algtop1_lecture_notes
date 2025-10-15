@@ -7,6 +7,8 @@
 
 \begin{document}
 
+\newLecture{13.10.2025}
+
 \subsection*{Organizatorial}
 
 For this term we will be doing unstable homotopy theory. Next term we will be doing stable homotopy theory. Note that there were 2 previous courses. Note that all important information is shared on the website \url{https://www.math.uni-bonn.de/people/schwede/at1-ws2526}. You can sign up for the previous topology courses und see the lecture videos for these courses there.
@@ -72,7 +74,7 @@ Excision does not generally hold for homotopy groups, i.e. for \(x \in Y_0\)
 \[\incl_*\colon \pi_i(Y_2, Y_0; x) \to \pi_i(Y, Y_1; x)\]
 is \textbf{not} generally an isomorphism.
 
-\enquote {Blakiers mAssing theorem implies that excision holds for homotopy groups in a range.}
+\enquote {Blakiers Massey theorem implies that excision holds for homotopy groups in a range.}
 
 \begin{thm}{Blakiers Massey}{Blakiers Massey}
     Let \(Y\) be a space, \(Y_1, Y_2\) open subsets with \(Y= Y_1 \cup Y_2, Y_0 \coloneq Y_1 \cap Y_2\). Let \(p, q \geq 0\), such that for all \(y \in Y_0\)
@@ -104,9 +106,9 @@ is \textbf{not} generally an isomorphism.
     \[K_p(W) = \set{x \in W : x_i < a_i + \delta/2 \text{ for at least} p \text{values of} i \text{ in } L}\]
     We call these \enquote{\(p\) small coordinates}
     \[G_p(W) = \set{x \in W : x_i > a_i + \delta/2 \text{ for at least } p \text{ coordinates } i \text{ in } L}\]
-    these are \enquote{\(p\)-big coordinates}.
+    these are \enquote{\(p\) big coordinates}.
 
-    For \(p > \dim(W), K_p(W) = G_p(W)= \emptyset \) If \(p+ q \geq \dim(W)\), then \(K_p(W) \cap G_q(W) = \emptyset\).%Help
+    For \(p > \dim(W), K_p(W) = G_p(W)= \emptyset \) If \(p+ q \geq \dim(W)\), then \(K_p(W) \cap G_q(W) = \emptyset\).
 
     He draws pictures.
 
@@ -133,12 +135,12 @@ is \textbf{not} generally an isomorphism.
         \end{description}
     \end{proof}
 
-    \begin{proposition}
-        Let \(Y_1, Y_2\) be open subsets of \(Y, Y_0\coloneq Y_1 \cap Y_2\). Suppose that \((Y_1, Y_0)\) is \(p\)-connected, \((Y_2, Y_0)\) is \(q\)-connected. Let \(f \colon I^n \to Y\) be continuous. Let \(\cW = \set{W}\) be a subdivision of \(I^n\) into subcubest of the same side length s.t. for all \(W \in \cW\) \(f(W) \subseteq Y_1\) or \(f(W) \subseteq Y_2\). Then there is a homotopy \(h \colon I^n \times I \to Y\) with \(h_0 = f\) such that for all \(W \in \cW\):
+    \begin{proposition}\footnote{11.5 in Lücks notes}
+        Let \(Y_1, Y_2\) be open subsets of \(Y, Y_0\coloneq Y_1 \cap Y_2\). Suppose that \((Y_1, Y_0)\) is \(p\)-connected, \((Y_2, Y_0)\) is \(q\)-connected. Let \(f \colon I^n \to Y\) be continuous. Let \(\cW = \set{W}\) be a subdivision of \(I^n\) into subcubes of the same side length s.t. for all \(W \in \cW\) \(f(W) \subseteq Y_1\) or \(f(W) \subseteq Y_2\). Then there is a homotopy \(h \colon I^n \times I \to Y\) with \(h_0 = f\) such that for all \(W \in \cW\):
         \begin{enumerate}
             \item If \(f(W) \subseteq Y_j, j \in {0,1,2}\), then \(h_t(W) \subseteq Y_j\) for all \(t \in [0,1]\)
             \item If \(f(W) \subseteq Y_0\), then \(h_t\rvert_{W} = f\rvert_W\), i.e. \(h\) is constant on \(W\).
-            \item If \(f(W) \subseteq Y_1\), then \(h_1^{-1}(Y_1 \setminus Y_0) K_{p+1}(W)\).
+            \item If \(f(W) \subseteq Y_1\), then \(h_1^{-1}(Y_1 \setminus Y_0)\subseteq K_{p+1}(W)\).
             \item If \(f(W) \subseteq Y_2\), then \(h_1^{-1}(Y_2\setminus Y_0) \subseteq G_{q+1}(W)\).
         \end{enumerate}
     \end{proposition}
@@ -152,19 +154,19 @@ is \textbf{not} generally an isomorphism.
         \begin{itemize}
             \item \(f(W) \subseteq Y_0\)
             \item \(f(W) \subseteq Y_1\) and \(f(W) \not\subseteq Y_1\)
-            \item \(f(W) \subseteq Y_2\) and \(f(^)\not \subseteq Y_2\)
+            \item \(f(W) \subseteq Y_2\) and \(f(W)\not \subseteq Y_2\)
         \end{itemize}
         Inductive construction \(k = 0\), i.e. vertexes of the cubes \(w \in \cW\). If \(w\in Y_2\), take \(h[0]_t = \const_{w_0}\).
 
         Suppose \(f(W_0)\in Y_1\), but \(f(w_0) \not \in Y_2\). Since \(Y_1,Y_0\) is \(0\)-connected, there is a path \(\pi\colon I \to Y_1\) from \(w_0\) to a point in \(Y_0\). We take \(h[0]\) as the path on \(w_0\). Analoguos if \(f(W_0)\in Y_2\setminus Y_1\).
 
-        \textbf{Inductive Step} Let \(W \in \cW\) be a cube of ecact dimenios \(k\). Then \(\partial W = W \cap C_{k-1}\). Since \((W, \partial W)\) has the HEP, we can extend the previous homotopy \(h[k-1]\rvert_{\partial W}\) to some homotopy on \(W\) relative to \(f\rvert_W\). Let this be \(h'[k]\colon C_k\times I \to Y\): this satisfies conditions 1. and 2. but not yet 3. and 4.
+        \textbf{Inductive Step} Let \(W \in \cW\) be a cube of exact dimension \(k\). Then \(\partial W = W \cap C_{k-1}\). Since \((W, \partial W)\) has the HEP, we can extend the previous homotopy \(h[k-1]\rvert_{\partial W}\) to some homotopy on \(W\) relative to \(f\rvert_W\). Let this be \(h'[k]\colon C_k\times I \to Y\): this satisfies conditions 1. and 2. but not yet 3. and 4.
 
         We produce another homotopy \(h[k]''\) and set \(h[k] = h[k]' * h[k]''\).
 
         Consider a cube \(W \in \cW\) of dimension \(k\).
 
-        If \(f(W) \subseteq Y_0\) set \(h[k]''\) as the constand homotopy on \(W\).
+        If \(f(W) \subseteq Y_0\) set \(h[k]''\) as the constant homotopy on \(W\).
 
         If \(h[k]_1'(W) \subseteq Y_1\), but \(h[k]_1'(W) \not \subseteq Y_2\) there is a homotopy relative \(\partial W\) from \(h[k]_1'\) to a map \(f_1(W)\subseteq Y_0\).
 
@@ -172,8 +174,162 @@ is \textbf{not} generally an isomorphism.
 
         If \(h[k]_1'(W)\subseteq Y_2\) but \(h[k]_1'(W) \not \subseteq Y_1\), use the complement case of the lemma\footnote{rest of the proof next lecture. I am very sure some words won't make sense, as they were unreadable on the board.}
     \end{proof}
+
+\newLecture{15.10.2025}
+
+Now for the actual proof of Blakiers Massey
+Let \(F(Y_1,Y, Y_2) = Y_1 \times_Y Y^{[0,1]} \times_Y Y_2\).
+
+Let \(F(Y_1, Y_1, Y_0)\) be the subspace of those \(w \in F(Y_1, Y, Y_2)\) such that \(w([0,1])\subseteq Y_1\).
+
+\begin{proposition}
+    Assume that \((Y_1, Y_0)\) is \(p\)-connected, \((Y_2, Y_0)\) is \(q\)-connected. Then the pair \((F(Y_1, Y,Y_2), F(Y_1, Y_1, Y_0))\) is \((p+q-1)\)-connected.
+\end{proposition}
+
+\begin{proof}
+    We consider a map of pairs
+    \[\phi\colon (I^n \partial I^n) \to (F(Y_1, Y, Y_2), F(Y_1, Y_1, Y_0))\]
+    for \(1 \leq n \leq p+q+1\). We want to homotop \(\phi\) relative \(\partial I^n\) to a map with image in \(F(Y_1, Y_1, Y_0)\). We use the adjoint
+    \[\map(X\times [0,1], Z) \cong \map(X, Z^{[0,1]})\]
+    We let \(\Phi\colon I^n \times I \to Y\) be the adjoint of \(\phi\), this is \emph{admissable}, in the sense that
+    \begin{enumerate}
+        \item \(\Phi(x, 0) \in Y_1\) for all \(x \in I^n\)
+        \item \(\Phi(x,1) \in Y_2\) for all \(x \in I^n\)
+        \item \(\Phi(x,t) \in Y_1\) for all \(x \in \partial I^n\), \(t \in [0,1]\)
+    \end{enumerate}
+    We want a homotopy of \(\Phi\) through admissable maps to a map \(\Phi' \colon I^n \times I \to Y\) such that \(\img(\Phi')\subseteq Y_1\).
+
+    Apply Proposition 11.5 to \(\Phi\) (with \(n+1\) instead of \(n\)). This gives a homotopy through admissable maps to \(\Psi = g\).
+    Let \(h\colon I^n \times I \times I \to Y\) be a homotopy witnessing this. \(h_0 = \Phi, h_1 F \Psi\).
+
+    Consider the projection \(\pr\colon I^n \times I\to I^n\) away from the last coordinate.
+
+    \textbf{Claim.} The image under \(\pr\) of \(\Psi^{-1}(Y\setminus Y_1)\) and \(\Psi^{-1}(Y\setminus Y_2)\) are disjoint.
+
+    Suppose there is \( y \in I^n\) in the intersection of the preimages, so \(z_1 \in \Psi^{-1}(Y\setminus Y_1), z_2 \in \Psi^{-1}(Y\setminus Y_2)\) s.t \(\pr(x_1) = y = \pr(z_2)\). Let \(W = I^{n+1}\) be a subcube of the subdivision of Proposition 11.5 such that \(z_1 \in W\). Since \(z_1 \in \Psi^{-1}(Y\setminus Y_1)\), \(z_1 \in K_{p+1}(W)\), so \(y = \pr(z_1) \in K_p(\img(W))\). Analogous \(y = \pr(z_2) \in G_q(\img(W))\). Since \(p+q > n\), this is a contradiction and the claim is proven.
+
+    \textbf{Claim.} The intersection of \(\pr(\Psi^{-1}(Y\setminus Y_1))\) with \(\partial I^n\) is empty since \(\Psi\) is admissable, and thus \(\Psi(\partial I^n)\subseteq Y_1\). So \(\pr(\Psi^{-1}(Y\setminus Y_1))\) and \(\pr(\Psi^{-1}(Y\setminus Y_2))\cup (\partial I^n)\) are two disjoint closed subsets of the compact space \(I^n\).
+
+    So there is a continuous separating function \(\tau\colon I^n \to [0,1]\), s,t. \(\tau\equiv 0\) is \(\pr(\Psi^{-1}(Y\setminus Y_1))\) and \(\tau\equiv 1\) is \(\partial I^n \cup \pr(Y\setminus Y_2)\)
+    
+    We define another homotopy starting with \(\Psi\) by
+    \[h\colon (I^n\times I)\times I \to Y\]
+    by
+    \[((x,t),s) \mapsto \Psi(x,(1-s)t + s\cdot t \tau(x))\]
+    This is
+    \begin{itemize}
+        \item Homotopy through admissable maps
+        \item \(h(x,t,0) = \Psi(x,t)\)
+    \end{itemize}
+    \textbf{Claim.} \(h(\_,\_, 1)\) has image in \(Y_1\).
+
+    \[h(x,t,1) = \Psi(x, t\cdot\tau(x))\]
+    \begin{itemize}
+        \item if \(x \in \Psi^{-1}(Y\setminus Y_1)\), then \(\tau(x) = 0\), \(h(x,t,1) = \Psi(x,0) \in Y_1\).
+        \item if \(x \in \Psi^{-1}(Y_1)\), then by admissability \(\Psi(x,t\cdot\tau(x))\in Y\).
+    \end{itemize}
 \end{proof}
 
+For the actual proof \((Y_1, Y_0)\) \(p\)-connected \((Y_2, Y_0)\) \(q\)-connected
 
+some diagram about something being Serre fibration
+
+We compare wo Serre fibrations
+\[\begin{tikzcd}
+    F(\set{y_0}, Y_1, Y_0) & F(\set{y_0}, Y, Y_2) \\
+    F(Y_1, Y_1, Y_0) \ar[r] & F(Y_1, Y, Y_2) \\
+    Y_1  & Y_1 \\
+\end{tikzcd}\]
+partial 5-lemma shows that also the pair
+\[(F(\set{y_0}, Y, Y_2), F(\set{y_0}, Y_1, Y_0))\]
+is \((p+q-1)\)-connected.
+
+The following square commutes for all \(n \geq 1\)
+\[\begin{tikzcd}
+    \pi_{n-1}(F(\set{y_0}, Y_1, Y_0), \const_{y_0})\ar[d, "\cong"] \ar[r] & \pi_{n-1}(F(\set{y_0}, Y, Y_1), x) \ar[d, "\cong"]\\
+    \pi_n(Y_1, Y_0, y_0) \ar[r, "\id_*"] & \pi_n(Y, Y_1, y_0) \\
+\end{tikzcd}\]
+\end{proof}
+
+\section{Feudenthal suspension theorem}
+Section 6.4 in tom Deicks book
+
+\begin{defi}{}{}
+    Let \(X\) be a based space. The \emph{unreduced suspension} is \(X^\diamond = X\times [-1,1]/\sim\) where \(\sim\) identifies all points with second variable \(-1\) to \(S\) and all points with second variable \(1\) to \(N\). We use \(S\) as the base point of \(X^\diamond\).\footnote{south and north pole}
+\end{defi}
+
+\textbf{Note.} If \(X\) is well based, i.e. \(\set{x_0} \hookrightarrow X\) has the HEP, then the quotient map \(X^\diamond \sigma X = \frac{X\times [0,1]}{X\times \set{0,1}\cup \set{x_0}\times [0,1]}\) is a homotopy equivalence.
+
+The suspension homomorphism \(S\colon \pi_k(X,x_0) \to \pi_{k+1}(X^\diamond, S)\) for \(k \geq 1\) is \(S[f\colon S^k \to X] \coloneq [f^\diamond \colon S^{k+1}= (S^k)^\diamond \to X^\diamond]\)
+
+\begin{thm}{Freudenthal suspension theorem}{}
+    Let \(X\) be an \((n-1)\)-connected space, \(n \geq 1\). Then the suspension homomorphism is \begin{itemize}
+        \item bijective foor \(i\leq 2n-2\)
+        \item surjective for \(i = 2n-1\)
+    \end{itemize}
+\end{thm}
+
+\begin{proof}
+    We cover \(X^\diamond\) by \(Y_1 = X^\diamond \setminus \set{N}\), \(Y_2 F X^\diamond \setminus \set S\). We use repeatedly that \(Y_1\) and \(Y_2\)0are contractible. Then \(X\to Y_1\cap Y_2 = Y_0\) is a homotopy equivalence. We claim without proof that the following diagram commutes:
+
+    I couldn't keep up.
+
+    So we may show that \(\pi_{i+1} (Y_2, Y_0, x_0)\to \pi_{i+1}(Y, YV1, y_0)\) is bijective for \(i \leq 2n-2\) and surjective for \(i \leq 2n-1\).
+
+    Because \(X\) is \((n-1)\)-connected
+    \[\pi_{k+1}(Y_1, Y_0, x_0) \xrightarrow[\partial]{\cong} \pi_k(Y_0, x_0)\]
+    So \(\pi_i(Y_1, Y_0, x_0) = 0\) for \(i \leq n\), i.e. \((Y_1, Y_0)\) is \(n\)-connected. Also \((Y_2, Y_0)\) is \(n\)-connected.
+
+    BM gives \(\pi_k(Y_2, Y_0, y) \to \pi_k(X^\diamond, Y_1, y)\) is bjective for \(k < 2n-1\) and surjective for \(k = 2n\).
+
+    Setting \(i = k-1\) ends the proof.
+\end{proof}
+
+Take \(X = S^n\)
+\begin{corollary}
+    The suspension homomorphism
+    \[S\colon \pi_i(S^n, *) \to \pi_{i+1}(S^{n+1}, *)\]
+    is bijective for \(i \leq 2n-2\) and surjective for \(i = 2n-1\).
+\end{corollary}
+
+\begin{corollary}
+    For all \(n \geq 1\), \(\pi_n(S^n, *)\cong \IZ\), generated by the class of \(\id_{S^n}\). Moreover \(\deg\colon \pi_n(S^n, *)\to \IZ\) is an isomorphism.
+\end{corollary}
+
+\begin{proof}
+    Induction on \(n\). For \(n= 1\) we have this by covering theory.
+
+    \(n\geq 1\) By Freudenthal, the suspension homomorphism
+    \[S\colon \pi_n(S^n, *), \to \pi_{n+1}(S^{n+1}, *)\]
+    is surjective. The composite
+    \[\pi_n(S^n, *) \xrightarrow{S} \pi_{n+1}(S^{n+1}, *) \xrightarrow{\deg} \IZ\]
+    is bijective by induction. So \(S\) is also injective and \(\deg\) in one dimension higher is also an isomorphism.
+\end{proof}
+
+\textbf{Recall.} \(\pi_3(S^2, *) \cong \IZ\set{\eta}\), where \(\eta \colon S^3 \to S^2\) is the Hopf map.
+
+\begin{proposition}
+    For \(n \geq 3\), \(\pi_{n+1}(S^n, *) = \IZ/2\set{S^{n-2}(\eta)}\) cycles of order two.
+\end{proposition}
+
+\begin{proof}
+    Only partial. For \(n \geq 2\), \(S\colon \pi_{n+1}(S^n, q) \mapsto \pi_{n+2}(S^{n+1}, S^{n+1}, *)\) is surjective.
+    \[\iz\set{\eta} = \pi_3(S^2, *) \twoheadrightarrow \pi_4(S^3, *) \xrightarrow[\cong]{S} \pi_5(S^4, *)\dots\]
+    \textbf{Claim.} \(S(2\eta) = 0\) in \(\pi_4(S^3, *)\). Which gives \(\pi_{n+1}(S^n, *)\) is either trivial or order 2.
+
+    Consider the commutative square
+
+    I did not manage to copy. Something complex conjugation
+
+    \(\implies [\eta] = [\eta \circ \text{complex conjugation}] = [d \circ \eta]\) in \(\pi_3(S^2, * \cong \iz)\).
+
+    If \(f\colon S^n \to S^n\) has degree \(k\), then precomposition of \(\pi_n(X,x)\to \pi_n(X,x)\) is multiplication by \(k\).
+
+    Let \(c\colon S^1\to S^1\) be any map of degree \(-1\). Then \(c\wedge S^2\), \(S^1 \wedge d\): bothe have degree \(-1\). So \(c \wedge S^2 \sim S^1 \wedge d\)
+
+    two diagrams I did not copy.
+
+    We get \(S(\eta) = S(d \circ \eta)=S(\eta \circ (c\wedge S^1)) = S(-\eta) = - S(\eta)\) and hence \(2 \cdot S(\eta) = 0\).
+\end{proof}
 
 \end{document}
