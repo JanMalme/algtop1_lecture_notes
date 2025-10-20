@@ -274,7 +274,7 @@ The suspension homomorphism \(S\colon \pi_k(X,x_0) \to \pi_{k+1}(X^\diamond, S)\
 
     I couldn't keep up.
 
-    So we may show that \(\pi_{i+1} (Y_2, Y_0, x_0)\to \pi_{i+1}(Y, YV1, y_0)\) is bijective for \(i \leq 2n-2\) and surjective for \(i \leq 2n-1\).
+    So we may show that \(\pi_{i+1} (Y_2, Y_0, x_0)\to \pi_{i+1}(Y, Y_1, y_0)\) is bijective for \(i \leq 2n-2\) and surjective for \(i \leq 2n-1\).
 
     Because \(X\) is \((n-1)\)-connected
     \[\pi_{k+1}(Y_1, Y_0, x_0) \xrightarrow[\partial]{\cong} \pi_k(Y_0, x_0)\]
@@ -331,5 +331,177 @@ Take \(X = S^n\)
 
     We get \(S(\eta) = S(d \circ \eta)=S(\eta \circ (c\wedge S^1)) = S(-\eta) = - S(\eta)\) and hence \(2 \cdot S(\eta) = 0\).
 \end{proof}
+
+\newLecture{20.10.2025}
+
+We make a bit of a preview\footnote{He just spammed random stuff, I don't think I copied enough for it to make sense.} for stable homotopy theory. Following Lücks notes today rather closely
+
+\begin{defi}{}{Stable Homotopy Groups}
+    Let \(X\) be a based space. The \(n\)-th stable homotopy group of \(X\) is the colimit \(\pi_n^S(X,*)\)
+\[\pi_n(X,*)\xrightarrow{S} \pi_{n+1}(S^1 \wedge X, *) \xrightarrow{S} \pi_{n+2}(S^2 \wedge X, *)\dots\]
+\end{defi}
+
+Since \(S^k \wedge X\) is \((k-1)\)-connected, the suspension stabilises (i.e. \(S\) is isomorphism for \(\pi_{n+k}(S^k \wedge X, *)\) onwards).
+
+\(\pi_n^S()\) is a functor from based spaces to abelian groups. and it is homotopy invariant. It comes with a natural transformation \(\pi_n(X,*) \to \pi_n^S(X,*)\).
+
+\textbf{Preview:} \(\set{\pi_n^S}_{n \in \iz}\) form a generalized homology theory on based spaces.
+
+If \((X,A)\) is a pair of based space, \(x \in A \subseteq X\), we define
+\[\pi_n^S(X,A,*) \coloneq \pi_n^S(X\cup_A CA, *)\]
+The map collapsing \(X\) is
+\[X\cup_A CA \to \frac{X\cup_A CA}{X} \cong \frac{CA}{A} \cong A^\diamond\]
+induces an connecting homomorphism
+\[\partial\colon \pi_n^S(X,A,x) = \pi_n^S(X \cup_A CA, *) \xrightarrow{p_*} \pi_n^S(A^\diamond) \to \pi_n^S(A \wedge S^1) \xrightarrow{\cong} \pi_{n-1}^S(A)\]
+
+The following sequence will then be exact:
+\[\dots \pi_n^S(A,x)\xrightarrow{\incl_*} \pi_n^S(X,x,) \xrightarrow{\incl_*}\pi_n^S(X,A,*) \xrightarrow{\partial} \pi_{n-1}^S(A,*)\to \dots\]
+
+Stable stems are the special case
+\[\pi_n^S(S^0) = \colim(\pi_n(S^0, *) \to \pi_{n+1}(S^1, *)\to \dots)\]
+
+\begin{center}
+    \begin{tabular}{l|c|c|c|c|c|c|c|c|c}
+        n & 0&1&2&3&4&5&6&7&8 \\\hline
+        \(\pi_n^S = \pi_n^S(S^0)\) & \(\iz\) & \(\iz/2\) & \(\iz/2\) & \(\iz/24\) & \(0\)& \(0\) & \(\iz/2\) & \(\iz/240\) & \((\iz/2)^2\) \\\hline
+        Generator & \(\id\) & \(\eta\) & \(\eta^2\) & \(\nu\), \(\eta^3 = 12 \nu\) & - & - & \(\nu^2\) & \(\sigma\) & \(\eta\sigma, \epsilon\)
+    \end{tabular}
+\end{center}
+
+There is a graded-commutative ring structure on \(\pi_*^S = \set{\pi_n^S}_{n \in \iz}\). \(\pi_n^S \times \pi_m^S \to \pi_{n+m}^S\)
+
+\[[f\colon S^{n+k}\to S^k\times S^k] \times [g \colon S^{m+l}\to S^l] = [SW{n+m+k+l} \to S^{n+k} \wedge S^{m+l} \xrightarrow{f\wedge g} S^{k+l}]\]
+
+I missed a bit more
+
+Nishidas theorem says: every pohitive dimensional element of \(\pi_*^3\) is nilpotent.
+
+From Serre spectral sequence we will see: For \(m > n\geq 1\) \(\pi_m(S^n, *)\) is finite except \(\pi_{4k - 1}(S^{2k}, *) \cong \iz \oplus \) some finite group.
+
+This was exercise 5.2 of last summer term: \emph{Hopf invariant} \(h\colon \pi_{2k-1}(S^k, *) \to \iz\) for \([f\colon S^{2k-1}\to S^k]\)
+\[H^*(S^k\cup_f D^{2k}, \iz) = \begin{cases}
+    \iz & i = 0,k,2k \\
+    0 & \text{else}
+\end{cases}\]
+we have 
+\(H^k(Cf, \iz) = \iz\set a\) \(H^{2k}(Cf, \iz) \cong \iz\set b\) and \(a \cup a = h(f) \cdot b\).
+
+In general we can look at
+
+\(t_k\colon S^{2k-1}\to S^k\vee S^k\) the attaching map of the \(2k\)-cell in the product minimal CW-structure of \(S^k \times S^k\). And we get \(h(t_k) = 2\).
+
+The Hopf invariant 1 theorem tells us when we can realize Hopf invariant 1 and here we see that we always find Hopf invariant 2.
+
+\section{Hurewicz-theorem}
+
+This is a \enquote{trivial}\footnote{meaning 1.5 lectures of intermediate steps} Corollary of the Blakiers-Massey theorem.
+
+\begin{defi}{}{Hurewicz-Homomorphism}
+    Let \(X\) be a based space. Choose an orientation of \(S^n\), \(n \geq 1\), i.e. \([S^n] \in H_n(S^n, \iz)\). The Hurewicz homomorphism
+    \[h\colon \pi_n(X,x) \to H_n(X;\iz)\]
+    is defined by
+    \[h[f\colon S^n\to X] = H_n(f, \iz)[S^n].\]
+    This is a group homomorphism.
+\end{defi}
+
+\textbf{Group Homomorphism:} Let \(\Delta\colon S^n \to S^n \vee S^n\) be a pinch map.
+Group structure on \(\pi_n(X,x)\) is given by \([f]+[g] = [S^n\xrightarrow{\Delta}S^n\vee S^n \xrightarrow{f+g} X]\). Then
+\[
+\begin{tikzcd}
+    \pi_n(X, x) \arrow[d, "\cong"'] \arrow[rd, "h"] & \\
+    \pi_n(X, y) \arrow[r, "h"] & H_n(X, \mathbb{Z})
+\end{tikzcd}
+\]
+\[([f]+ [g])_* = [f]_* + [g]_* \colon H_n(S^n) \to H_n(X)\]
+So Hurewicz is a homomorphism.
+
+\begin{lem}
+    Let \(w\colon [0,1]\to X\)0be a path from \(x = w(0)\) to \(y = w(1)\). Then the following commutes:
+    \[\begin{tikzcd}
+        \pi_n(X,x) \ar[d, "\cong"] \ar[rd, "h"] & \\
+        \pi_n(X,y) \ar[r, "h"] & H_n(X, \iz) \\ 
+    \end{tikzcd}\]
+\end{lem}
+
+\begin{proof}
+    \(f\) and \(f *w\) are freely homotopic \(h_n(\_, \iz)\) is homotopy invariant
+\end{proof}
+
+For \(n = 1\) we have Poincaré: \(X\) based path conneted, \(h\colon \pi_1(X,x)\to H_1(X,\IZ)\) is surjective with kernel the commutator subgroup or equivalently
+\[\pi_1(X,x)_{ab} \xrightarrow{cong} H_1(X,\iz)\]
+
+\begin{thm}{}{Hurewicz}
+    Let \(X\) be an \((n-1)\)-connected space, \(n\geq 2\). Then the Hurewicz homomorphism
+    \[h\colon\pi_n(X,x) \to H_n(X,\iz)\]
+    is an isomorphism.
+\end{thm}
+
+\begin{proposition}[11.9 in Lücks notes]
+    Let \(m,n \geq 0\), let
+    \[\begin{tikzcd}
+        A \ar[r, "f"] \ar[d, "i"] & B \ar[d, "\bar i"]\\
+        X \ar[r, "\bar f"] & Y \\
+    \end{tikzcd}\]
+    be a pushout square of spaces. Suppose \(i\colon A \to X\) is a \emph{cofibration}, i.e. a closed embedding with the HEP.
+    \begin{enumerate}
+        \item If \(f\) is \(n\)-connected, then so is \(\bar f\)
+        \item If \(f\) is \(n\)-connected, and \(i\) is \(m\)-connected, then for all \(a \in A\), \(\pi_i(f, \bar f) \colon \pi_i(X,A, a) \to \pi_i(Y, B, f(a))\) is bijective for \(1 \leq i < m+n\) and surjective for \(i = m+n\).
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \enquote{Basically reduction to Blakiers-Massey}
+
+    We can replace \(X, B\) and \(Y\) up to homotopy equivalence by appropriate mpping cylinders:
+    \[\mathrm{cyl}(f) = A\times [0,1]\cup_{A\times 1 , f} B\]
+    We get a homotopy commutative diagram
+    \[\begin{tikzcd}
+        A \ar[r]\ar[d] & \mathrm{Cyl}(f) \ar[d]  \ar[rd, "\sim"]& \\
+        \mathrm{Cyl}(i) \ar[r]\ar[rd, "\sim"] & \mathrm{cyl}(i) \cup_A \mathrm{cyl}(f)\ar[rd, "\sim"] & B\ar[d, "\bar i"] \\
+        & X \ar[r, "\bar f"] & Y \\
+    \end{tikzcd}\]
+    This diagram does not commute. The homotopy equivalences shown are not trivial.
+
+    We apply Blakiers-Massey then to the following open subspace of \(W = \mathrm{cyl}(i)\cup_A \cyl(f)\).
+
+    \(W_2 = [0,1/2) \times A\cup_{A\times 0} \cyl(f)\), \(W_1 = \cyl(i) \cup_{A\times 0} [0, 1/2)\). \(W_0 = W_1\cap W_2 \sim A\)
+
+    Now having \(f\) is \(n\)-connected gives \((W_2, W_0)\) is \(n-connected\). \(i\) being \(m\)-connected gives \((W_1, W_0)\) is \(m\)-connected.
+
+    Now BM gives \(\pi(W_1, W_0, a)\to \pi_i(W, W_2, a)\) is bijective for \(1 \leq i \leq m+n-1\) and surjective for \(i = m+n\).
+
+    Using the homotopy equivalences, we translate this back.
+\end{proof}
+
+\begin{proposition}[11.1 in Lücks]
+    Let \(m,n \geq 0\), let \(c\colon A \to X \) be a cofibration. Suppose that \(i\) is \(m\)-connected and \(A\) is \(n\)-connected. Then 
+    \[\pi_k(\pr)\colon \pi_k(X,A,a) \to \pi_k(X/A, *)\]
+    for all \(a \in A\) is bijective for \(1 \leq k \leq m+n\) and surjective for \(k = m+n+1\)
+\end{proposition}
+
+\begin{proof}
+    We consider the pushout
+    \[\begin{tikzcd}
+        A \ar[d, "i"]\ar[r, "j", "(n+1)\text{-con}"'] & C(A) = A\times [0,1]/A\times 1 \ar[d] \\
+        X \ar[r] & X \cup_A CA \ar[r, "\sim"] & X/A\\
+    \end{tikzcd}\]
+
+    \begin{remark}
+        \(X\) \(k\)-connected \(\Lra\) \(\set{*}\to X\) \(k\)-connected \(\Lra\) \(X\to \set{*}\) is \((n+1)\)-connected.
+    \end{remark}
+\end{proof}
+
+\begin{proposition}[11.12 for Lück]
+    Also an exercise (1.2) Let \(X,Y\) be well-pointed spaces. Let \(m,n \geq 1\). Let \(X\) be \(m\)-connected, \(Y\) \(n\)-connected. Then
+    \begin{enumerate}
+        \item The inclusion \(X\vee Y\to X\times Y\) induces isomorphisms
+        \[\pi_k(X\vee Y, *) \to \pi_k(X\times Y, *)\]
+        for all \(0 \leq k \leq m+n\).
+        \item \(\pi_k(X\times Y, X\vee D, *)\) and \(\pi_k(X\wedge @, *)\) are trivial for all \(0 \leq k\leq m+n+1\).
+        \item The map \((pr_*^X, pr_*^Y)\colon \pi_k(X\vee Y, x) \to \pi_k(X, x_0)\times \pi_k(Y, y_0)\) is an isomorphism for all \(1 \leq k \leq m+n\).
+    \end{enumerate}
+\end{proposition}
+
+
 
 \end{document}
