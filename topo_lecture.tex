@@ -415,8 +415,8 @@ Group structure on \(\pi_n(X,x)\) is given by \([f]+[g] = [S^n\xrightarrow{\Delt
 \[([f]+ [g])_* = [f]_* + [g]_* \colon H_n(S^n) \to H_n(X)\]
 So Hurewicz is a homomorphism.
 
-\begin{lem}
-    Let \(w\colon [0,1]\to X\)0be a path from \(x = w(0)\) to \(y = w(1)\). Then the following commutes:
+\begin{lem}{}{}
+    Let \(w\colon [0,1]\to X\)be a path from \(x = w(0)\) to \(y = w(1)\). Then the following commutes:
     \[\begin{tikzcd}
         \pi_n(X,x) \ar[d, "\cong"] \ar[rd, "h"] & \\
         \pi_n(X,y) \ar[r, "h"] & H_n(X, \iz) \\ 
@@ -428,13 +428,15 @@ So Hurewicz is a homomorphism.
 \end{proof}
 
 For \(n = 1\) we have Poincaré: \(X\) based path conneted, \(h\colon \pi_1(X,x)\to H_1(X,\IZ)\) is surjective with kernel the commutator subgroup or equivalently
-\[\pi_1(X,x)_{ab} \xrightarrow{cong} H_1(X,\iz)\]
+\[\pi_1(X,x)_{ab} \xrightarrow{\cong} H_1(X,\iz)\]
 
-\begin{thm}{}{Hurewicz}
+\begin{thm}{Hurewicz}{Hurewicz}
     Let \(X\) be an \((n-1)\)-connected space, \(n\geq 2\). Then the Hurewicz homomorphism
     \[h\colon\pi_n(X,x) \to H_n(X,\iz)\]
     is an isomorphism.
 \end{thm}
+
+We will need to work a bit for the proof.
 
 \begin{proposition}[11.9 in Lücks notes]
     Let \(m,n \geq 0\), let
@@ -501,6 +503,157 @@ For \(n = 1\) we have Poincaré: \(X\) based path conneted, \(h\colon \pi_1(X,x)
         \item The map \((pr_*^X, pr_*^Y)\colon \pi_k(X\vee Y, x) \to \pi_k(X, x_0)\times \pi_k(Y, y_0)\) is an isomorphism for all \(1 \leq k \leq m+n\).
     \end{enumerate}
 \end{proposition}
+
+\newLecture{22.10.2025}
+
+\begin{proposition}
+    Let \(n \geq 2\). Let \(\set{X_i}_{i\in I}\) be a family of well-pointed, \((n-1)\)-connected spaces. Then the canonical map
+    \[\bigoplus_{i\in I} \pi_n(X_i, *) \to \pi_n(\bigvee_{i\in I} X_i, *)\]
+    is an isomorphism.
+\end{proposition}
+
+\begin{proof}
+    \begin{description}
+        \item[Step 1] If \(I\) is finite, we do Induction on \(\abs I\). Nothing to show if \(I = \emptyset\), \(\abs I = 1\). Let \(\abs I \geq 2\). Wlog \(I = \set{1,2, \dots k}\), \(k\geq 2\).
+        
+        By Proposition 1.19, \(\pi_n(\bigvee_{i = 1, \dots, k-1}X_i, *) \oplus \pi_n(X_k, *) \xrightarrow{\cong} \pi_n(\bigvee_{i = 1,\dots, k} X_i, *)\) and the first part is isomorphic to \(\bigoplus_{i = 1,\dots, k} \pi_n(X_i)\) by induction.
+
+        \item[Case 2] \(I\) is infinite: We first show injectivity. The projection
+        \[p_j\colon \bigvee_{i\in I} X_i \to X_j\]
+        induces an homomorphism
+        \[(p_j)_*\colon \pi_n(\bigvee_I X_i, *) \to \pi_n(X_j, *)\]
+        For varying \(j\in I\), these assemble into a homomborphism
+        \[\bigoplus_{i\in I}\pi_n(X_i,*)\xrightarrow{can} \pi_n(\bigvee_{i\in I} X_i, *) \xrightarrow{((p_j)*)} \prod_{j\in I} \pi_n(X_j, *)\]
+        and the composition is inclusion of sum into product, hence injective. So also the first map is injective.
+
+        For surjectivity let \(f\colon S^n \to \bigvee_{i\in I}X_i\) be a continuous map that represents a class in \(\pi_n(\bigvee_{i\in I} X_i)\). Because \(S^n\) is compact, there is a finite subset \(J\subseteq I\) s.t. \(\Img(f)\subseteq \bigvee_{i \in J} X_i\)\footnote{he explains, why this is not easy to see. But it is point-set topology, so we won't do it.} This implies \([f] \subseteq \pi_n(\bigvee_{j \in J} X_j,*) \to \pi_n(\bigvee_{i\in I} X_i, *)\).
+        \[\begin{tikzcd}
+            \pi_n(\bigvee_{j\in J}X_j, *) \ar[r] & \pi_n(\bigvee_{i \in I}X_i, *) \\
+            \bigoplus_{j\in J} \pi_n(X_j,*) \ar[u, "\text{Case 1}"] \ar[r] & \bigoplus_{i\in I} \pi_n(X_i, *) \ar[u, "can"] \\
+        \end{tikzcd}\]
+        so \([f]\) is in the image of the canonical map.
+    \end{description}
+\end{proof}
+
+\begin{thm}{Hurewicz}{}
+    Let \(n\geq 2\). Let \(X\) be \((n-1)\)-connected base space. Then the Hurewicz homomorphism \(h\colon \pi_n(X,x)\to H_n(X,\iz)\), \(f\mapsto H_n(f, \iz)[S^n]\) is an isomorphism.
+\end{thm}
+
+\begin{proof}
+    \begin{itemize}
+        \item By CW-approximation (see later in this class) there is a CW-complex \(Y\) with one \(0\)-cell and no cells in dimensions \(1\leq i \leq n-1\) and a weak homotopy equivalence \(Y\xrightarrow{\simeq} X\).
+        \item Every weak homotopy equivalence induces isomorphisms of \(H_n(\_, A)\) for all \(n \geq 0\), for all abelian groups \(A\). This will either be an exercise or proven later on.
+    \end{itemize}
+    We get a commutative diagram
+    \[\begin{tikzcd}
+        \pi_n(Y, y) \ar[r, "f_*", "\cong"'] \ar[d, "h"] & \pi_n(X,f(*)) \ar[d, "h"] \\
+        H_n(Y, \iz) \ar[r, "f_*", "\cong"'] & H_n(X,\iz) \\
+    \end{tikzcd}\]
+    So wlog we can assume that \(X\) admits a CW-structure with a single \(0\)-cell and no cells of dimensions \(1, \dots, n-1\). The inclusion of the \((n+1)\)-skeleton \(X_{n+1} \to X\) induces isomorphisms
+    \[\pi_n(X_{n+1}, *) \to \pi_n(X, *)\]
+    by cellular approximation. Also
+    \[H_n(X_{n+1}, \iz) \to H_n(X,\iz)\]
+    is an isomorphism for example by cellular homology.
+
+    It suffices to show the Hurewicz theorem for the \(n+1\)-skeleton, i.e. \(X\) is a CW-complex with a single \(0\)-cell, \(I\) many \(n\)-cells, \(J\) many \((n+1)\)-cells and no cellls in any other dimension.
+    \[X= (\set x \cup_{I\times \partial D^n} D^n) \cup_{J\times \partial D^{n+1}} (J\times D^{n+1}) \cong (\bigvee_{i\in I} S^n) \cup_{J\times D^{n+1}} J\times D^{n+1}\]
+    We can assume that all attaching maps \(\alpha\colon \partial D^{n+1}\to \bigvee_{i \in I} S^n\) are based.
+
+    We see this since \(\bigvee_{i\in I} S^n\) is path connected, \(\alpha\) is homotopic by HEP to a based map \(\alpha'\). Since homotopic attaching maps yield homotopy equivalent glueings.
+
+    So \(X\) can be written as a pushout
+    \[\begin{tikzcd}
+        \bigvee_{j\in J} S^n \ar[r, "f"]\ar[d, hook] & \bigvee_{i \in I} S^n  \ar[d]\ar[r, phantom, "="] & X_n \\
+        \bigvee_{j \in J} D^{n+1} \ar[r] & X \ar[r, phantom, "="] & X_{n+1}\\
+    \end{tikzcd}\]
+    Since \(\bigvee_I S^n\) and \(\bigvee_J S^n\) are \((n-1)\)-connected, \(f\colon \bigvee_J S^n \to \bigvee_I S^n\) is \((n-1)\)-connected. Also \(\bigvee_J S^n \to \bigvee_I D^{n+1}\) is \(n\)-connected, as \(\bigvee_I D^{n+1}\) is contractible.
+
+    By Proposition ?? \(\pi_k(\bigvee_J D^{n+1}, \bigvee_J S^n) \to \pi_k(X, X_n) = \pi_k(X, \bigvee_I S^n)\) is isomorphic for \(1 \leq k \leq 2n-2\) and surjective for \(k = 2n-1\). In particular \(\pi_{n+1}(\bigvee_J D^{n+1}, \bigvee_J S^n)\to \pi_{n+1}(X,X_n)\) is surjective. We compare the long exact homotopy sequences of the vertical pairs:
+    \[\begin{tikzcd}
+        0 \ar[r] & \pi_{n+1}(\bigvee_J D^{n+1}, \bigvee_J S^n)\ar[r, "\partial", "\cong"']\ar[d, "g_*", two heads] & \pi_n(\bigvee_J S^n) \ar[r] \ar[d, "f_*"] & 0 \\
+        \phantom 0 \ar[r] & \pi_{n+1}(X, X_n) \ar[r, "\partial"] & \pi_n(X_n) \ar[r, "\text{surjective by cell. approx}"'] & \pi_n(X,*) \\
+    \end{tikzcd}\]
+
+    So the upper row is exact:
+    \[\begin{tikzcd}
+        \pi_n(\bigvee_J S^n) \ar[d, "h"] \ar[r, "f_*"] & \pi_n(\bigvee_I S^n) \ar[d, "h"] \ar[r, "\incl_*"] & \pi_n(X) \ar[r] \ar[d, "h"] & 0 \\
+        H_n(\bigvee_J S^n, \iz) \ar[r, "f_*"] & H_n(\bigvee_I S^n, \iz) \ar[r] & H_n(X,\iz) \ar[r] & 0 \\
+    \end{tikzcd}\]
+    We claim the first 2 \(h\) are isomorphisms We have  a long exact sequence by excision. For all sets \(I\)
+    \[\begin{tikzcd}
+        \bigoplus_{i\in I} \pi_n(S^n, *) \ar[r, "\cong"] \ar[d, "\bigoplus h"] & \pi_n(\bigvee_{i\in I} S^n, *) \ar[d, "h"] \\
+        \bigoplus_{i\in I} H_n(S^n, \iz) \ar[r, "\cong"] & H_n(\bigvee_I S^n, \iz) \\
+    \end{tikzcd}\]
+    so \(h\colon \pi_n(X,x) \to H_n(X, \iz)\) is an isomorphism by 5-lemma.
+\end{proof}
+
+Some applications
+
+\textbf{Recall.} If \(X\) is simply connected, tehn \(H_1(X,\iz)\cong \pi_1(X,x)_{\mathrm{ab}} = 0\). But if \(X\) is path connceed and \(H_1(X,\IZ) = 0\), \(X\) need not be simply connected, because \(\pi_1(X,x)\) could be non-trivial and perfect (= abelianization is trivial) (E.g. \(A_5\)).
+
+\begin{proposition}[12.7(i) for Lück]
+    Let \(X\) be simply connected, \(n \geq 1\). then the following are equivalent
+    \begin{enumerate}
+        \item \(X\) is \(n\)-connected.
+        \item \(H_i(X,\iz) = 0\) for all \(2 \leq i \leq n\).
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    By induction on \(n\). Nothing to show for \(n=1\). The induction step is the Hurewicz theorem \(\pi_n(X,x) \cong H_n(X,\iz)\).
+\end{proof}
+
+\begin{proposition}[12.7 (ii) for Lück]
+    Let \(X\) be simply connected. Then the following are equivalent:
+    \begin{enumerate}
+        \item \(X\) is weakly contractible\footnote{All homotopy groups vanish}
+        \item \(H_i(X,\iz) = 0\) for all \(i\geq 2\).
+    \end{enumerate}
+\end{proposition}
+
+\textbf{Warning.} There exist acyclic spaces, i.e. non-contractible CW-complexes, path connected with \(H_i(X,\iz) = 0\) for all \(i \geq 1\).
+
+\begin{remark}
+    There is a slightly better version of the Hurewicz theorem: If \(X\) is \(n-1\)-connected, \(n \geq 2\), then \(h\colon \pi_n(X,x) \to H_n(X, \iz)\) is isomorphism and \(h\colon \pi_{n+1}(X,x) \to H_{n+1}(X,\iz)\) is surjective.
+\end{remark}
+
+\subsection{Relative Hurewicz theorem}
+
+\begin{defi}{Relative Hurewicz map}{}
+    Let \((X,A)\) be a space pair, \(a\in A\). Choose a generator \([D^n, S^{n-1}]\in H_n(D^n, S^{n-1}, \iz)\). The relative Hurewicz homomorphism is
+    \[h\colon \pi_n(X,A, a)\to H_n(X,A,\iz)\]
+    is defined by
+    \[[f\colon (D^n, S^{n-1}, {z})\to (X,A,\set a)]\mapsto h[f] \coloneq H_n(f, \iz)[D^n, S^{n-1}]\]
+\end{defi}
+
+The following diagram commutes:
+\[\begin{tikzcd}
+    \pi_n(X,a) \ar[r]\ar[d, "h"] & \pi_n(X,A, a) \ar[r, "\partial"] \ar[d, "h"] & \pi_{n-1}(A,a)\ar[d, "h"] \\
+    H_n(X,\iz) \ar[r] & H_n(X,A,\iz) \ar[r, "\partial"] & H_{n-1}(A,\iz) \\
+\end{tikzcd}\]
+
+\begin{thm}{relative Hurewicz, (simply connected case)}{}
+    Let \(n\geq 2\). Let \((X,A)\) be a space pair, such that \(X\) and \(A\) are simply connected and \((X,A)\) is \((n-1)\)-connected. Then
+    \begin{enumerate}
+        \item The Hurewicz homomorphism \(h\colon \pi_n(X,A,a) \to H_n(X,A, \iz)\) is an isomorphism, and
+        \item The group \(H_i(X,A,\iz) = 0\) for all \(0 \leq i \leq n-1\).
+    \end{enumerate}
+\end{thm}
+
+\begin{proof}
+    We will deduce this from the absolute version and some other things we already did.
+
+    By replacing \(X\) by the mapping cylinder \(A\times [0,1]\cup_{A\times 1} X\) and replacing \(A\) by \(A\times 0\), we can assume wlog that the inclusion \(i\colon A \to X\) is a cofibration. Since \(A\) is \(1\)-connected, and \((X,A)\) is \((n-1)\)-connected,
+    \[pr\colon \pi_k(X,A,a) \to \pi_k(X/A, *)\]
+    is bijective for \(1\leq k\leq n\) and surjective for \(k = n+1\).
+
+    \(X/A\) is simply connected by the van Kampen theorem.
+
+    Since \(\pi_k(X,A,*) = 0\) for \(k\leq n-1\) by hypothesis, we get that \(\pi_k(X/A, *) = 0\) for \(k\leq n-1\). So \(X/A\) is \((n-1)\)-connected. By the absolute Hurewicz theorem for \(X/A\), \(H_k(X/A, \iz) = 0\) for \(1 \leq k\leq n-1\) and
+    \[\begin{tikzcd}
+        \pi_n(X,A,a) \ar[r, "\cong", "pr_*"'] \ar[d] & \pi_n(X/A, *) \ar[d, "\cong", "h"']\\
+        H_n(X,A,\iz) \ar[r, "\cong", "\text{excision}"'] & H_n(X/A, \iz) \\
+    \end{tikzcd}\]
+\end{proof}
 
 
 
