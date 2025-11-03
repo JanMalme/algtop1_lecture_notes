@@ -813,6 +813,95 @@ We have
     This now has all required properties, missed the diagramm with explaining everything.
 \end{proof}
 
+\newLecture{29.10.2025}
+
+Was ill, might add in later.
+
+\newLecture{3.11.2025}
+
+We want to show, that for CW-complexes, Eilenberg-Maclane-spaces are unique up to homotopy.
+
+\begin{thm}{}{}
+    Let \(n \geq 1\). Let \(Y\) be an \((n-1)\)-connected CW-complex. Let \(Z\) be a based space s.t. \(\pi_m(Z,z) = 0\) for \(m > n\). Then for every group-homomorphism
+    \[\Phi\colon \pi_n(Y,ye \to \pi_n(Z,z))\]
+    there is a based continuous map \(f\colon Y \to Z\), s.t. \(\pi_n(f) = \Phi\). and such an \(f\) is unique up to based homotopy. Equivalently: the map
+    \[\pi_n\colon[Y, Z]_* \to \Hom_{\mathrm{Grp}}(\pi_n(Y,y) ,\pi_n(Z,z))\]
+    is bijective.
+\end{thm}
+
+\begin{proof}
+    If \(Y\) is based homotopy equivalent to \(Y'\) and the claim holds for \(Y'\), then it holds for \(Y\). Then we can assume wlog, that \(Y\) has one \(0\)-cell and no cells in dimensions \(1\leq i\leq n-1\). So \(Y_n = \bigvee_I D^n/S^{n-1}\).
+    \begin{description}
+        \item[Step 1] we construct a continuous map \(f_n\colon Y_n\to Z\) such that the following commutes:
+        \[\begin{tikzcd}
+            \pi_n(Y_n, *)\ar[rr, "(f_n)_*", two heads]\ar[rd, "\incl_*"] && \pi_n(Z,z) \\
+            & \pi_n(Y,y) \ar[ru, "\Phi"] 
+        \end{tikzcd}\]
+        We choose a homeomorphism \(S^n \cong D^n/\partial D^n\) and characteristic maps \(\chi_i\colon D^n \to Y\) for all \(i\in I\). then the \(S^n \cong D^n/\partial D^n\xrightarrow{\chi_i} Y_n \hookrightarrow Y\) represent a class \([\chi_i]\in \pi_n(Y, y)\), so \(\Phi[\chi_i] \in \pi_n(Z,z)\). Let \(w_i\colon S^n\to Z\) be a based map such that \([w_i] = \Phi[\chi_i]\). We define
+        \[f_n\colon Y_n = \bigvee_{i\in I} D^n/\partial D^n \cong \bigvee_{i\in I} S^n \to Z\]
+        as \(w_i\) on the wedge summand indexed by \(i\). Then the maps commute by construction on the classes \([\chi_i]\). Since the class \([\chi_i]\) for \(i\in I\) generates the group \(\pi_n(Y_n, *)\) (Hurewicz theorem). Since all the maps in the commutative diagram are group homomorphisms and commute on generators, the diagram commutes.
+        \item[Step 2] We extend \(f_n\) continuously to \(f_{n+1}\colon Y_{n+1} \to Z\).
+        
+        Let \(J\) be an index set for the \((n+1)\)-cells of \(Y\). For \(j \in J\) let \(\chi_j\colon D^{n+1}\to Y\) be a characteristic map for the \(j\)-th \(n+1\)-cell. The associated attaching map is \(\chi_j\rvert_{S^n}\colon S^n \to Y_n \cong \bigvee_I D^n/ \partial D^n \cong \bigvee_I S^n\). Since \(Y_n\) is path-connected \(\chi_j\rvert_{S^n}\) is homotopic to a based map. By the HEP for \((D^{n+1}, S^n)\), we can extend the homotopy between \(\chi_j\rvert_{S^n}\) and the based map \(\alpha\colon S^n \to Y_n\) to the \((n+1)\)-cell. So
+        \[[S^n \xrightarrow{\alpha} Y_n \hookrightarrow Y] \in \pi_n(Y,y)\]
+        is the zero homotopy class, i.e. \([\alpha] \in \pi_n(Y_n, y)\) lies in the kernel of \(\incl_*\). By commutativity of the (way above) commutative diagram, we get \((f_n)_*[\alpha] = 0\) in \(\pi_n(Z, z)\). So the composite
+        \[S^n \xrightarrow{\alpha} Y_n \xrightarrow{f_n} Z\]
+        is nullhomotopic. Hence also \(S^n \xrightarrow{\chi_j\rvert_{S^n}} Y_n \xrightarrow{f_n} Z\) is nullhomotopic. We choose a continuous extension \(\beta_j\colon D^{n+1} \to Z\) of \(\chi_j\rvert_{S^n}\) and define \(f_{n+1}\colon Y_{n+1}= (\bigvee_I S^n) \cup_{J\times S^n} J\times D^{n+1}\to Z\) by \(f_n\) on \(Y_n\) and by \(\beta_j\) on the \(j\)-th \((n+1)\)-cell.
+        \item[Step 3] We apply the previous lemmo to the relative CW-complex \((Y, Y_{n+1})\) of which all relative cells have dimension \(n\geq 2\), Since \(\pi_i(Z,z) = 0\) for all \(i \geq n+1\), the map \(f_{n+1}\colon Y_{n+1}\to Z\) extends to a map \(f\colon Y \to Z\).
+        
+        We have \(\Phi = f_*\) since \(\incl_*\) is surjective and we can cancel it on the left.
+    \end{description}
+
+    We still have to show uniqueness up to based homotopy. Let \(f, f'\colon Y\to Z\) be based continuous maps, such that \(\pi_n(f) = \pi_n(f')\colon \pi_n(Y)\to \pi_n(Z)\). Since \(Y_{n-1} = {*}\), they agree on \(Y_{n-1}\). Let \(I\) be an index set as before for the \(n\)-cells, \(\chi_i\colon D^n \to Y\) characteristic maps for the \(i\)-th \(n\)-cell. \([S^n\cong D^n/\partial D^n \xrightarrow{\chi_i} Y] \in \pi_n(Y, y)\) which implies \([f \circ \chi_i] = f_*[\chi_i] = f'_*[\chi_i] = [f'\circ \chi_i]\). So \(f\circ \chi_i\), \(f'\circ \chi_i\colon D^n/\partial D^n \cong S^n \to Z\) are based homotopic. Choose succh a homotopy for each \(i\in I\), and glue them into a homotopy \(H\)
+    \[f\rvert_{Y^n}\sim f'\rvert_{Y_n} \colon \bigvee_I S^n \to Z\]
+    We apply the lemma from last time to the relative CW-complex \((Y\times [0,1], Y\times \set{0} \cup Y_n\times [0,1]\cup Y\times \set 1)\) all of whose relative cells have dimension \(\geq n+2\). So by the lemma, the map
+    \[f\cup H \cup f'\colon Y\times \set 0 \cup Y_n \times [0,1] \cup Y\times \set 1\]
+    has a continuous extension \(K\colon Y\times [0,1]\to Z\). This map is a based homotopy from \(f\) to \(f'\).
+\end{proof}
+
+
+\begin{corollary}
+    Let \(n \geq 1\), \(A\) a group, abelian if \(n \geq 2\). Let \((X, \phi), (Y, \psi)\) be Eilenberg-Maclane spaces of type \((A,n)\). If \(X\) is a CW-complex, then there is a based continuous map \(f\colon X\to Y\), unique up to based homotopy, such that
+    \[\begin{tikzcd}
+        \pi_n(X,x) \ar[rd, "\phi", "\cong"'] \ar[rr, "f_*", "\cong"'] && \pi_n(Y, y) \ar[dl, "\cong", "\psi"'] \\
+        & A & \\
+    \end{tikzcd}\]
+    commutes.
+
+    Moreover \(f\) is a weak homotopy equivalence, and a homotopy equivalence if \(Y\) is also CW.
+\end{corollary}
+
+\section{Representativity of cohomology}
+
+Here \(A\) is abelian group and \(n \geq 0\). The Aim of this subsection is a natural transformation of functors in \(Y\)
+\[[Y, K(A,n)]\to H^n(Y; A)\]
+that is an isomorphism for CW-complexes. We want to construct a group structure on \([Y, K(A,n)]\), the \enquote{Homotopy group structure on \(K(A,n)\)}.
+
+Our hypothesis are \(n\geq 1\), \(A\) abelian group, \(K(A,n)\) some EM-space of type \((A,n)\) that is a CW-complex. Because \(A\) is abelian, the addition \(A\times A\to A, \; (a,b)\mapsto a+b\) and inverse \(A\to A, \; a\mapsto a^{-1}\) are group homomorphisms. We apply the previous theorem to \(Y = K(A,n)\times K(A,n)\) (an EM-space of type \((A\times A, n)\)) and \(Z F K(A,n)\) and the momomorphism
+\[\pi_n(K(A,n)\times K(A,n))\cong \pi_n(K(A,n))\times \pi_n(K(A,n)) \xrightarrow{\cong} A\times A \xrightarrow{+} A \xrightarrow{\cong} \pi_n(K(A,n))\]
+So there is a continuous map \(\mu\colon K(A,n)\times K(A,n) \to K(A,n)\) that induces the addition on \(\pi_n\)\footnote{some mumbling about uncountable \(A\) and compactly generated topology, retopologizing \(K(A,n)\times K(A,n)\)}.
+
+Similarly, the composite \(\pi_n(K(A,n))\cong A \xrightarrow{a\mapsto -a} A \cong \pi_n(K(A,n))\) is realized by a based continuous map \(i\colon K(A,n)\to K(A,n)\) unique up to based homotopy.
+
+\(\mu\) is associative up to based homotopy:
+\[\mu\circ (\mu \times \Id), \mu \circ (\id \times \mu)\colon K(A,n)^3 \to K(A,n) \]
+Bothe induce the same map on \(\pi_n\), so by the theorem, \(\mu\circ(\mu \times \Id) \sim \mu\circ (\id \times \mu)\), i.e. \(\mu\) is homotopy associative.
+
+Let \(\tau\colon K(A,n)\times K(A,n)\to K(A,n)\times K(A,n)\) be the flip map \(\tau(x,y) = (y,x)\). Then \(\mu\circ \tau, \mu\colon K(A,n)\times K(A,n) \to K(A,n)\) are by applying the theorem homotopic, i.e. \(\mu\) is homotopy commutative.
+
+Since the constant map \(*\colon K(A,n)\to K(A,n)\) to the basepoint is \(0\) on \(\pi_n\), the theorem shows that \(\mu \circ (\id, i) = *\). So \(i\colon K(A,n)\to K(A,n)\) is a homotopy inverse for \(\mu\).
+
+\textbf{Upshot.} \(K(A,n)\) is a \enquote{homotopy abelian group}.
+
+\textbf{Remark.} It is possible to even take \(K(A,n)\) as a topological abelian group. E.g. \(\abs{\tilde A[\Delta^n/\partial \Delta^n]}\).
+
+\begin{construction}
+    For every space \(Y\), the set of homotopy classes of maps \([Y, K(A,n)]\) becomes an abelian group via
+    \[+ \colon [@, K(A,n)]\times [Y, K(A,n)] \to [Y, K(A,n)]\]
+    \[([f\colon Y\to K(A,n)], [g\colon Y\to K(A,n)]) \mapsto [Y\xrightarrow{(f,g)} K(A,n)\times K(A,n)]\xrightarrow{\mu_*} [Y, K(A,n)]\]
+    The homotopy associativity, homotoyp commutativity and homotopy inverse properties of \((\mu, i)\) imply that \(+\) is associative, commutative, and has an inverse \(-[f] = [i\circ f]\).
+\end{construction}
+
 
 
 \end{document}
