@@ -815,15 +815,248 @@ We have
 
 \newLecture{29.10.2025}
 
-Was ill, might add in later.
+Was ill, might add in later. \iffalse This is from Tiens (thank him for it) lecture notes
+
+Reminder:
+
+Let \(f \colon X \to Y\) be a continuous map between simply connected CW\nbhyph complexes.
+Then the following are equivalent:
+\begin{enumerate}
+    \item \(f\)~is a weak homotopy equivalence.
+    \item \(f\)~is a homotopy equivalence (Whitehead theorem).
+    \item \(f_* \colon H_i(X; \Z) \to H_i(Y; \Z)\) is an isomorphism for \(i \ge 2\).
+\end{enumerate}
+
+Let \(f \colon X \to Y\) be a continuous map between path connected CW\nbhyph complexes.
+Let \(\tilde{f} \colon \tilde{X} \to \tilde{Y}\) be a lift to universal covers.
+Then the following are equivalent:
+\begin{enumerate}
+    \item \(f\)~is a homotopy equivalence.
+    \item \(\tilde{f}_* \colon H_i(\tilde{X}; \Z) \to H_i(\tilde{Y}; \Z)\) is an isomorphism for \(i \ge 2\).
+\end{enumerate}
+
+Relative Hurewicz theorem with~\(\pi_1\): Let \((X,A)\) be a space pair with \(X\)~and~\(A\) path connected.
+Suppose that \(\incl_* \colon \pi_1(A,a) \to \pi_1(X,a)\) is an isomorphism and that \((X,A)\) is \((n+1)\)\bhyph connected.
+Then \(H_i(X,A; \Z) = 0\) for all \(0 \le i \le n-1\), and the modified Hurewicz map
+\begin{equation*}
+    h^{\dag} \colon \pi_n(X,A,a)^{\dag} \to H_n(X,A; \Z)
+\end{equation*}
+is an isomorphism (\(\pi_n(X,A,a)^{\dag}\) is the quotient of \(\pi_n(X,A,a)\) by the group action of the homotopy group of the smaller space).
+
+CW\nbhyph approximation: Let \((Y,A)\) be a space pair with \(A\) Hausdorff.
+Then there is a \(n\)\nbhyph CW\nbhyph model \((Z,f)\) for \((Y,A)\) (\(n \ge 0\)), i.\,e.:
+\begin{itemize}
+    \item \((Z,A)\) is a relative CW\nbhyph complex with no relative cells in dimension \(0 \le i \le n\) (we can make it an absolute CW\nbhyph complex by making the attaching maps cellular before attaching);
+    \item \(f \colon Z \to Y\) is continuous with \(f|_A = \incl\);
+    \item \(/Z,A\)   is \(n\)\nbhyph connected;
+    \item \(\pi_j(f) \colon \pi_j(Z,z) \to \pi_j(Y, f(z))\) is a monomorphism for \(j = n\) and bijective for all \(j > 1\) all \(z \in Z\).
+        This means that \(A \to Z \to Y\) with \(A \inj Z\) an \enquote{equivalence} below~\(n\) and \(f \colon Z \to Y\) an \enquote{equivalence} above~\(n\).
+\end{itemize}
+
+Inductive construction \(A = Z_n \subseteq Z_{n+1} \subseteq Z_{n+2} \subseteq \dots \subseteq Z = \bigcup_{i \ge n} Z_n\), \(f_i \colon Z_i \to Y\), \(f_i|_{Z_{i-1}} = f_{i-1}\) giving \(f = \bigcup_{i \ge n} f_i \colon Z \to Y\).
+If \(\underline{i > n}\), then \((f_i)_* \colon \pi_j(Z_i, z) \to \pi_j(Y, f_i(z))\) is monic for \(j = n\), bijective for \(n < j < 1\) and surjective for \(j = i\).
+
+\begin{theorem}[Lück Thm.~6.8]
+    Let \(Y\) be any space.
+    \begin{enumerate}
+        \item There is a \defemph{CW\nbhyph approximation}, i.\,e., a pair \((X,f)\) consisting of a CW\nbhyph complex~\(X\) and a weak homotopy equivalence \(f \colon X \iso Y\).
+        \item Let \((X,f)\) and \((X',f')\) be two CW\nbhyph approximations of~\(Y\).
+            Then there is a continuous map \(g \colon X \to X'\) such that
+            \begin{equation*}
+                \begin{tikzcd}
+                    X \ar[rr, "g"] \ar[dr, "f"', "\sim" sloped]
+                    && X' \ar[dl, "f'", "\sim" sloped] \\
+                    & Y
+                \end{tikzcd}
+            \end{equation*}
+            commutes up to homotopy.
+            Moreover, \(g\)~is unique up to homotopy and a homotopy equivalence.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}\leavevmode
+    \begin{enumerate}
+        \item If \(Y = \varnothing\), take \(X = \varnothing\).
+            If \(Y \ne \varnothing\), choose one point \(y_C\) in each path component \(C \in \pi_0(Y)\).
+            Let \((Z_C, f_C)\) be a \(0\)\nbhyph CW\nbhyph approximation of~\(Y_C\), i.\,e., the path component of~\(C\), so \(f_C \colon Z_C \to Y_C\) is a weak homotopy equivalence.
+            Then set \(X = \coprod_{C \in \pi_0(Y)} Z_C \to[\coprod f_C] Y\), which is a CW\nbhyph approximation.
+        \item Recall that if \(X\) is a CW\nbhyph complex and if \(f \colon Y \to Z\) is a weak homotopy equivalence, then \([X,f] \colon [X,Y] \to [X,Z]\) is bijective.
+
+            Since \(f' \colon X' \to Y\) is a weak homotopy equivalence and since \(X\) is a CW\nbhyph complex, \([X,f'] \colon [X,X'] \iso [X,Y]\) is bijective.
+            So, there is a \(g \colon X \to X'\), unique up to homotopy, such that \(f' \circ g \simeq f\).
+            Then \(g\) is a weak equivalence because \(f\)~and~\(f'\) are; hence a homotopy equivalence. \qedhere
+    \end{enumerate}
+\end{proof}
+
+\subsection{Killing of homotopy groups}
+
+Let \(A\) be a path connected Hausdorff space.
+Let \((Z,f)\) be an \(n\)\nbhyph CW\nbhyph model of \((CA,A)\) where \(CA = A \times [0,1] / A \times 1\) is the cone.
+Then, for \(n \ge 1\),
+\begin{equation*}
+    \pi_i(f) \colon \pi_i(Z,z) \to \pi_i(CA, f(z)) = 0
+\end{equation*}
+is monic for \(i = n\) and bijective for \(i > n\).
+So, \(\pi_i(Z,z) = 0\) for \(i \ge n\).
+Also \((Z,A)\) is a relative CW\nbhyph complex with relative cells of dimension \(n+1\) or larger.
+So, \(\pi_i(A,a) \to \pi_i(Z,a)\) is an isomorphism for \(i < n\).
+This means that \(A \to Z\) is an isomorphism for~\(\pi_{<n}\) and \(Z\) has trivial homotopy in~\(\pi_{\ge n}\).
+
+\subsection{Eilenberg-MacLane spaces}
+
+\begin{itemize}
+    \item Let \(n \ge 1\), and let \(A\) be a group, abelian if \(n \ge 2\).
+        Then there exists a path connected CW\nbhyph complex \(X = K(X,n)\) such that
+        \begin{equation*}
+            \pi_i(X,x) \cong
+            \begin{cases}
+                A & \text{if } i = n, \\
+                0 & \text{if } i \ne n.
+            \end{cases}
+        \end{equation*}
+    \item \(X\)~is unique up to homotopy.
+    \item Representability of cohomology: for \(Y\) a CW\nbhyph complex and \(A\) abelian, we have \(H^n(Y,A) \cong [Y, K(A,n)]\).
+\end{itemize}
+
+We follow Lück's notes and Schwede's notes (which are in German!).
+
+\begin{definition}
+    Let \(n \ge 1\), and let \(A\) be a group, abelian if \(n \ge 2\).
+    An \defemph{Eilenberg\bhyph MacLane space} of type \((A,n)\) is a pair \((X, \varphi)\) consisting of a based path connected space \((X,x)\) and an isomorphism \(\varphi \colon \pi_n(X,x) \iso A\) such that \(\pi_i(X,x) = 0\) for all \(i \ge 1\) and \(i \ne n\).
+    Shorthand notation: \enquote{\(X\)~is a~\(K(A,n)\)}.
+\end{definition}
+
+(In full generality, Eilenberg\bhyph MacLane spaces are very abstract\@.)
+
+\begin{example}
+    \(S^1\) is a \(K(\Z,1)\) since \(\pi_1(S^1,z) \cong \Z\) and \(\pi_i(S^1,z) = 0\) for all \(i \ge 2\) by covering space theory, because the universal cover \(\exp \colon \R \to S^1\) of~\(S^1\) has a contractible total space.
+    More generally, if \(p \colon \tilde{X} \to X\) is a universal cover of a path connected space with \(\tilde{X}\) contractible, then \(X\) is a \(K(G,1)\) with \(G \cong \operatorname{Deck}(p)\).
+    Hence:
+    \begin{itemize}
+        \item \(\RP^0 = K(\Z/2, 1)\) with universal cover \(S^{\infty} \simeq *\).
+        \item \(S^1 \times \dots \times S^1 = K(\Z^m, 1)\) (\(m\)~times) with universal cover~\(\R^m\).
+        \item Klein bottle (insert diagram of a square with arrows on the edges that indicate how the Klein bottle is glued) is a \(K(\Z \rtimes \Z, 1)\) with universal cover~\(\R^2\).
+            Here, \(\rtimes\)~is a semidirect product with \(\Z\)\nbhyph action on~\(\Z\) by sign.
+    \end{itemize}
+\end{example}
+
+\begin{example}
+    \(\CP^{\infty}\)~is a \(K(\Z,2)\) because of the locally trivial fibre bundle \(S(\C^{\infty}) \to \CP^{\infty}\), \(x \mapsto \C x\) with fibre~\(S^1\). 
+    This is a Serre fibration, so the long exact sequence of homotopy groups gives
+    \begin{equation*}
+        \set{0} = \pi_i(S(\C^{\infty}), *) \to \pi_i(\CP^{\infty}, *) \iso[\partial] \pi_{i-1}(S^1, x) \to \pi_{i-1}(S(\C^{\infty}), *) = \set{0}.
+    \end{equation*}
+    Thus,
+    \begin{equation*}
+        \pi_i(\CP^{\infty}, *) \cong
+        \begin{cases}
+            \Z & \text{if } i = 2, \\
+            0 & \text{if } i \ne 0.
+        \end{cases}
+    \end{equation*}
+    (Assume that Eilenberg\bhyph MacLane spaces are CW\nbhyph complexes is not a huge loss of generality because of CW\nbhyph approximation\@.)
+\end{example}
+
+\begin{example}
+    If \(X\) is a \(K(A,n)\) and \(Y\) is a \(K(B,n)\), then \(X \times Y\) is a \(K(A \times B, n)\).
+\end{example}
+
+Construction of \(K(A,n)\)'s.
+We distinguish two cases, whose constructions are very similar.
+
+\(K(G,1)\)'s: let \(G\) be a group.
+Start with the following \(2\)\nbhyph dimensional CW\nbhyph complex
+\begin{equation*}
+    CG \coloneq
+    \pn*{\bigvee_{g \in G} S_g^1} \cup \bigcup_{(h,k) \in G^2} D_k^2
+\end{equation*}
+The \(2\)\nbhyph cells are attached as follows: let \(i_g \colon S^1 \to \bigvee_{g \in G} S_g^1\) denote the inclusion of the \(g\)th 
+For \((h,k) \in G^2\), consider the following map \(\alpha_{h,k} \colon S^1 \to \bigvee_{g \in G} S_g^1\) which is \(i_h\) on the first third, \(i_k\) on the second third, and \(i_{hk}^{-1}\) on the last third of~\(S^1\) (insert image of circle with three equal segments, each segment being named after the respective map).
+By covering space theory\slash Seifert\bhyph van~Kampen, we know that \(\pi_1(\bigvee_{g \in G} S_g^1, *)\) is a free group generated by the elements \([i_g]\).
+By cellular approximation, \(\pi_1(\bigvee_{g \in G} S_g^1, *) \to \pi_1(CG, *)\) is surjective, so \(\pi_1(CG, *)\) is generated, as a group, by \([i_g \colon S^1 \to \bigvee_{g \in G} S_g^1 \inj CG]\).
+The two cell indexed by \((h,k) \in G^2\) witnesses that \([i_h] [i_k] [i_{hk}]^{-1}\) map to~\(1\) in \(\pi_1(CG, *)\), so \([i_h] [i_k] = [i_{hk}]\) in \(\pi_1(CG, *)\).
+Thus, \(G \to \pi_1(CG, *)\), \(g \mapsto [S^1 \inj[i_g] \bigvee_{} S_g^1 \inj CG]\) is a surjective group homomorphism.
+By Seifert\bhyph van~Kampen, attaching a \(2\)\nbhyph cell to a path connected space precisely kills the normal subgroup generated by the class of the attaching map.
+Thus,
+\begin{equation*}
+    \pi_1(CG,*)
+    = \frac{\text{free group on elements of } G}{\ag{[h] [k] = [hk]}}
+    \cong G.
+\end{equation*}
+So, \(CG\) is a connected space with correct~\(\pi_1\), so by killing the homotopy group~\(\pi_i\) for \(i \ge 2\), we obtain a \(K(G,1)\).
+
+Construction for \(K(A,n)\) for \(n \ge 2\) and \(A\) abelian: choose a presentation of \(A\) as an abelian group:
+\begin{equation*}
+    \Z[I] \to[d] \Z[J] \to[\eps] 0
+\end{equation*}
+is an exact sequence of abelian groups with \(I\)~and~\(J\) some sets.
+We set \(X_n = \set{x} \bigcup_{J \times S^{n-1}} J \times D^n \cong \bigvee_J S^n\) as an \(n\)\nbhyph dimensional CW\nbhyph complex with one \(0\)\nbhyph cell and no cells in dimension \(1 \le i \le n-1\).
+So, \(X_n\)~is \((n-1)\)\bhyph connected by cellular approximation.
+Then \(\Z[J] \iso \tilde{H}_n(X_n; \Z)\), \(j \mapsto (i_j)_* [D^n, S^{n-1}]\) where \([D^n, S^{n-1}] \in H_n(D^n, S^{n-1}; \Z)\) is a chosen generator and \(i_j .: D^n \to \set{x} \cup_{J \times S^{n-1}} J \times D^n\) is the characteristic map of the \(j\)th \(n\)\nbhyph cell.
+By the Hurewicz theorem, \(h \colon \pi_n(X_n, *) \to H_n(X_n; \Z) \cong \Z[J]\) is an isomorphism.
+For each \(i \in I\), there is a unique \([\alpha_i] \in \pi_n(X_n, *)\) where Hurewicz image is~\(d(i)\).
+Let \(\alpha_i \colon S^n \to X_n \cong \bigvee_{j \in J} S^n\) be a representative for this homotopy class.
+We define \(X_{n+1}\) by attaching \((n+1)\)\bhyph cells along all the \(\alpha_i\)'s: \(X_{n+1} = X_n \cup_{I \times S^n, \alpha_i} I \times D^{n+1}\).
+The cellular chain complex of~\(X_n\) gives
+\begin{equation*}
+    \begin{tikzcd}
+        H_{n+1}(X_{n+1}, X_n; \Z) \ar[r]
+        & H_n(X_n; \Z) \ar[r]
+        & H_n^{\mathrm{cell}}(X_{n+1}; \Z) \ar[r]
+        & 0 \\
+        \Z[I] \ar[u, "\sim"' sloped, "{i \mapsto (\beta_i)_* [D^{n+1}, S^n]}"] \ar[r, "d"]
+        & \Z[J] \ar[r] \ar[u, "\sim"' sloped]
+        & A \ar[r] \ar[u, dashed, "\sim"' sloped, "\exists!"]
+        & 0
+    \end{tikzcd}
+\end{equation*}
+with exact rows where \(\beta_i \colon D^{n+1} \to X_{n+1}\) is the characteristic map for the \(i\)th \((n-1)\)\bhyph cell.
+The left square commutes by construction, so we obtain the dashed map.
+Hence we have an isomorphism \(A \cong H_n(X_{n+1}; \Z)\).
+Since \(X_{n+1}\) is \((n-1)\)\bhyph connected, the Hurewicz map is an isomorphism \(h \colon \pi_n(X_{n+1}, *) \iso H_n(X_{n+1}; \Z) \cong A\).
+By killing the homotopy groups~\(\pi_i\) for \(i \ge n+1\) from~\(X_{n+1}\) we obtain a \(K(A,n)\).
+
+Next aim: for \(X\) an \((n-1)\)\bhyph connected based CW\nbhyph complex,
+\begin{equation*}
+    \pi_n \colon [X, K(A,n)]_* \to \hom(\pi_n(X,*), A), \qquad
+    [f \colon X \to K(A,n)] \mapsto \varphi \circ \pi_n(f),
+\end{equation*}
+where \(\varphi \colon \pi_n(K(A,n), *) \iso A\), is bijective.
+
+\begin{lemma}[Schwede Lem.~49]
+    Let \((X,Y)\) be a relative CW\nbhyph complex and \(Z\) any space.
+    Suppose that for all \(m \ge 1\) such that \((X,Y)\) has at least one relative \(m\)\nbhyph cell, \(\pi_{m-1}(Z,z) = 0\) for all \(z \in Z\).
+\end{lemma}
+
+\begin{proof}
+    By induction on the relative skeleta, we construct continuous maps \(f_m \colon X_m \to Z\) such that \(f_{-1} = f\), \(f_i|_{X_{i-1}} = f_{i-1}\).
+    We define \(f_0 \colon X_0 = Y \amalg I \to Z\) by sending the new \(0\)\nbhyph cells arbitrarily to~\(Z\).
+    For \(n \ge 1\), if \(X_i \ne X_{i-1}\), then there is at least one relative \(i\)\nbhyph cell.
+    The attaching map~\(\alpha_j\) for every relative \(i\)\nbhyph cell becomes null homotopic after composition with \(f_{i-1} \colon X_{i-1} \to Z\)  because \(\pi_{i-1}(Z,*) = 0\).
+    We choose a null homotopy \(h_j \colon D^{i+1} \to Z\) of this composite and define \(f_i \colon X_i \to Z\) by \(h_j\) on the \(j\)th \(i\)\nbhyph cell.
+    \begin{equation*}
+        \begin{tikzcd}
+            \coprod_J S_j^i \ar[r, "\alpha_j"] \ar[d]
+            & X_{i-1} \ar[r, "f_{i-1}"] \ar[d]
+            & Z \\
+            \coprod_J D_j^{i+1} \ar[r] \ar[urr, bend right=40, "h_j"']
+            & X_i \ar[ur, dashed, "f_i"]
+        \end{tikzcd}
+    \end{equation*}
+    (map exist by universal property of the pushout).
+    This completes the induction step.
+    Now, set \(f_{\infty} = \bigcup_{i \ge 0} f_i\).
+\end{proof}
+
+\fi
 
 \newLecture{3.11.2025}
 
 We want to show, that for CW-complexes, Eilenberg-Maclane-spaces are unique up to homotopy.
 
-\begin{thm}{}{}
+\begin{thm}{}{pullbacknicecase}
     Let \(n \geq 1\). Let \(Y\) be an \((n-1)\)-connected CW-complex. Let \(Z\) be a based space s.t. \(\pi_m(Z,z) = 0\) for \(m > n\). Then for every group-homomorphism
-    \[\Phi\colon \pi_n(Y,ye \to \pi_n(Z,z))\]
+    \[\Phi\colon \pi_n(Y,y) \to \pi_n(Z,z)\]
     there is a based continuous map \(f\colon Y \to Z\), s.t. \(\pi_n(f) = \Phi\). and such an \(f\) is unique up to based homotopy. Equivalently: the map
     \[\pi_n\colon[Y, Z]_* \to \Hom_{\mathrm{Grp}}(\pi_n(Y,y) ,\pi_n(Z,z))\]
     is bijective.
@@ -896,11 +1129,160 @@ Since the constant map \(*\colon K(A,n)\to K(A,n)\) to the basepoint is \(0\) on
 \textbf{Remark.} It is possible to even take \(K(A,n)\) as a topological abelian group. E.g. \(\abs{\tilde A[\Delta^n/\partial \Delta^n]}\).
 
 \begin{construction}
-    For every space \(Y\), the set of homotopy classes of maps \([Y, K(A,n)]\) becomes an abelian group via
-    \[+ \colon [@, K(A,n)]\times [Y, K(A,n)] \to [Y, K(A,n)]\]
+    For every (compactly generated) space \(Y\), the set of homotopy classes of maps \([Y, K(A,n)]\) becomes an abelian group via
+    \[+ \colon [Y, K(A,n)]\times [Y, K(A,n)] \to [Y, K(A,n)]\]
     \[([f\colon Y\to K(A,n)], [g\colon Y\to K(A,n)]) \mapsto [Y\xrightarrow{(f,g)} K(A,n)\times K(A,n)]\xrightarrow{\mu_*} [Y, K(A,n)]\]
     The homotopy associativity, homotoyp commutativity and homotopy inverse properties of \((\mu, i)\) imply that \(+\) is associative, commutative, and has an inverse \(-[f] = [i\circ f]\).
 \end{construction}
+
+\newLecture{05.11.2025}
+
+\begin{example}
+    We have in this class not talked about Vector- and Line-bundles. Schwede encourages us to do so. \(\IR P^\infty\) and \(\ic P^\infty\) are EM-spaces of type \((\iz, 1)\) and \((\iz, 2)\) respectively, so they have \enquote{homotopy group strtuctures}.
+
+    So we get abelian group structures on \([Y, \ir P^\infty]\), and \([Y, \ic P^\infty]\).
+
+    Also \(\ir P^\infty\) and \(\ic P^\infty\) classify real/complex line bundles for compact spaces \(Y\),
+    \[[Y, \ir P^\infty] \xrightarrow{\cong} \mathrm{Pic}_\ir(Y) = \text{groups under \(\otimes\) of isoclasses of line bundles over } Y\]
+    \[[f\colon Y\to \ir P^\infty \mapsto f^*(\gamma)]\]
+    That is an iso of abelian groups \(\mu^*(\gamma) \cong p_1^*(\gamma) \otimes p_2^*(\gamma)\) as line bundles over \(\IR P^\infty\times \ir P^\infty\).
+
+    Similarly \([Y, \ic P^\infty] \cong \mathrm{Pic}_\ic (Y)\).
+\end{example}
+
+\begin{example}
+    A strictly associative \& commutative model for \(K(\iz/2, 1)\) and \(K(\iz/2, 2)\).
+
+    The ?? as polynomial algebra on \(\ic[x]\) has no zero-divisors. So multiplication restricts to a commutative and associative operation
+    \begin{itemize}
+        \item \((\ic[x]\setminus \set 0)\times (\ic[x]\setminus \set 0) \to \ic[x]\setminus \set 0\)
+        For \(z\in \ic \setminus 0\) \(z(fg) = (zf)g = f(zg)\) for \(frg \in \ic[x]\) So this descnds to a well defined map
+        \[(\ic[x]\setminus \set 0)/\ic^* \times \ic[x]\setminus \set 0/\ic^* \to (\ic[x]\setminus \set 0)/\ic^*\]
+        which then is a multiplication on \(\ic P^\infty\). This structure is associative and commutative, but not invertible.
+    \end{itemize}
+\end{example}
+
+\begin{lem}{Fundamental class (non-standard-notation)}{}
+    Let \((X, \phi)\) be an EM-space of type \((A,n)\). Then there is a unique class \(\iota = \iota_{A,n}\in H^n(X,A)\) such that the composite
+    \[\pi_n(X, *)\xrightarrow{\text{Hurewicz}} H_n(X,\iz)\xrightarrow{\Phi(\iota)} A\]
+    equals \(\phi\colon \pi_n(X,x)\xrightarrow{\cong} A\).
+    Where we have
+    \[\Phi\colon H^n(X,A)\twoheadrightarrow \Hom(H_n(X,\iz),A)\]
+    is the map from UCT.
+
+    
+    \(\iota\) is called the fundamental class.
+\end{lem}
+
+\begin{proof}
+Since \(X\) is \((n-1)\)-connected and \(A\) abelian, the Hurewicz homomorphism \(\pi_n(X,*)\to H_n(X,\iz)\) is an isomorphism. So
+\[\phi\circ h^{-1} \colon H_n(X,\iz)\xrightarrow{\cong} A\in \Hom (H_n(X,\iz), A)\]
+Since \(X\) is \((n-1)\)-connected, the \(\Phi\colon H^n(X,A)\xrightarrow{\cong} \Hom(H_n(X,\iz), A)\) is an isomorphism and \(\iota\mapsto \phi\circ h^{-1}\).
+\end{proof}
+
+\begin{construction}
+    An EM-space of type \((A, 0)\) is the group \(A\) with the discrete topology and \(\iota_{A, 0} \in H^0(A,A)\) is the class represented by \(\id\colon A\to A\).
+\end{construction}
+
+\begin{thm}{Group homomorphism}{}
+    Let \(n\geq 0\), \(A\) any abelian group. Then for all (compactly generated) \(Y\), the map \([Y, K(A,n)]\to H^n(Y,A)\), \([f\colon Y\to K(A,n)]\mapsto f^*(\iota_{A,n})\) is an homomorphism of groups.
+\end{thm}
+
+\begin{proof}
+    In 2 steps
+    \begin{description}
+        \item[Step 1] The universal example: \(Y = K(A,n)\times K(A,n)\) and \(f = \mu\colon K(A,n)^2\to K(A,n)\). Let \(p_1, p_2\colon K(A,n)^2\to K(A,n)\) denote the two projections. Then
+        \[[p_1] + [p_2] = [K(A,n)^2 \xrightarrow[\id]{(p_1, p_2)} K(A,n)^2\xrightarrow{\mu} K(A,n)]\]
+        So we neet to show that \(\mu^*(\iota)= p_1^*(\iota) + p_2^*(\iota)\) in \(H^n(K(A,n)\times K(A,n), A)\). By UCT and Hurewicz
+        \[\begin{split}
+            &H^n(K(A,n)\times K(A,n), A)\overset{\Phi}{\cong} \Hom(H_n(K(A,n)\times K(A,n),\iz), A) \\
+            &\overset{\text{Hurewicz}}{\cong } \Hom(\pi_n(K(A,n), *)^2, A) \cong \Hom(A\times A, A)
+        \end{split}\]
+        The composit isomoprhism sends \(\mu^*(\iota)\mapsto \text{ Addition } A\times A\to A\) and \(p_1^*(\iota) \mapsto p_1\colon A\times A\to A\) and \(p_2^*(\iota)\mapsto p_2\colon A\times A\to A\). In \(\Hom(A\times A, A)\) the relation \(\text{Addition } = p_1 + p_2\) holds.
+        \item[Step 2] General case: Let \(Y\) be a compactly generated space, \(f, g \colon Y\to K(A,n)\). Then
+        \[\begin{split}
+            ([f]+ [g])^*(\iota) &= [\mu\circ (f,g)]^*(\iota) = (f,g)^*(\mu^*(\iota)) \\
+            &\overset{\text{step }1}{=} (f,g)^*(p_1^*(\iota) + p_2^*(\iota)) \\
+            &= (f,g)^*(p_1^*(\iota)) + (f,g)^*(p_2^*(\iota)) \\
+            &= (p_1\circ (f,g))^*(\iota) + (p_2\circ (f,g))^*(\iota) = f^*(\iota) + g^*(\iota) \\ 
+        \end{split}\]
+    \end{description}
+\end{proof}
+
+\begin{lem}{}{}
+    Let \(n\geq 1\), \(A\) an abelian group. \(Y\) an based CW-complex. Then the forgetful map
+    \[[Y, K(A,n)_*\to [Y, K(A,n)]]\]
+    is bijective.
+\end{lem}
+
+\begin{proof}
+    Earlier we have done an exercise: \(Y\) is a non-degenerately\footnote{inclusion of base point has HEP} based space, \(Z\) any based space. Then the forgetful map
+    \[[Y,Z]_* \to [Y, Z]\]
+    is surjective if \(Z\) is path-connected and bijective if \(Z\) is simply connected.
+
+    This implies the lemma for \(n\geq 2\) and surjectivity for \(n = 1\). Injectivity for \(n=1\): Let \(f,g \colon Y\to K(A,1)\) be freely homotopic. Then \(f_* = g_*\colon H_1(Y,\iz)\to H_1(K(A,1),\iz)\). Since \(A\) is abelian, \(\pi_1(K(A,1), *)\xrightarrow{\cong} H_1(K(A,1),\iz)\). So \(\pi_1(f) = \pi_1(g)\). So by the earlier theorem \ref{thm:pullbacknicecase}, \(f\) and \(g\) are based homotopic.
+\end{proof}
+
+\begin{thm}{}{}
+    Let \(n\geq 0\), \(A\) an abelian group. Then for all CW-complexes \(Y\), the homomorphism
+    \[[Y, K(A,n)]\mapsto H^n(Y,A), \qquad [f]\mapsto f^*(\iota_{A,n})\]
+    is an isomorphism.
+\end{thm}
+
+\begin{proof}
+    Both \([\_, K(A,n)]\) and \(H^n(\_, A)\) takes disjoint unions in \(Y\) to products of abelian groups. Every CW-complex \(Y\) is the disjoint union of its path-components. So we can assume wlog, that \(Y\) is path-connected.
+
+    Induction on \(n\). For \(n = 0\) \([Y, K(A,0)] = [Y, A^{\text{disc}}] \cong A\) and also \(H^0(Y,A) = \Hom(\pi_0(Y), A)\cong A\). We do not check, that the map is indeed the identity, which we get between these two.
+
+    Now for \(n\geq 1\). By the lemma we can replace free homotopy classes by based homotopy classes. We first treat a special case:
+
+    \begin{description}
+        \item[Special Case] \(Y\) is \(n-1\)-connected. Then \(H_{n-1}(Y, \iz)\) is trivial for \(n \geq 2\) or free \(n= 1\), so \(\Ext(H_{n-1}(Y,\iz), A) =0\). So the UCT provides an isomorphism
+        \[\Phi\colon H^n(Y, A)\to \Hom(H_n(Y, \iz), A)\]
+        also the Hurewicz map \(\pi_n(Y, *)\to H_n(Y, \iz)\) is an isomorphism for \(n\geq 2\) or the universal homomorphism into an abelian group for \(n =1\). In any case
+        \[h^*\colon \Hom(H_n(Y,\iz), A) \xrightarrow{\cong} \Hom(\pi_n(Y,*), A)\]
+        is bijective. The composite
+        \[[Y, K(A,n)]_* \xrightarrow{[f]\mapsto f^*(\iota)} H^n(Y,A) \xrightarrow[\cong]{\Phi} \Hom(H_n(Y, \iz), A) \xrightarrow[h^*]{\cong} \Hom(\pi_n(Y,*), A)\]
+        sends \(f\) to \(\phi\circ \pi_n(f)\colon \pi_n(Y, *)\to A\). So again by theorem \ref{thm:pullbacknicecase}, the composite is bijective. Also \(\Phi\) and \(h^*\) are bijective. So the first map is bijective
+        \item[General case] We consider \(Y \cup_{Y_n-1} C(Y_{n-1}) = Y \cup_{Y_{n-1} < 0} Y_{n-1} \times [0,1] \cup_{Y_{n-1}\times 1} \set{*}\). This is \(n-1\)-connected.
+        We consider the following commutative diagram:
+        \[
+        \begin{tikzcd}
+            {[\Sigma Y_{n-1}, K(A,n)]_*} \ar[r, "p^*"] \ar[d] 
+            & {[Y \cup_{Y_{n-1}} C Y_{n-1}, K(A,n)]_*}
+                \ar[d, "\cong", "\text{(special case)}"'] 
+                \ar[r, "\iota^*"] 
+            & {[Y, K(A,n)]_*} \ar[d] \ar[r] & 0 \\
+            H^n(\Sigma Y_{n-1}, A) \ar[r, "p^*"] 
+            & H^n(Y \cup_{Y_{n-1}} C Y_{n-1}, A) \ar[r] 
+            & H^n(Y, A) \ar[r] & 0
+        \end{tikzcd}
+        \]
+
+        Here \(i\) and \(p\) are inclusion and projection \(p\colon Y\cup_{Y_{n-1}} C Y_{n-1}\to \Sigma Y_{n-1}\).
+
+        \textbf{Claim.} The upper row is exact:
+        
+        Surjectivity of \(i^*\): all relative cells of \((Y\cup_{Y_{n-1}} C Y_{n-1}, Y)\) have relative cells of dimension at most \(n\). But \(\pi_i(K(A,n), *) = 0\) for all \(i < n\). By a previos \enquote{extension lemma}, every continuous map \(Y\to K(A,n)\) admits a continuous extension to \(Y\cup_{Y_{n-1}} CY_{n-1}\). Since \(p\circ i\) is nullhomotopic, \(i^* \circ p^* = 0\). 
+        Suppose \(f\colon Y\cup_{Y_{n-1}} C Y_{n-1}\to K(A,n)\) is based s.t. \(i^*[f] = 0\). So \(f\rvert_{Y}\colon Y\to K(A,n)\) is based nullhomotopic. The HEP of the pair \((Y\cup_{Y_{n-1}} CY_{n-1}, Y)\) lets us replace \(f\) by a based homotopic map \(f'\), s.t. \(f'\rvert_Y = \const_*\). So \(f'\) ??
+
+        The lower sequence is also exact by the l.e.s. for a CW pair \((Y\cup_{Y_{n-1}} C Y_{n-1}, Y)\).
+
+        The left map in the diagram is surjective. We let \(\rho\colon K(A,n-1)\to \Omega K(A,n)\) be the unique up to based homotopy map that induces
+        \[\pi_{n-1}(K(A,n-1)) \xrightarrow{\rho_*} \pi_{n-1}(\Omega K(A,n))\cong \pi_n(K(A,n)) \cong A \]
+        Such that the composition is \(\phi_{n-1}\).
+
+        Let \(\kappa_n\colon \Sigma K(A, n-1)\to K(A,n)\) be the adjoint of \(\rho\).
+
+        Then the following commutes: I did not manage to copy the diagram.
+
+        So the right vertical map is an isomorphism by the 5-lemma.
+    \end{description}
+
+\end{proof}
+
+
+
 
 
 
