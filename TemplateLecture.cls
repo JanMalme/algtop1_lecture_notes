@@ -75,7 +75,7 @@
 \RequirePackage{pgf,tikz}
 \RequirePackage{tikz-cd}
 \RequirePackage{pgfplots}
-\RequirePackage{qrcode}
+%\RequirePackage{qrcode}
 \RequirePackage{scrextend}
 \RequirePackage[headsepline]{scrlayer-scrpage}
 \RequirePackage{selinput}

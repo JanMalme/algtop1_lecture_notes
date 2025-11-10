@@ -1,9 +1,14 @@
-\documentclass[language=english]{TemplateLecture}
+\documentclass[language= english]{TemplateLecture}
 
 \renewcommand{\ProfName}{Stefan Schwede}
 \renewcommand{\LectureName}{Algebraic Topology I}
 \renewcommand{\Semester}{WiSe 2025/26}
 \renewcommand{\mName}{Jan Malmström}
+
+\makeatletter
+\@ifundefined{BKM@entry}{\def\BKM@entry#1#2{}}{}
+\makeatother
+
 
 \begin{document}
 
@@ -815,7 +820,11 @@ We have
 
 \newLecture{29.10.2025}
 
-Was ill, might add in later. \iffalse This is from Tiens (thank him for it) lecture notes
+Was ill, might add in later.
+
+\iffalse
+
+This is from Tiens (thank him for it) lecture notes
 
 Reminder:
 
@@ -1297,10 +1306,10 @@ Schwede remarks that when he was a student someone cleaned the board for the pro
     so complex line bundles \([\gamma\colon E\to X] \mapsto c_1(\gamma)\) are classified by their first Chern class.
 \end{example}
 
-\section{Cohomology operations and the Steenrod algebra.}
+\section{Cohomology operations and the Steenrod algebra}
 
 \textbf{Aim.} Define \enquote{Steenrod squares}, natural homomorphisms
-\[\mathrm{Sq}^i\colon H^n(X, \if_2) \to H^{n+i}(X, \if_2)\]
+\[\mathrm{Sq}^i\colon H^n(X, \IF_2) \to H^{n+i}(X, \IF_2)\]
 together with properties and applications.
 
 Schwede will follow some notes of his own which are not yet finalized and he will eventually publish on his website.
@@ -1375,12 +1384,12 @@ Schwede will follow some notes of his own which are not yet finalized and he wil
         is a cohomology operation of type \((R,n,R,kn)\). This is typically not additive.
 
         For example
-        \[H^n(K(\if_2, 1, \if_2))\cong\Oper(\if_2, 1, \if_2, k)\in \set{x \mapsto x^k}\]
+        \[H^n(K(\IF_2, 1, \IF_2))\cong\Oper(\IF_2, 1, \IF_2, k)\in \set{x \mapsto x^k}\]
         where this is equal to
-        \[H^n(\ir P^\infty, \if_2)\]
+        \[H^n(\ir P^\infty, \IF_2)\]
         and
-        \[H^*(\ir P^\infty, \if_2) = \if_2 [\iota_{\if_2, 1}]\]
-        So \(\Oper(\if_2, 1\if_2, k) = \set{0, x\mapsto x^k}\).
+        \[H^*(\ir P^\infty, \IF_2) = \IF_2 [\iota_{\IF_2, 1}]\]
+        So \(\Oper(\IF_2, 1\IF_2, k) = \set{0, x\mapsto x^k}\).
 
         We also calculated \(H^*(\ic P^\infty, \iz)= \iz[\iota_{\iz, 2}]\). So this gives
         \[\Oper(\iz, 2, \iz, k) = \begin{cases}
@@ -1460,7 +1469,7 @@ We let \(\varepsilon\colon \Sigma X\to Y\) be the adjoint of \(\rho\).
             &= (\Sigma f)^*(\varepsilon^*(\iota_{A,n+1}))\cap \Sigma[S^n] \\
             &= (\varepsilon\circ (\Sigma f))^*(\iota_{A,n+1})\cap[S^{n+1}]\\
             &= \iota_{A,n+1} \cap (\varepsilon\circ (\Sigma f))_*[S^{n+1}] \\
-            &= \iota_{A, n+1} \cap \mathrm{Hur}(\varepsilon\cir (\Sigma f)) \\
+            &= \iota_{A, n+1} \cap \mathrm{Hur}(\varepsilon\circ (\Sigma f)) \\
             &= \psi[e\circ (\Sigma f)] = \phi(f) \\
         \end{split}\]
     \end{enumerate}
