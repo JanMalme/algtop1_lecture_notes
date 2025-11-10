@@ -1362,8 +1362,110 @@ Schwede will follow some notes of his own which are not yet finalized and he wil
         such that \(B\) is central in \(E\). If \(G\) is abelian, then
         \[\text{abelian extensions} = \Ext{A,B} \to H^2(K(A,1), B) = \text{Central extensions}\]
         As an exercise we will see a sort of Bockstein that gives a cohomology operation from degree 1 to degree 2.
+
+        So far we have
+        \[\Oper(A,n,B,i)\cong \begin{cases}
+            B & i = 0 \\
+            0 & 1\leq i\leq n-1\\
+            \Hom(A,B) & i = n \\
+            \Ext(A,b) & i = n+1 \geq 3 \\
+        \end{cases}\]
+        \item Let \(R\) be a ring, \(k\geq 0\). Then
+        \[H^n(X,R)\to H^{kn}(X,R)\quad x\mapsto x^k = x\cup \dots \cup x\]
+        is a cohomology operation of type \((R,n,R,kn)\). This is typically not additive.
+
+        For example
+        \[H^n(K(\if_2, 1, \if_2))\cong\Oper(\if_2, 1, \if_2, k)\in \set{x \mapsto x^k}\]
+        where this is equal to
+        \[H^n(\ir P^\infty, \if_2)\]
+        and
+        \[H^*(\ir P^\infty, \if_2) = \if_2 [\iota_{\if_2, 1}]\]
+        So \(\Oper(\if_2, 1\if_2, k) = \set{0, x\mapsto x^k}\).
+
+        We also calculated \(H^*(\ic P^\infty, \iz)= \iz[\iota_{\iz, 2}]\). So this gives
+        \[\Oper(\iz, 2, \iz, k) = \begin{cases}
+            0 & k \text{ odd} \\
+            \iz \set{x\mapsto x^m} & k = 2m \\
+        \end{cases}\]
+
+        \item \(\Oper(\iz, 1, B,n) = ?\) We need to compute the cohomology of \(K(\iz, 1) = S^1\).
+        \[H^n(S^1, B) = \begin{cases}
+            B & n = 0,1 \\
+            0 & \text{else} \\
+        \end{cases}\]
+        This is now the operations.
     \end{enumerate}
+
+    This completes the operations we can really calculate.
 \end{example}
+
+\textbf{Reminder} Let \(R\) be a commutative ring. We discussed
+\[\cup_1\colon C^n(X,R)\otimes C^m(X,R) \to C^{n+m-1}(X,R)\]
+with coboundary formula \(\delta(f\cup_1 g) = (\delta f)\cup_1 g + (-1)^n f\cup_1 (\delta g) - (-1)^{n+m} f\cup g - (-1)^{(n+1)(m+1)} (g\cup f)\). This was how we proofed commutativity of the cup product. We can use this to produce new cohomology operations.
+
+Suppose \(n\) is even and \(f \in C^n(X,R)\) is a cocycle, \(\delta f = 0\). Then \(\delta(f\cup_1 f) = 0\), and the cohomology class \([f\cup_1 f]\in H^{2n-1}(X,R)\) only depends on the cohomology class of \(f\). Same for \(n\) odd and \(2 = 0\) in \(R\).
+
+So we get cohomology operations \(\Sq_1\colon H^n(X,R)\to H^{2n-1}(X,R)\) for \(n\) even and
+\[\Sq_1\colon H^n(X,R)\to H^{2n-1}(X,R/2)\]
+for \(n\) odd. They are defined by \(\Sq_1[f]\coloneq [f\cup_1 f]\).
+
+\textbf{Preview.} We will define Stable cohomology operations of type \((A,B,n) = \set{\tau_i\colon H^i(\_, A)\to H^{n+i}(\_, B)}\) and some compatibility with a suspensions isomorphism.
+
+\begin{defi}{Reduced cohomology operation}{}
+    A \emph{reduced cohomology operation} of type \((A,n,B,m)\) is a natural transformation \(\tilde H^n(\_,A)\to \tilde H^m(\_, B)\) of set valued functors of based spaces.
+\end{defi}
+
+Then \(\mathrm{red}\Oper(A,n,B,m)\cong \tilde H^m(K(A,n), B) = H^m(K(A,n), B) = \Oper(A,n,B,m)\) for \(m \geq 1\). And for \(m = 0\) the contsant operations induced by \(B\setminus\set 0\) vanish.
+
+\begin{construction}
+    Let \((X,\phi)\) and \((Y, \psi)\) be EM-spaces of type \((A,n)\) and \((A, n+1)\), respectively for \(n\geq 1\). By an earlier theorem, there is a unique-up-to-based homotopy map \(\rho\colon X\to \Omega Y\), such that \(\rho_*\colon \pi_n(X,*)\to \pi_n(\Omega Y, *)\) agrees with the composite
+    \[\pi_n(X,*)\xrightarrow{\phi}A \xrightarrow{\psi^{-1}} \pi_{n+1}( Y, *)\cong \pi_n(\Omega Y,*)\]
+\end{construction}
+
+we have \(S^n \wedge S^1 \cong S^{n+1}\) and by understanding \(S^n = \ir^n\cup \set \infty\), this isomorphism is by coordinates.
+
+Further \(\Sigma X = X\wedge S^1\) and \(\Omega X = \map_*(S^1, X)\)
+
+We let \(\varepsilon\colon \Sigma X\to Y\) be the adjoint of \(\rho\).
+
+\begin{lem}{}{}
+    Let \((X,\phi)\), \((Y, \psi)\) be EM-spaces of type \((A,n)\) and \((A,n+1)\) respecitvely.
+    \begin{enumerate}
+        \item The following commutes:
+        \[\begin{tikzcd}
+            \pi_n(X,*)\ar[r, "\Sigma"]\ar[rrd, "\phi", "\cong"'] & \pi_{n+1}(\Sigma X, *) \ar[r, "\varepsilon"] & \pi_{n+1}(Y, *) \ar[d, "\cong", "\psi"'] \\
+            && A
+        \end{tikzcd}\]
+        \item The fundamental class \(\iota_{A,n}\in H^n(X,A), \iota_{A,n+1}\in H^{n+1}(Y,A)\) fullfil
+        \[\varepsilon^*(\iota_{A,n+1}) = \Sigma(\iota_{A,n}) \in H^{n+1}(\Sigma X, A)\]
+    \end{enumerate}
+\end{lem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item \[\begin{tikzcd}
+            \pi_n(X,*) \ar[dd, bend right, "\cong", "\phi"'] \ar[d, "\rho_*"]\ar[r, "\Sigma"] & \pi_{n+1}(\Sigma X, *) \ar[d, "\varepsilon_*"] \\
+            \pi_n(\Omega Y, *) \ar[r] & \pi_{n+1}(Y,*)\ar[dl, "\cong", "\psi"'] \\
+            A & \\
+        \end{tikzcd}\]
+        Commutes because \(\varepsilon\) is adjoint to \(\rho\).
+        \item Equivalently \(\Sigma^{-1}(\varepsilon^*(\iota_{A,n+1})) = \iota_{A,n}\). We show that \(\Sigma^{-1}(\varepsilon^*(\iota_{Ar n+1}))\)has the property that defines \(\iota_{A,n}\):
+        \[\pi_n(X,*) \xrightarrow[[f]\mapsto f_*[(S^n)]]{\text{Hurewicz}} H_n(X,\iz)\xrightarrow{\Sigma^{-1}(\varepsilon^*(\iota_{A,n+1}))\cap \_} A\]
+        equals \(\phi\). We make our choices \([S^n]\in H_n(S^n, \iz)\) consistent with suspension.
+
+        Then
+        \[\begin{split}
+            \Sigma^-1(\varepsilon^*(\iota_{A,n+1}))\cap f_*[S^n] &= f^*(\Sigma^{-1}(\varepsilon^*(\iota_{A,n+1})))\cap [S^n] \\
+            &= \Sigma^{-1}((\Sigma f)^*(\varepsilon^*(\iota_{A,n+1}))) \cap [S^n] \\
+            &= (\Sigma f)^*(\varepsilon^*(\iota_{A,n+1}))\cap \Sigma[S^n] \\
+            &= (\varepsilon\circ (\Sigma f))^*(\iota_{A,n+1})\cap[S^{n+1}]\\
+            &= \iota_{A,n+1} \cap (\varepsilon\circ (\Sigma f))_*[S^{n+1}] \\
+            &= \iota_{A, n+1} \cap \mathrm{Hur}(\varepsilon\cir (\Sigma f)) \\
+            &= \psi[e\circ (\Sigma f)] = \phi(f) \\
+        \end{split}\]
+    \end{enumerate}
+\end{proof}
+
 
 
 
