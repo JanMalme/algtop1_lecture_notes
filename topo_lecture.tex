@@ -1493,5 +1493,178 @@ We let \(\varepsilon\colon \Sigma X\to Y\) be the adjoint of \(\rho\).
 
 Was not there, unfortunately
 
+\newLecture{17.11.2025}
+
+We give some examples of stable cohomology operations
+
+\begin{example}\leavevmode
+    \begin{itemize}
+        \item There are no stable operations of negative degrees.
+
+        \item \(\mathrm{Stab}(A,B,0) = \lim_{\la} H^n(K(A,n),B) \cong \Hom(A,B)\).
+        \item \(\mathrm{Stab}(A,B,1) = \lim_{\la} \Oper(A,i,B,i+1) = \lim_{\la} \Ext(A,B)\)
+        \item If \(R\) is a ring, \(x\mapsto x^n = x\cup \dots \cup x\) is usually not additive, so whenever it is not additive, it does \underline{not} extend to a stable operation.
+        \item If \(R\) is a \(\IF_p\)-algebra, \(p\) prime, then \(x\mapsto x^p\) is an additive operation. We will see that \(p = 2\), \(x\mapsto x^2\in \Oper(\IF_2, n\IF_2, 2n)\) does extend to a stable operation \(\Sq^n\in \mathrm{Stab}(\IF_2, \IF_2, n)\)
+        
+        If \(p\) is an odd prime \((x\mapsto x^p)\in \Oper(\IF_p, 2k, \IF_p, 2k\cdot p)\) does extend to a stable operation \(P^k \in \mathrm{Stab}(\IF_p, \IF_p, 2k(p-1))\). We will do this only for \(p=2\) and Schwede will mumble how it is more complicated for other \(p\) but works.
+    \end{itemize}
+\end{example}
+
+
+\begin{defi}{Steenrod-Algebra}{}
+    The \emph{Steenrod albera} for \(A\) is the graded ring \(\cA(A)\) with
+    \[\cA^n(A) = \mathrm{Stab}(A,A,n)\]
+    The graded multiplication
+    \[\circ\colon \cA^n(A)\times \cA^m(A) \to \cA^{n+m}(A)\]
+    is composition of operations.
+\end{defi}
+
+\textbf{Remark.} In practice we will mostly have \(A = \IF_p\).
+
+\(\cA^*(A)\) acts tautologically on the \(A\)-cohomology on any space, by \(\tau\in \mathrm{Stab}(A,A,n)\), \(x\in H^m(X,A)\).
+\[\tau\cdot x\coloneq \tau_m(x)\in H^{m+n}(X,A)\]
+
+This makes \(H^*(X,A) = \set{H^m(X,A)}_{m\geq 0}\) into a graded left \(\cA^*(A)\)-module.
+
+The suspension isomorphisms \(\Sigma\colon H^*(X,A)\to H^{*+1}(\Sigma X, A) \eqcolon H^*(\Sigma X, A)[1]\) is an isomorphism of left \(\cA^*(A)\)-modules.
+
+\begin{thm}{}{}
+    Let \(X\) be an \(n\)-connected based space, \(n\geq 1\), \(\varepsilon\colon \Sigma(\Omega X)\to X\) counit of the adjunction \((\Sigma, \Omega)\). Then for all abelian groups \(B\), the map
+    \[\varepsilon^*\colon H^i(X,B)\to H^i(\Sigma(\Omega X), B)\]
+    is an isomorphism for \(0\leq i\leq 2n\) and injective for \(i = 2n+1\).
+\end{thm}
+
+This gives us that the stable operations are in fact quite the nice inverse limit.
+
+\begin{proof}
+    Since \(X\) is \(n\)-connected, \(\Omega X\) is \((n-1)\)-connected. Freudenthal suspension theorem says
+    \[\Sigma\colon \pi_i(\Omega X, *) \to \pi_{i+1}(\Sigma (\Omega X), *)\]
+    is an isomorphism for \(1\leq i \leq 2n-2\) and surjective for \(i = 2n-1\).
+    
+    The composite
+    \[\pi_i(\Omega X, *) \xrightarrow{\Sigma} \pi_{i+1}(\Sigma \Omega X, *) \xrightarrow{\varepsilon_*} \pi_{i+1}(X,*)\]
+    is an isomorphism, so the first map is injective. So \(\Sigma\colon \pi_{i}(\Omega X, *) \to \pi_{i+1}(\Sigma \Omega X, *)\) is bijective for all \(1\leq i \leq 2n-1\). So \(\varepsilon_*\colon \pi_{i+1}(\Sigma \Omega X, *) \to \pi_{i+1}(X,*)\) is bijective for all \(1\leq i\leq 2n-1\) and surjective for \(i = 2n\).
+
+    Set \(j = i+1\).
+    \[\varepsilon_*\colon \pi_j(\Sigma\Omega X, *) \to \pi_j(X,*)\]
+    is bijective for \(1\leq j \leq 2n\) and surjective for \(j = 2n+1\).
+
+    Relative CW-approximation provides a relative CW-complex \((Z, \Sigma\Omega X)\) and a weak equivalence \(f\colon Z\xrightarrow{\sim} X\) extends \(\varepsilon\) and all relatve celss have dimension \(\geq 2n+2\).
+
+    So \(H^i(Z, \Sigma\Omega X; A) = 0\) for \(i\leq 2n+1\). The long exact cohomology sequence of the pair shows that
+    \[H^i(Z,A)\to H^i(\Sigma\Omega X, A)\]
+    is an isomorphism for \(i\leq 2n\). And the following is exact
+    \[0 \to H^{2n+1}(Z,A) \to H^{2n+1} (\Sigma\Omega X, A) \xrightarrow{\partial} H^{2n+2}(Z, \Sigma\Omega X, A)\]
+    so the last map is injective.
+\end{proof}
+
+\begin{corollary}
+    (\(X = K(A,n+1)\)) Let \(n\geq 1\), \(A,B\) abelian groups, \(\varepsilon\colon \Sigma K(A,n)\to K(A,n+1)\). Then
+    \[\varepsilon^*\colon H^i(K(A,n+1),B)\to H^i(\Sigma K(A,n),B)\]
+    is bijective for \(i\leq 2n\) and injective for \(i = 2n+1\).
+\end{corollary}
+
+\begin{corollary}
+    \[\mathrm{Stab}(A,B,n) \cong \lim_{\la} \]
+    \[H^{n+i+1}(K(A,i+1), B)\xrightarrow{\cong} H^{n+i}(K(A,n),B) \xrightarrow{\cong}\dots\xrightarrow{\cong} H^{2n+1}(K(A,n+1),B)\hookrightarrow H^{2n+1}(K(A,n+1), B)\to \dots \]
+    So
+    \[\mathrm{Stab}(A,B,n)\xrightarrow[\text{isomorphism}]{\cong} H^{2n+1}(K(A,n+1), B), \quad \tau\mapsto \tau_{n+1}(\iota_{A,n+1})\]
+    and
+    \[\mathrm{Stab}(A,B,n)\xhookrightarrow{\text{injective}} H^{2n}(K(A,n), B), \tau\mapsto \tau_n(\iota_{A,n})\]
+\end{corollary}
+
+Since \(\tau_n\) is additive operation, the class \(u = \tau_n(\iota_{A,n}) \in H^{2n}(K(A,n), B)\) satisfies \(\mu^*(u) = p_1^*(u)+ p_2^*(u)\).
+
+So \(\mathrm{Stab}(A,B,n)\hookrightarrow \set{u \in H^2n(K(A,n),B) | \mu^*(u) = p_1^*(u) + p_2^*(u)}\).
+
+\begin{thm}{}{}
+    The map \(\mathrm{Stab}(A,B,n)\to \set{u \in H^{2n}(K(A,n), B) | \mu^*(u) = p_1^*(u)+ p_2^*(u)}\) given by \(\tau =\set{\tau_i}_{i\geq 0} \tau_n(\iota_{A,n})\) is an isomorphism
+\end{thm}
+
+Equivalently we could say the map
+\[\mathrm{Stab}(A,B,n)\to \Oper^{\text{add}}(A,n,B,2n), \quad \tau\mapsto \tau_n\]
+is an isomorphism
+
+To proof this we would need a loooot of simplicial homotopy theory which we did not do. We will use this fact to construct Steenrod squares anyways. Later on, Schwede will show a construction not relying on this fact.
+
+\textbf{Remark.} If \(A = B= R\) is a ring, then
+\[\times \colon H^k(X,R)\times H^m(Y, R) \mapsto H^{k+m}(X\times Y, R), \quad x \times y = p_1^*(x)\cup p_2^*(y)\]
+Then \(\mu^*(u) = p_1^*(u) + p_2^*(u)\) is equivalent to \(\mu^*(u) = u\times 1+ 1\times u\), i.e. it is \enquote{primitive}.
+
+\begin{example}
+    Take \(A = B = \IF_2\), \(x\mapsto x^2 \in \Oper(\IF_2, n, \IF_2, 2n)\) and we have
+    \[(x+y) \cup (x+ y) = x\cup x + x\cup y + y \cup x + y\cup y = x^2 + y^2\]
+    so it is additive. Hence we have a unique stable operation \(\Sq^n = \set{\Sq^n_i}_{i\geq 0}\in \mathrm{Stab}(\IF_2, \IF_2, n) = \cA^n(\IF_2) = \cA^n_2\) the mod 2 Steenrod algebra.
+
+    This operation is uniqely characterised yb the property
+    \[\Sq^n(x) = x^2\]
+    for all \(x \in H^n(X, \IF_2)\). We want to see how this operation looks in other degrees. We can only do this for \(\IF_2\) coefficients, constructing the Steenrod squares in this way. For general \(\IF_p\) we will need to use another strategy.
+\end{example}
+
+\begin{example}
+    For \(n = 0\) we have \(\iota_0^2 = \iota_0\) where \(\iota_0 \in H^0(K(\IF_2, 0), \IF_2) = H^0(\IF_2, \IF_2)\) and \(\iota_0\) corresponds to \(\id_{\IF_2}\). So we get \(\Sq^0 = \id\).
+
+    For \(n = 1\), we have seen earlier in an exercise, for all \(x \in H^1(X,\IF_2), v^2 = \beta(x)\) where \(\beta\) is the Bockstein of the short exact sequence
+    \[0 \to \IF_2 \to \iz_4 \to \IF_2 \to 0\]
+    where we have \(\beta\colon H^n(X,\IF_2)\to H^{n+1}(X, \IF_2)\)a stable operation. We get \(\Sq^1= \beta\).
+\end{example}
+
+\begin{thm}{Properties of Steenrod squares}{}
+    For each \(i\geq 0\), there is a unique stable \(\mod -2\) cohomology operation \(\Sq^i\), such that \(\Sq^i(x) = x^2\) for all \(x\in H^i(X,\IF_2)\). Moreover, the following properties hold
+    \begin{enumerate}
+        \item \(\Sq^0 = \id, \Sq^1 = \beta\)
+        \item (Unstability) For all \(x\in H^n(X, \IF_2)\) and \(i> n\), \(\Sq^i(x) = 0\)
+        \item (Cartan Formula) \(x,y \in H^*(X, \IF_2)\) homogenous
+        \[\Sq^i(x\cup y) = \sum_{a+b = i}\Sq^a(x)\cup \Sq^b(y)\]
+    \end{enumerate}
+\end{thm}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Was the above example
+        \item Consider the iterated suspension isomorphism \(i> n\)
+        \[\Sigma^{i-n}\colon H^n(X, \IF_2) \to H^i(X, \IF_2)\]
+        \[\Sigma^{i-n}(\Sq^i(x)) = \Sq^i(\underbrace{\Sigma^{i-n}(x)}_{i\text{-dim}}) = (\Sigma^{i-n}(x))\cup (\Sigma^{i-n}(x)) = 0\]
+        as cup products vanish in suspensions. Since \(\Sigma^{i-n}\) is an isomorphism, \(\Sq_i(x)= 0\)
+        \item Will be deduced from
+        \begin{proposition}[External Catan Formula]
+            For all spaces \(X,Y\) and all \(x uin H^n(X, \IF_2)\), \(y\in H^m(Y, \IF_2)\), \(i\geq 0\):
+            \[\Sq^i(x\times y) = \sum_{a+b = i} \Sq^a(x)\times \Sq^b(y)\]
+        \end{proposition}
+        The external catan implies the internal catan by
+        \[x\cup y = \Delta^*(x/times y), \quad \Delta\colon X\to X\times X\text{ diagonal}\]
+        for \(x,y \in H^*(X)\). Use external form with \(\Delta^*\colon H^*(X\times X, \IF_2)\to H^*(X, \IF_2)\).
+
+        \begin{proof}
+            If \(i> m+n\) both sides of the desired equation are 0 by instability. For \(i = n+m\)
+            \[\Sq^{n+m}(x\times y) = (x\times y)\cup (x\times y) = (x\times x)\cup (y\times y) = x^2 \times y^2 = \Sq^m(x)\times \Sq^n(y) = \sum_{a+b=n+m} \Sq^a(x) \times \Sq^b(y)\]
+            again using instability on most of the sum-terms. For \(v>n+m\) Induction on \(n+m\). For \(n+m = 0\), \(n= m=0\), so \(\Sq^0(x\times y) = x\times y = \Sq^0(x)\times \Sq^0(y)\).
+
+            Now let \(n+m \geq 1\), \(i<n+m\). \(X= K(n) = K(\IF_2, n)\), \(K(m) = K(\IF_2, m) = Y\), \(x = \iota_n\), \(y = \iota_m\). For \(p \leq 2n-1\):
+            \[\varepsilon^*\colon H^p(K(n), \IF_2) \to H^p(\Sigma H(n-1), \IF^2)\]
+            is injective for \(q \leq 2m -1\)
+            \[\varepsilon^*\colon H^q(K(m), \IF_2)\to H^q(\Sigma K(m-1), \IF_2)\]
+            is injective and
+            \[H^k(K(n)\times K(m), \IF_2)\xrightarrow[\text{Künneth theorem}]{\cong}\bigoplus_{p+q = k} H^p(K(n), \IF_2)\otimes H^q(K(n), \IF_2)\]
+            so
+            \[(\varepsilon^*\otimes 1, 1\otimes \varepsilon^*)\hookrightarrow \bigoplus_{p+q = k} H^p(\Sigma K(n-1), \IF_2)\otimes H^q(K(m), \IF_2)\oplus H^p(K(n), \IF^2)\otimes H^q(\Sigma K(n-1), \IF_2)\]
+            is injective for all \(k\leq 2n+2m-1\).
+
+            \(\Sq^i(x\times y)\in H^{n+m+i}(K(n)\times K(m), \IF_2)\). To prove the desired relation, it suffices to prove it after applying \(\varepsilon^*\otimes 1\) and \(1\otimes \varepsilon^*\).
+            \[\begin{split}
+                (\varepsilon\times 1)^*(\Sq^i(\iota_n\times \iota_m)) &= \Sq^i((\varepsilon\times 1)^*(\iota_n\times \iota_m)) \\
+                &= \Sq^i(\varepsilon^*(\iota_n)\times \iota_m) \\
+                &= \Sq^i(\Sigma (\iota_{n-1})\times \iota_m) \\
+                &= \Sigma(\Sq^i(\iota_{n-1}\times \iota_m)) \\
+                &\underset{\text{induction}}{=} \Sigma \sum_{a+b = i}\Sq^a(\iota_{n-1})\times \Sq^b(\iota_m) \\
+                &= \sum_{a+b = i}\Sq^a(\Sigma (\iota_{n-1})\times \Sq^b(\iota_m)) \\
+                &= \sum_{a+b = i} \Sq_a(\varepsilon^*(\iota_n))\times \Sq^b(\iota_m) \\
+                &= (\varepsilon\times 1)^* (\sum_{a+b= i} \Sq^a(\iota_n)\times \Sq^b(\iota_m)). 
+            \end{split}\]
+            This proofs external catan in the universal example \(X = K(n), Y = K(m)\), \(x = \iota_n, y = \iota_m\). For CW-complexes it follows by representability. In general by CW-approximation.
+        \end{proof}
+    \end{enumerate}
+\end{proof}
+
 
 \end{document}
