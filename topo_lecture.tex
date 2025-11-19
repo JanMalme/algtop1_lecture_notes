@@ -1666,5 +1666,108 @@ Then \(\mu^*(u) = p_1^*(u) + p_2^*(u)\) is equivalent to \(\mu^*(u) = u\times 1+
     \end{enumerate}
 \end{proof}
 
+\newLecture{19.11.2025}
+
+Some standard applications of Steenrod squares:
+
+\textbf{Reminder.} Let \(f\colon X \to Y\) be a continuous map. We want to understand when \(f\) is essential, i.e. not homotopic to a constant map.
+\begin{itemize}
+    \item if \(f\) induces a non-zero map on \(\pi_n, H_n(\_, A), H^m(\_, B)\), then \(f\) is essential.
+    \item if \(f\) is nullhomotopic, the s.e.s. for
+    \[C(f)\coloneq X\times [0,1] \cup_f Y, \; i\colon Y \to C(f)\]
+    yields
+    \[H^{n+1}(X,A) \xrightarrow{ } H^n(Cf, A)\xrightarrow{i^*} H^n(Y,A)\xrightarrow{f^*} H^n(X,A)\]
+    If \(f^* = 0\), \(H^*(Y,A) \to H^*(X,A)\) also gives a s.e.s. If \(f\) is nullhomotopic, then by a choice of nullhomotopy \(H\colon X\times [0,1]\to Y\) from a constant map to \(f\) and we get
+    \[\sigma = H\cup \id_Y \colon C(Y)\to Y\]
+    with \(\sigma\circ i =\id_Y\) So \(i\colon Y\to C(f)\) has a retraction, which induces a map in cohomology.
+    \[0\to H^{k+1}(X,a)\xrightarrow{\partial} H^k(Cf, A)\xrightarrow{i^*} H^k(Y,A) \to 0\]
+    where \(\sigma^*\) gives a section to \(i^*\).
+
+    Our strategy here is to endow cohomology with more natural structure to show there is no algebraic map that respects the structure and is a section to \(i^*\).
+
+    The Cup-product: \(f = \eta\colon S^3\to S^2\) the Hopf fibration has \(C(f) \cong \IC P^2\).
+    \[H^*(C(f),\iz) = H^*(\ic P^2, \iz)\cong \iz[x]/(x^3)\]
+    and
+    \[\iz[x]/(x^3) = H^*(\ic P^2, \iz) \xrightarrow{i^*} H^*(\ic P^1, \iz) = \iz[x]/(x^2)\]
+    has additive sections, but \emph{no} multiplicative sections. Hence there is no continuous retration \(\iota\colon \ic P^1 \hookrightarrow \ic P^2\).
+
+    And hence we get \(\eta\) is essential. \(\pi_3(S^2, *) \cong \iz\set \eta\).
+
+    We can do the same for \(S(\ih^2) = \nu\colon S^7 \to S^4 = \ih P^1\). Hence \(\nu\) is essential and we had \(\pi_7(S^4) \cong \iz\set{\nu} \oplus \) a finite group Schwede forgot.
+
+    And once more the same for \(\sigma\colon S^{15} = S(\io ^2)\to \io \cup \set\infty \cong S^8\). We define \(C(\sigma) \eqcolon \io P^2\) and \(H^*(\io P^2, \iz)\cong \iz[z]/(\iz^3)\). We see \(\sigma\) is essential, \(\pi_15(S^8)\cong \iz\set\sigma \oplus\) some finite group.\footnote{some remark about how we can't proof that \(\sigma\) has infinite order.}
+
+    \item We want to see that \(\eta\) is stably essential, i.e. also suspensions of \(\eta\) are essential. Same for \(\nu, \sigma\). We saw \(2\cdot (\Sigma \eta) = 0\) in \(\pi_4(S^3)\). And similarly also
+    \[24 \cdot (\Sigma\nu) = 0 \in \pi_8(S^5) \quad 240 \cdot (\Sigma\sigma) \in \pi_{16}(S^9)\]
+\end{itemize}
+
+\begin{defi}{stably essential maps}{}
+The map \(f\colon X\to Y\) of based spaces is \emph{stably essential} if \(\Sigma^nf\colon \Sigma^n X\to \Sigma^n Y\) is not homotopic to a constant map for all \(n\geq 0\).
+\end{defi}
+
+\textbf{Note.} Cohomology and cup product cannot show that \(\Sigma^nf\) is essential for \(n\geq 1\) because the cup product on the cohomology of \(\Sigma Y\) is trivial!
+
+\(\eta\colon S^3\to S^2\) is stably essential, i.e. \(\Sigma^n \eta \not\simeq *\) for all \(n\geq 0\). We want to show this using cohomology operations.
+
+\begin{corollary}
+    \(\pi_1^{\mathrm{st}} = \iz_2\set\eta\).
+    \[\Sigma^n\eta \colon S^{n+3}\to S^{n+2}\to \Sigma^n C(\eta) \to S^{n+4}\]
+    where we write \(\mathrm{Cone}(\Sigma \eta) \cong \Sigma^n(\eta)\).
+
+    \[0\to \tilde H^*(S^{n+4}, \IF_2)\to \tilde H^*(\Sigma^n(C(\eta)), \IF_2) \to \tilde H^*(S^{n+2}, \IF_2)\to 0\]
+\end{corollary}
+
+Schwede explains how to draw cohomology to see there is no section to \((\Sigma^{n_i})^*\) compatible with Steenrod operation \(\Sq^2\).
+
+\(H^*(X,\IF_2)\) is a graded module over \(\cA^*(\IF_2)\). Teh s.e.s. descends split as modules over \(\cA^*(\IF_2)\). We have \(C(\eta)\cong \ic P^2\). \(H^*(C(\eta), \IF^2) = H^*(\IC P^2, \IF^2) = \IF[x]/(x^3)\) and we have \(\Sq^2(x) = x^2 \neq 0\).
+
+So as the steenrod squares are stable cohomology operations, they are still non-zero after suspending, while the cup-product is gone.
+\[\tilde H^k(\Sigma^n C(\eta), \IF_2) \cong \begin{cases}
+    \IF_2\set{\Sigma^n x} & k = n+2 \\
+    \IF_2\set{\Sigma^n(x^2)} & k = n+4 \\
+    0 & \text{else}
+\end{cases}\]
+and
+\[\Sq^2(\Sigma^n(x)) = \Sigma^n(X^2)\]
+
+Schwede rambles about how there are secondary cohomology operations and he will not talk about that.
+
+For \(\nu\) we have \(C(\nu)\cong \ih P^2\) and \(H^*(\ih P^2, \IF_2)\cong \IF_2[y]/(y^3)\) for \(y \in H^4(\ih P^2, \IF_2)\). He again draws the cohomology and concludes \(\Sigma ^n(\nu) \not \simeq 0\) for all \(n\geq 0\) using \(\Sq^4\).
+
+For \(C\sigma \cong \io P^2\) we use \(\Sq^8\) to obtain the same result.
+
+Schwede explains that \(\Sq^n\) is decomposable for \(n \neq 2^i\), i.e.
+\[\Sq^n = \sum_{a+b = n} \Sq^a \circ \Sq^b\]
+where \(\circ\) is composition of operations. This is just motivation we will do this later.
+
+We give one more application of the Steenrod squares. \footnote{Schwede does something for the people in his seminar and tells the rest of us to ignore.}
+
+\subsection{Moore Spaces}
+
+\begin{defi}{Moore Space}{}
+The mod \(n\) moore space is
+\[M(n) = \mathrm{Cone}(S^1\xrightarrow{\cdot n} S^1)\]
+\end{defi}
+
+For example \(M(2)\cong \IR P^2\). And we get
+\[\tilde H_k(M(n), \iz) = \begin{cases}
+    \iz/n & k = 1 \\
+    0 & k \neq 1 \\
+\end{cases}\]
+
+\textbf{Fact.} \(\times_n\colon S^1 \wedge M(n)\xrightarrow{\deg(n)\wedge \id_{M(n)}} S^1 \wedge M(n)\).
+
+If \(p\) is odd then \(\times_p\) is stably nullhomotopy on \(M(p)\). But
+\[\times_2\colon S^1\wedge M(2) \to S^1\wedge M(2)\]
+is stably essential. schwede draws us a picture to proof this. You could read it in his script. I did not copy this part.
+
+\subsection{Adam relations}
+
+
+
+
+
+
+
 
 \end{document}
