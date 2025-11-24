@@ -1,4 +1,4 @@
-\documentclass[language= english]{TemplateLecture}
+\documentclass[language=english]{TemplateLecture}
 
 \renewcommand{\ProfName}{Stefan Schwede}
 \renewcommand{\LectureName}{Algebraic Topology I}
@@ -1761,12 +1761,131 @@ If \(p\) is odd then \(\times_p\) is stably nullhomotopy on \(M(p)\). But
 \[\times_2\colon S^1\wedge M(2) \to S^1\wedge M(2)\]
 is stably essential. schwede draws us a picture to proof this. You could read it in his script. I did not copy this part.
 
-\subsection{Adam relations}
+\newLecture{24.11.2025}
 
 
+We want to now construct the Steenrod-squares. We want to construct the total power operation:
 
+\(p\) prime. \(\cP_p\colon H^n(X, \IF_p) uto H^{np}(X\times L(p), \IF_2)\) where \(L(p) = \) infinite dimensional lense space \(= S^\infty/{C_p}\) as generalizations of \(L(2) = \IR P^\infty\). By Künneth theorem we will have
+\[H^*(X\times L(p), \IF_p) \cong H^*(X, \IF_p)\otimes_{\IF_p} H^*(L(p), \IF_p)\]
+where the second part is 1-dimensional in every degree.
 
+For \(p= 2\), \(H^*(L(2),\IF_2) = H^*(\IR P^\infty, \IF_2) = \IF_2[u]\) for \(u \in H^1(\IR P^\infty, \IF_2)\). \(\cP_2(X) = \sum_{i\geq 0}\Sq^i(x)\times u^{n-i}\). We check that all degrees match up.
 
+And now in more detail:
+
+\begin{defi}{}{}
+    We write \(S^\infty = \bigcup_{n\geq 0} S(\ic^n)\) for the infinite dimensional sphere,
+    where \(S(\ic^n) = \set{z\in \ic^n | \abs z = 1}\). We write
+    \[C_p = \set{z\in \ic | z^n = 1}\]
+    for the \(p\)-th roots of unity. \(C_p\) acts freely on \(S^\infty\) by scalar multiplication. We set
+    \[L(p) = S^\infty/C_p = S^\infty/(v\sim \zeta_p v)\]
+    where \(\zeta_p  = e^{2\pi i/p}\) product with \(p\)-th root of 1.
+\end{defi}
+
+For \(p = 2\), we have \(C_2 = \set{\pm 1}\), this is the antipodal action on \(S^\infty\). 
+
+Since the \(C_p\)-action on \(S^\infty\) is free and \(S^\infty\) is contractible, the quotient map
+\[S^\infty \to S^\infty/C_p = L(p)\]
+is the universal covering. So \(L(p)\) is an Eilenberg-Maclane space of type \(K(C_p, 1)\).
+
+\(S^\infty\) has a CW-structure with \(S^\infty_{2k-1} = S(\ic^k)\) and \(S^\infty_{2k} = \) join in \(S(\IC^{k+1})\) of \(S^\infty_{2k-1} = S(\ic^k \oplus 0)\) and \(\set{(0, \dots, 0, z)| z\in C_p}\). He draws a picture on how this works.
+
+This is a CW-structure on \(S^\infty\) with \(p\) cells in each dimension; \(C_p\) acts cellularly and free permuting the \(k\)-cells for all \(k\).
+
+As \(L(p)\) is a K(p,1) we get
+\[C_p\cong \pi_1(L(p), *) \cong H_1(L(p), \iz)\]
+By UCT we get
+\[H^1(L(p), \IF_p)\cong \Hom(H_1(L(p),\iz), \IF_p) \cong \hom(C_p, \IF_p)\]
+mapping some \(x\) to \(\zeta_p \mapsto 1\). We set \(y \coloneq \beta(x)\in H^2(L(p), \IF_p)\). Where \(\beta\) = Bockstein (for \(0\to \IF_p\to \iz/_{p^2}\to \IF_p\to 0\)).
+
+If \(p = 2\), then \(y = \beta(x) = x^2\). If \(p\geq 3\), then \(x^2 = 0\).
+
+\begin{thm}{}{}
+    Let \(p\) be an odd prime. Then
+    \[H^*(L(p), \IF_p) = \IF_p[x,y]/(x^2) = \IF_p[y]\otimes \Lambda(x)\]
+\end{thm}
+
+\begin{proof}
+    \[H^k(L(p), \IF_p) \cong \begin{cases}
+        \IF_p\set{y^{k/2}} & k \text{ even} \\
+        \IF_p\set{x\cdot y^{(k-1)/2}} & k \text{ odd} \\
+    \end{cases}\]
+
+    The \(C_p\)-action on \(S^\infty\) is cellular for the CW-structure, so the induced action on \(C_*^{cell}(S^\infty)\) makes theis into a complex of modules over \(\iz[C_p]\). This makes \(C^{cell}_k(S^\infty)\) a free \(\iz[C_p]\)-module of rank 1.
+
+    choose characteristic maps for all of the \(k\)-cells; chooste the other characeristic maps by following with the action of \(C_p\). We get \(e_k^0, e_k^1 = \zeta_p\cdot e^0_k, \dots, e_k^i, \dots, e_k^{p-1}\).
+
+    \textbf{Claim.} 
+    \[\partial^{cell}(e_k^0) = \begin{cases}
+        e_{k-1}^0 - e_{k-1}^1 & k \text{ odd} \\
+        e_k^0 + e_k^1 + \dots + e_k^{p-1} & k \text{ even} \\
+    \end{cases}\]
+    We again draw pictures to proof this claim. And some notes so scribbled I didn't follow. Now
+    \[C^{cell}_*(L(p)) = C^{cell}_*(S^\infty/C_p) = C^{cell}_*(S^\infty)\otimes_{\iz[C_p]}\iz\]
+    He \enquote{hits the picture with that tensor.} We get that the connecting maps alternatingly are \(0\) and \(p\).
+    So
+    \[H_*(L(p), \IF_p), H^*(L(p), \IF_p)\]
+    is \(1\)-dimensional in every degree.
+    
+    For the multiplicative structure We show by induction on \(k\), that
+    \[H^*(L(p)_{2k-1}, \IF_p) = \IF_p[x,y]/(x^2, y^k)\]
+
+    We have \(L(p)_{2k-1}= S(\ic^k)/{C_p}\) with \(C_p\)-action free and orientation preserving. So \(L(p)_{2k-1}\) (the Lense space) is an orientable, connected, compact (smooth) manifold. So
+    \[H^*(L(p)_{2k-1}, \IF_p)\]
+    satisfies Poincare duality. So
+    \[\cup\colon H^i(L(p)_{2k-1}, \IF_p)\times H^{2k-1-i}(L(p), \IF_p)\to H^{2k-1}(L(p), \IF_p)\]
+    is a perfect pairing. So
+    \[\cup y\colon H^{2k-3}(L(p)_{2k-1}, \IF_p)\to H^{2k-1}(L(p)_{2k-1}, \IF_p)\]
+    is an isomorphism. However the first term is also \(H^{2k-3}(L(p)_{2k-3}, \IF_p) = \IF_p\set{x\cdot y^{k-2}}\). So \(y^{k-1} \neq 0\). So \(y^{k-1}\) generates \(H^{2k-2}(L(p)_{2k-1}, \IF_p)\)
+\end{proof}
+
+\begin{defi}{Extended power Construction}{}
+    the \(p\)-th extended power of a space \(X\) is the space
+    \[D_p(X) = X^p\times_{C_p} S^\infty= (X^p\times S^\infty)/(x_1,\dots, x_p, v)\sim (x_2, \dots, x_p, x_1, \zeta_p\cdot v)\]
+    If \(X\) is based, the reduced \(p\)-th extended power is
+    \[\tilde D_p(X) = X^{\wedge p}\wedge_{C_p} S^\infty_+\]
+    \(D_p(X)\) has different notation: \(X^p\times _{C_p} EC_p\) for some \(EC_p\) a free contractible \(C_p\) space.
+
+    \((X^p)_{hC_p}\) the homotopy orbit space.
+\end{defi}
+
+We have \(\tilde D_p(X) = \frac{D_p(X)}{(\mathrm{FatWedge}_{C_p})\times S^\infty}\). For \(Y\) unbased \(\tilde D_p(Y_+) \cong D_p(Y)_+\).
+
+\begin{proposition}
+    Let \(Y\) be a based \((n-1)\)-connected CW-complex equipped with a continuous based \(C_p\)-action. Then the space \(Y\wedge_{C_p}S^\infty_+\) is \((n-1)\)-connected. Moreover, the map
+    \[j\colon Y\to Y\wedge_{C_p}S^\infty_+ \quad y\mapsto [y\wedge (1,0\dots)]\]
+    induces an isomorphism \(j_*\colon H_n(Y, A)/C_p\to H_n(Y\wedge_{C_p}S^\infty_+, A)\)
+    where the left hand side is a abelian group quotient. And
+    \[j^*\colon H^n(Y\wedge_{C_p} S^\infty_+, A)\to H^n(Y, A)^{C_p}\]
+    is also an isomorphism, where \(H^n(Y,A)^{C_p}\) denotes fixpoints under the action of \(C_p\).
+\end{proposition}
+
+\begin{proof}
+    The subquotients of the equivariant skeleton filtration on \(S^\infty\) are \(S^\infty_k/S^\infty_{k-1} \cong (C_p)_+ \wedge S^k\) where the isomorphism is \(C_p\)-equivariant.
+
+    This induces a filtration on \(Y\wedge_{C_p}S^\infty_+\) by \(\set{Y\cap_{C_p} S^\infty_k}_{k\geq 0}\). with subquotients
+    \[\frac{Y\wedge_{C_p}(K^\infty_k)+}{Y\wedge_{C_p}(S^\infty_{k-1})_+} \cong Y\wedge_{C_p} ((C_p)_+\wedge S^k) \cong Y\wedge S^k\]
+    with the end result being \((n+k-1)\)-connected. So
+    \[Y\wedge_{C_p}(S^\infty_1)_+ \to Y\wedge_{C_p}S^\infty_+\]
+    induces isomorphisms on \(H_n(\_, A)\) and \(H^n\_, A\). Hence
+    \[H_n(Y\wedge_{C_p} S(\IC)_+, A)\to H_n(Y\wedge_{C_p}S^0_+, A)\]
+    is an isomorphism.
+
+    We get a cofibre sequence of \(C_p\)-spaces.
+    \[C_p = \set{z\in \ic | z^p = 1} \to S(\ic) \to (C_p)_+ \wedge S^1\]
+    and we can apply \(Y\wedge_{C_p}\_\) to it. Missed what that looked like. We get
+    \[H_{n+1}(Y\wedge S^1, A) \to H_n(Y,A)\to H_n(Y\wedge_{C_p}S(\ic)_+, A) \to 0\]
+    where the first term is isomorphic to \(H_n(Y,A)\) and we want to undertsand the first map acting on homology. i missed a bit.
+
+    Since \(Y\) is \(n-1\)-connected, UCT gives
+    \[H^n(Y, A) \xrightarrow{\cong} \hom(H_n(Y, \iz), A)\]
+    since the map in the UCT is natural, this isomorphism is \(C_p\)-equivariant. So it retracts to an isomorphis of \(C_p\)-fixed points.
+    \[H^n(Y,A )^{C_p}\xrightarrow{\cong} \Hom(H_n(Y,\iz), A)^{C_p} \cong \Hom(H_n(Y,\iz)/C_p, A)\]
+    Since \(Y\wedge_{C_p}S^\infty_+\) is \((n-1)\)-connected, so UCT gives
+    \[H^n(Y\wedge_{C_p}S^\infty_+, A)\xrightarrow{\cong} \hom(H_n(Y \wedge_{C_p}S^\infty_+, \iz), A)\]
+    These data participate in a commutative diagramm I didn't copy.
+\end{proof}
 
 
 
