@@ -1887,6 +1887,158 @@ We have \(\tilde D_p(X) = \frac{D_p(X)}{(\mathrm{FatWedge}_{C_p})\times S^\infty
     These data participate in a commutative diagramm I didn't copy.
 \end{proof}
 
+\newLecture{26.11.2025}
+
+We applly this proposition to \(Y = X^{\wedge p}\), for \(X\) a based space.
+
+\begin{proposition}
+    Let \(p\) be a prime, \(n\geq 1\).
+    \begin{enumerate}
+        \item For every based space \(X\) and every \(x \in \tilde H^n(X,\IF_p)\) the class
+        \[x\wedge \dots \wedge x \in \tilde H^{np}(X^{\wedge p}, \IF_p)\]
+        is invariant under the \(C_p\)-action.
+        \item There is a unique class \(\tilde\iota_{n,p} \in \tilde H^{np}(\tilde D_p(K(\IF_p,n), \IF_p))\),\footnote{Schwede remarks how this might look random to us right now. Can confirm.} s.t.
+        \[j^*(\tilde\iota_n, p) = \iota\wedge \dots \wedge \iota \text{ p-times } \in H^{np}(K(\IF_p,n)^{\wedge p}, \IF_p)\]
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Recall that for based spaces \(X,Y\) and \(x \in \tilde H^k(X,\IF_p), y \in \tilde H^l(Y, \IF_p)\) we have
+        \[x\wedge y = (-1)^{kl}\tau_{x,y}^* y\wedge x\]
+        where \(\tau_{X,Y}\colon X\wedge Y \xrightarrow{\cong} Y\wedge X\) is switching around.
+
+        Let \(m\geq 2\), \(X_1, \dots, X_n\) based spaces
+        \[c_m\colon X_1\wedge \dots \wedge X_m \xrightarrow{\cong} X_2\wedge \dots \wedge X_m\wedge X_1\]
+        the cyclic permutation of factors, \(x_i\in H^{k_i}(X_i, \IF_p)\).
+        \[\begin{split}
+            x_1\wedge \dots \wedge X_m = (-1)^{k_1 \cdot (k_2+k_3+\dots + k_m)} c_m^*(x_2\wedge \dots \wedge x_m \wedge x_1)
+        \end{split}\]
+        For \(m=2\) this is true. For \(m\geq 3\)
+        \[\begin{tikzcd}
+            X_1\wedge\dots\wedge X_m \ar[d, "c_{m-1}\wedge X_m"]\ar[r] & X_2\wedge\dots\wedge X_m \wedge X_1 \\
+            X_2\wedge\dots\wedge X_{m-1}\wedge X_1\wedge X_m\ar[ru, "X_2\wedge\dots \wedge X_{m-1}\wedge \tau_{X_1, X_m}"] & \\
+        \end{tikzcd}\]
+        \[c_m^*(x_2\wedge \dots\wedge x_m\wedge x_1) = (c_{m-1}\wedge X_m)^*(X_2\wedge \dots\wedge X_{m-1}\wedge \tau_{X_1, X_m})^*(x_2\wedge \dots\wedge x_m\wedge x_1) =\]
+        and this is where he continued with the next part. A lot of this calculation was missing.
+
+        Now specializing \(m = p\) prime, \(X_1= \dots = X_m = X, x_1 = x_2 = \dots = x\), \(k_1 = \dots = k_p = m\) then
+        \[c_p^*(x\wedge \dots \wedge x) = (-1)^{n\cdot (n+n\dots +n)} x\wedge\dots \wedge x = (-1)^{n^2 \cdot (p-1)} x\wedge \dots \wedge = x\wedge \dots \wedge x\]
+
+        \item We use \(K(\IF_p,n)\) is \(n\)-connected. Hence \(K(\IF_p, n)^{\wedge p}\) is \(np -1\)-connected, with \(C_p\)-action by cyclic permutation. So
+        \[j^*\colon H^{np}(\tilde D_p(K(\IF_p, n)), \IF_p) =H^{np}(K(\IF_p,n)^{\wedge p}\wedge_{C_p}S^\infty_+, \IF_p) \to H^{np}(K(\IF_p, n)^{\wedge p}, \IF_p)^{C_p}\]
+        by
+        \[\tilde\iota_{n,p}\mapsto \iota\wedge \dots \wedge \iota\]
+        which exists uniquely.
+    \end{enumerate}
+\end{proof}
+
+We let
+\[\pi\colon D_p(K(\IF_p, n)) \to \tilde D_p(K(\IF_p, n))\]
+be the projection. Set
+\[\iota_{n,p} \coloneq \pi^*(\tilde \iota_{n,p}) \in H^{np}(D_p(K(\IF_p, n)), \IF_p)\]
+The following commutes
+\[\begin{tikzcd}
+    K(\IF_p, n)^{\times p} \ar[d, "j"]\ar[r, "\pi"] & K(\IF_p, n)^{\wedge p} \ar[d, "j"] \\
+    D_p(K(\IF_p, n)) \ar[r, "\pi"] &\tilde D_p(K(\IF_p, n)) \\
+\end{tikzcd}\]
+Then
+\[j^*(\iota_{n,p}) = j^*(\pi^*(\tilde \iota_{n,p})) = \pi^*(j^*(\tilde\iota _{n,p})) F \pi^*(\iota\wedge \dots \wedge \iota) = \iota\times \dots \times \iota\]
+
+
+Let \(X\) be a CW-complex. The diagonal map \(\Delta\colon X\to X^p\) is \(\Delta(x) = (x,\dots, x)\). This is \(C_p\)-equivariant for the trivial action on the source and the cyclic permutation action on target.
+\[\_ \times_{C_p}S^\infty \colon (X\times_{C_p}S^\infty) \xrightarrow{\Delta\times_{C_p} S^\infty} X^p\times_{C_p} D_p(X)\]
+where the first term is also \(X\times L(p)\) and we call this \(\Delta_x\) sending \(x, [v]\mapsto [x,x,\dots, x, v]\)
+
+\begin{defi}{Power operation}{}
+    The \(p\)-th power operation \(P_p\colon H^n(X,\IF_p)\to H^{np}(X\times L(p), \IF_p)\) is defined by
+    \[x = f^*(\iota) = \Delta_X^*(D_p(f)^*(\iota_{n,p}))\]
+\end{defi}
+
+In more detail \(f\colon X\to K(\IF_p, n)\) is continuous, such that \(f^*(\iota) = x\), where \(\iota = \iota_{\IF_p,n}\in H^n(K(\IF_p, n), \IF_p)\).
+
+\[\begin{tikzcd}
+    X\times L(p) \ar[r] & D_p(X)\ar[r, "D_p(f)"]& D_p(K(\IF_p, n)) \\
+    P_p(x) & D_p(f)^*(\iota_{n,p}) \ar[l, mapsto] & \iota_{n,p} \ar[l, mapsto] \\
+\end{tikzcd}\]
+so \(P_p(\iota) = \Delta_{K(\IF_p, n)}(\iota_{n,p})\)
+
+Let \(j\colon X \to X\times L(p)\) be the map \(j(x) = (x, [1, 0\dots, 0])\). This new \(j\) fullfills \(\Delta_X \circ j = j\) for respective \(j\)
+
+\begin{proposition}
+    \begin{enumerate}
+        \item The composite
+        \[H^n(X, \IF_p) \xrightarrow{P_p} H^{np}(X\times L(p); \IF_p) \xrightarrow{j^*} H^{np}(X; \IF_p)\]
+        raises a class to its \(p\)-th power.
+        \item The exterior product interacts with the total power operation in the following way: \(x \in H^n(X, \IF_p), y\in H^m(Y, \IF_p)\)
+        \[P_p(x\times y) =  \Delta^*(P_p(x)\times P_p(y))\]
+        in \(H^{(n+m)\cdot p}(X\times Y\times L(p), \IF_p)\), \(\Delta\colon X\times Y \times L(p) \to X\times L(p)\times Y \times L(p) \), \((x,y, [v]) \mapsto (x, [v], y, [v])\).
+    \end{enumerate}
+\end{proposition}
+
+This is what gives rise to the cartan-formula.
+
+\begin{proof}
+    \begin{enumerate}
+        \item By naturality it suffices to show this relation for the universal example \(X f K(\IF_p, n), x = \iota = \iota_{\IF_p, n} \in H^n(K(\IF_p, n), \IF_p)\). We get a commutative square
+        \[\begin{tikzcd}
+            K(\IF_p,n) \ar[d, "j"] \ar[r, "\Delta"] & K(\IF_p, n)^p \ar[d, "j"] \\
+            K(\IF_p, n)\times L(p) \ar[r, "\Delta_{K(\IF_p,n)}"] & K(\IF_p,n)^p\times_{C_p}S^\infty = D_p(K(\IF_p, n))
+        \end{tikzcd}\]
+        we observe
+        \[j^*(P_p(i)) = j^*(\Delta_{K(\IF_p, n)}^*(\iota_{n,p})) = \Delta^*(j^*(\iota_{n,p})) = \Delta^*(\iota\times \dots \times \iota) = \iota\cup\dots \cup \iota = \iota^p\]
+        \item By naturality it suffices to show  the universal case \(X = K(\IF_p, n) = K(n)\) and \(Y = K(\IF_p,m) = K(m)\), \(x = \iota_n = \iota_{\IF_p, n} \in H^n(K(n), \IF_p)\), \(y = \iota_m \in H^m(K(m), \IF_p)\).
+        Wen need the reduced diagonal
+        \[\tilde \Delta\colon \tilde D_p(X\wedge Y) \to \tilde D_p(X)\wedge \tilde D_p(Y)\]
+        given by \([\underline x \wedge \underline y\wedge v] \mapsto[\underline x\wedge v]\wedge [\underline y \wedge v] \). The following commutes
+        \[\begin{tikzcd}
+            (X\wedge Y)^p \ar[d, "j"] \ar[r, "\text{shuffle}", "\cong"'] & (X^{\wedge p})\wedge (Y^{\wedge p}) \ar[d, "j\wedge j"] \\
+            \tilde D_p(X\wedge Y) \ar[r, "\tilde\Delta"] & \tilde D_p(X)\wedge \tilde D_p(Y) \\
+        \end{tikzcd}\]
+        We let \(\tilde c\colon K(n)\wedge K(m)\to K(n+m)\) be the unique up to homotopy based map s.t.
+        \[\tilde c^*(\iota_{n+m}) = \iota_n\wedge \iota_m\]
+        It induces a based map
+        \[\tilde D_p(K(n)\wedge K(m))\to \tilde D_p(K(n+m))\]
+
+        \textbf{Claim.} \(\tilde\Delta(\tilde \iota_{n,p}\wedge \tilde \iota_{m,p}) = \tilde D_p(\tilde c)^*(\tilde\iota_{n+m,p})\). This is in \(H^{(n+m)p}(\tilde D_p(K(n)\wedge K(m), \IF_p))\).
+
+        Since \(K(n)\) is \((n-1)\)-connected, \(K(m)\) is \((m-1)\)-connected, \(K(n)\wedge K(m)\) is \((n+m-1)\)-connected. So \((K(n)\wedge K(m))^{\wedge p}\) is \((p(n+m)-1)\)-connected. In a previous proposition we had \(j\colon (K(n)\wedge K(m))^{\wedge p} \to \tilde D_p(K(n)\wedge K(m))\) and \(j^*\) is injective.
+        \[\begin{split}
+            j^*(\tilde \Delta^*(\tilde \iota_{n,p}\wedge \tilde \iota_{m,p})) &= \text{shuffle}^*((j\wedge j)^*(\tilde \iota_{n,p}\wedge \tilde \iota_{m,p})) \\
+            &= \text{shuffle}^*(j^*(\tilde \iota_{n,p})\wedge j^*(\tilde\iota_{m,p})) \\
+            &= \text{shuffle}^*((\iota_n\wedge \dots \wedge \iota_n) \wedge (\iota_m\wedge \dots \wedge \iota_m)) \\
+            &= ((\iota_n\wedge \iota_m)\wedge \dots \wedge (\iota_n\wedge \iota_m)) \\
+            &= \tilde c^*(\iota_{n+m})\wedge \dots \wedge \tilde c^*(\iota_{n+m}) \\
+            &= (\tilde c\wedge \dots \wedge \tilde c)^*(\iota_{n+m}\wedge\dots \wedge \iota_{n+m}) \\
+            &= (\tilde c\wedge \dots \wedge\tilde c)^*(j^*(\tilde\iota_{n+m, p})) \\
+            &= j^*(\tilde D_p(\tilde c)(\tilde\iota_{n+m, p}))
+        \end{split}\]
+        Since \(j^*\) is injective, this proofs the claim.
+
+        We turn the relation into an unreduced form.
+        \[\Delta\colon D_p(X\times Y) \to D_p(X)\times D_p(Y)\]
+        the diagonal. We define \(c = \tilde c \circ \pi\colon K(n)\times K(m)\xrightarrow{\pi} K(n)\wedge K(m)\xrightarrow{\tilde c} K(n+m)\). We have
+        \[c^*(\iota_{n+m}) = \pi^*(\tilde c^*(\iota_{n+m})) = \pi^*(\iota_n \wedge \iota_m) = \iota_n \times \iota_m\]
+        If \(X\) and \(Y\) are based, the following commutes:
+        \[\begin{tikzcd}
+            X\times Y\times L(p) \ar[d, "\Delta_{X\times Y}"]\ar[r, "\Delta"] & X\times L(p)\times Y\times L(p) \ar[d, "\Delta_X \times \Delta_Y"] \\
+            D_p(X\times Y) \ar[r, "\Delta"] \ar[d, "\pi"] & D_p(X)\times D_p(Y) \ar[d, "\pi_0(\pi\times \pi)"] \\
+            \tilde D_p(X\wedge Y) \ar[r, "\tilde\Delta"] & \tilde D_p(X)\wedge \tilde D_p(Y)
+        \end{tikzcd}\]
+        \[\begin{split}
+            \Delta^*(\iota_{n,p}\times \iota_{m,p}) &= \Delta^*(\pi^*(\iota_{n,p}\wedge \iota_{m,p})) \\
+            &= \pi^*(\tilde \Delta^*(\iota_{n,p}\wedge \iota_{m,p})) \\
+            &= \pi^*(\tilde D_p(c)^*(\tilde \iota_{n+m}, p)) \\
+            &= D_p(c)^*(\pi^*(\tilde\iota_{n+m}, p)) \\
+            &= D_p(c)^*(\iota_{n+m}, p) \\
+        \end{split}\]
+
+        Thus \(P_p(\iota_n\times \iota_m) = P_p((c\circ \pi)^*(\iota_{n+m})) = \Delta^*_{K(n)\times K(m)}(:_p(c\circ \pi)^*(\iota_{n+m,p})) = \Delta_{K(n)\times K(m)}(\Delta^*(\iota_{n,p}\times \iota_{m,p})) = \Delta^*((\Delta_{K(n)}\times \Delta_{K(m)})(\iota_{n,p}\times \iota_{m,p}))= \Delta^*(P_p(\iota_n)\times P_p(\iota_m))\)
+    \end{enumerate}
+\end{proof}
+
+
+
 
 
 \end{document}
