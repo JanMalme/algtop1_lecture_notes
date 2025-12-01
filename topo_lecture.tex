@@ -1521,7 +1521,7 @@ We give some examples of stable cohomology operations
 
 \textbf{Remark.} In practice we will mostly have \(A = \IF_p\).
 
-\(\cA^*(A)\) acts tautologically on the \(A\)-cohomology on any space, by \(\tau\in \mathrm{Stab}(A,A,n)\), \(x\in H^m(X,A)\).
+\(\cA^*(A)\) acts tautologically on the \(A\)-cohomology of any space, by \(\tau\in \mathrm{Stab}(A,A,n)\), \(x\in H^m(X,A)\).
 \[\tau\cdot x\coloneq \tau_m(x)\in H^{m+n}(X,A)\]
 
 This makes \(H^*(X,A) = \set{H^m(X,A)}_{m\geq 0}\) into a graded left \(\cA^*(A)\)-module.
@@ -2033,8 +2033,151 @@ This is what gives rise to the cartan-formula.
             &= D_p(c)^*(\iota_{n+m}, p) \\
         \end{split}\]
 
-        Thus \(P_p(\iota_n\times \iota_m) = P_p((c\circ \pi)^*(\iota_{n+m})) = \Delta^*_{K(n)\times K(m)}(:_p(c\circ \pi)^*(\iota_{n+m,p})) = \Delta_{K(n)\times K(m)}(\Delta^*(\iota_{n,p}\times \iota_{m,p})) = \Delta^*((\Delta_{K(n)}\times \Delta_{K(m)})(\iota_{n,p}\times \iota_{m,p}))= \Delta^*(P_p(\iota_n)\times P_p(\iota_m))\)
+        Thus
+        \[\begin{split}
+            P_p(\iota_n\times \iota_m) &= P_p((c\circ \pi)^*(\iota_{n+m})) = \Delta^*_{K(n)\times K(m)}(:_p(c\circ \pi)^*(\iota_{n+m,p}))\\
+            &= \Delta_{K(n)\times K(m)}(\Delta^*(\iota_{n,p}\times \iota_{m,p})) \\
+            &= \Delta^*((\Delta_{K(n)}\times \Delta_{K(m)})(\iota_{n,p}\times \iota_{m,p}))= \Delta^*(P_p(\iota_n)\times P_p(\iota_m))
+        \end{split}\]
     \end{enumerate}
+\end{proof}
+
+\newLecture{01.12.2025}
+
+We want to see how \(\tilde D_2(S^1)\) looks like.
+
+\begin{proposition}
+    There is a homeomorphism \(h\colon \tilde D_2(S^1)\xrightarrow{\cong} S^1 \wedge \ir P^\infty\), such that the composite
+    \[S^1\wedge \ir P^\infty_+ \xrightarrow{\tilde \Delta_{S^1}} \tilde D_2(S^1)\xrightarrow[h]{\cong} S^1 \wedge \ir P^\infty\]
+    is homotopic to the projection. The first map was \(x\wedge [v] \mapsto [x\wedge x\wedge v]\).
+\end{proposition}
+
+\begin{proof}
+    The proof will be a bit more geometric than what we did of last.
+    \begin{description}
+        \item[Step 1] \(S^1_{\text{sgn}} = \ir\cup \set \infty\) with sign action \(x\mapsto -x\). We construct a homeomorphism
+        \[S^1_{\mathrm{sgn}} \wedge_{C_2} S^\infty_+ \xrightarrow{\cong} \ir P^\infty\]
+        Fix \(m\geq 0\). Consider the continuous map
+        \[\ir \times S \subset \IR^m \to \ir P^m, \quad (x, v_1, \dots, v_m) \mapsto [x:v_1: \dots : v_m]\]
+        For \(x\neq 0\), \([x:v_1: \dots : v_m] = [1:v_1/x : \dots : v_m: x]\), so this extends continuously to \((\ir \cup\set\infty)=S^1\times S(\ir ^m) \to \ir P^m\) by \((\infty, v_1, \dots, v_m) \mapsto [1: 0 : \dots : 0]\).
+
+        This factors over the quotient
+        \[S^1 \wedge S(\ir ^m)_+ = \frac{S^1\times S(\ir ^m)}{\set\infty \times S(\ir^m)}\]
+        and also
+        \[[x:v_1: \dots : v_m] = [-x : -v_1 : \dots : -v_m]\]
+        so this factors over a continuous surjection
+        \[S^1_{\mathrm{sgn}}\wedge_{C_2} S(\ir ^m)_+ \to \ir P^m\]
+        which is also injective. This is a continuous bijection from a quasicompact space to a Hausdorff space, hence a homeomorphism.
+        
+        For \(m\to \infty\).
+        \[\begin{tikzcd}
+            S^1_{\mathrm{sgn}} \wedge_{C_2} S(\ir^m)_+ \ar[r, "{[x, v_1, \dots, v_m]\mapsto [x, v_1,\dots, v_m, 0]}"] \ar[d, "\cong", "k_m"'] & S^1_{\mathrm{sgn}}\wedge_{C_2}S(\ir^{m+1})_+ \ar[d, "\cong", "k_{m+1}"'] \\
+            \ir P^m \ar[r, "{[y_0: \dots : y_m]\mapsto [y_0: \dots : y_m : 0]}"] & \ir P^{m+1} \\
+        \end{tikzcd}\]
+        Commutes, so we get a homeomorphism \(k\colon K^1_{\mathrm{sgn}} \wedge_{C_2} S^\infty_+ \xrightarrow{\cong} \ir P^\infty\).
+
+        The composite \(\ir P^\infty \to S^1_{\mathrm{sgn}}\wedge_{C_2} S^\infty_+ \xrightarrow[\cong]{h} \ir P^\infty\) where the first map is given by \([v]\mapsto [0\wedge v]\) is given by \([y_0 : y_1 : \dots] \mapsto [0:y_0 : y_1:\dots]\). This is homotopic to the identitiy.
+        \[[0, \pi/2]\times \ir P^\infty \to \ir P\infty, \quad (t, [y_0: y_1:\dots]) \mapsto [\sin(t)y_0 : \cos(t)y_0 + \sin(t)y_1 : \cos(t)y_1 + \sin(t)y_2 : \dots]\]
+        is a homotopy between the two maps.
+        \item[Step 2] We consider the invertible matrix \(A = \frac{1}{2} \begin{pmatrix}
+            1 & 1 \\
+            -1 & 1 \\
+        \end{pmatrix}\). This is such that \(A \cdot(x,x) = (x,0)\). We have \(\det (A) = 1/2 > 0\) So the induced map
+        \[A\cdot\_\colon S^2 = \ir ^2\cup\infty \to \ir ^2\cup \infty = S^2\]
+        is homotopic to \(\id\). \(A\) is equivariant for two different involutions on \(S^2\): On the source we flip \(S^2\to S^2 x\wedge y \mapsto y\wedge x\). And on the target \(S^1 \wedge S^1_{\mathrm{sgn}}, x\wedge y \mapsto x\wedge -y\). We get an induced homeomorphism
+        \[A\wedge_{C_2}S^\infty_+ \colon S^2_{\text{flip}} \wedge_{C_2}S^\infty_+ \xrightarrow{\cong} (S^1 \wedge S^1_{sgn})\wedge_{C_2}S\infty_+ = S^1 \wedge (S^1_{\mathrm{sgn}} \wedge _{C_2} S^\infty _+)\xrightarrow[\cong]{\cong S^1\wedge k}S^1 \wedge \ir P^\infty\]
+        So \(h = (S^1 \wedge k)\circ (A\wedge _{C_2} S^\infty_+)\).
+        \[\begin{tikzcd}
+            & S^1 \wedge \ir P^\infty_+ \ar[d, "{S^1 \wedge [0, \_]}"]\ar[dl, "\tilde \Delta_{S^1}"]\ar[dr, "S^1 \wedge \mathrm{proj}"] & \\
+            \tilde D_2(S^1)\ar[rr, "h", bend right=30] \ar[r, "A\wedge ??"] & S^1 \wedge (S_{\mathrm{sgn}}^1\wedge_{C_2} S^\infty_+) \ar[r, "S^1 \wedge k"] & S^1 \wedge \ir^\infty \\
+        \end{tikzcd}\]
+        He claims the top right triangle commutes on the nose
+    \end{description}
+\end{proof}
+
+Let \(\iota\in H^1(S^1, \iz)\) be a generator. Let \(u \in H^1(\ir P\infty, \IF_2)\) be the unique generator. \(P_2(\iota) \in H^2(S^1\times \ir P^\infty, \IF_2) = \IF_2{1\times u^2, \iota\times u}\).
+
+\begin{proposition}
+    \(P_2(\iota) = \iota\times u \) in \(H^2(S^1\times \ir P^\infty, \IF_2)\).
+\end{proposition}
+
+\begin{proof}
+    Let \(g\colon S^1 \to \ir P^\infty\) be a based map representing the non bero element of \(\pi_1(\ir P\infty, *)\). Then \(g^*(u) = \iota\) in \(H^1(S^1, \IF_2)\). We have \(H_2(S^1 \wedge \ir P\infty, \iz) \cong H_1(\ir P\infty, \iz) = \iz/2\). Since \(S^1\wedge \ir P^\infty\) is simply connected, Hurewicz theorem says that \(\pi_2(S^1 \wedge \ir P\infty, ?) \cong H_2(S^1 \wedge \ir P^\infty, \iz) = \iz/2\).
+
+    The map \(S^1 \wedge g\colon S^1\wedge S^1 \to S^1 \wedge \ir P^\infty\) is nonzero on \(H^2(\_, \IF_2)\). \(S^1 \wedge S^1 \xrightarrow{j} (S^1 \wedge S^1)\wedge _{C_2}S^\infty_+ = \tilde D_2(S^1) \xrightarrow[h]{\cong} S^1 \wedge \ir P^\infty\) given by \(x\wedge y \mapsto [x\wedge y\wedge (1, 0,\dots)]\) is also nonbero as \(H^2(\_, \IF_2)\) by proposition 5.5 in Schwedes own notes.
+
+    So \(S^1\wedge g\) and \(h\circ j\colon S^1 \wedge S^1\to S^1 \wedge \ir P^\infty\) are both nontrivial in \(\pi_2(S^1 \wedge \ir P^\infty,*) \cong \iz /2\). So they are homotopic.
+
+    \(\iota\wedge u \in H^2(S^1 \wedge \ir P^\infty, \IF_2)\). Note
+    \[\begin{split}
+        j^*(h^*(\iota\wedge u)) &= (h\wedge j)^*(\iota\wedge u) = (S^1 \wedge g)^*(\iota\wedge u) \\
+        &= \iota\wedge g^*(u) = \iota\wedge u \\
+    \end{split}\]
+    and, as \(\ir P^\infty \simeq K(\IF_2, 1)\) and \(u = \iota_1\),\(\iota_{1,2}\in H^2(\tilde D_2(\ir P^\infty), \IF_2)\),
+    \[\begin{split}
+        j^*(\tilde \iota_{1,2}) = \iota_1 \wedge \iota_1 = u\wedge u \in H^2(\ir P^\infty\wedge \ir P^\infty, \IF_2)\\
+    \end{split}\]
+    we get a diagram
+    \[\begin{tikzcd}
+        S^1 \wedge S^1 \ar[d, "j"] \ar[r, "g\wedge g"] & \ir P^\infty \wedge \ir P^\infty \ar[d, "j"] \\
+        \tilde D_2(S^1) \ar[r, "\tilde D_2(g)"] & \tilde D_2(\ir P^\infty) \\
+    \end{tikzcd}\]
+    \[j^*(\tilde D_2(g)^*(\tilde \iota_{1,2})) = (g\wedge g)^*(j^*(\tilde \iota_{1,2})) = (g\wedge g)^*(u\wedge u) = g^*(u)\wedge g^*(u) = \iota\wedge \iota\]
+    and also
+    \[h^*(\iota\wedge u) = \tilde D_2(g)^*(\tilde \iota_{1,2})\]
+
+    \[\begin{tikzcd}
+        S^1\times \ir P^\infty  \ar[d, "\Delta_{S^1}"] \ar[r, "\pi"] & S^1 \wedge \ir P^\infty _+ \ar[d, "\tilde\Delta_{S^1}"]\ar[dr, "S^1 \wedge \mathrm{proj}"] &   \\
+        D_2(S^1) \ar[d, "D_2(g)"]   \ar[r, "\pi"] & \tilde D_2(S^1) \ar[d, "\tilde D_2(g)"]  \ar[r, "\cong", "h"'] & S^1 \wedge \ir P^\infty \\
+        D_2(\ir P^\infty) \ar[r, "\pi"]  & \tilde D_2(\ir P^\infty) &\\
+    \end{tikzcd}\]
+    and now we get
+    \[\begin{split}
+        P_2(\iota) &= \Delta^*_{S^1}(D_2(g)^*(\iota_{1,2})) \\
+        &= \Delta^*_{S^1}(D_2(g)^*(\pi^*(\iota_{1,2}))) \\
+        &= \pi^*(\tilde \Delta_{S^1}^*(\tilde D_2(g)^*(\tilde \iota_{1,2})))\\
+        &= \pi^*(\tilde \Delta_{S^1}^*(h^*(\iota\wedge u))) \\
+        &= \pi^*(S^1 \wedge ??)^*(\iota\wedge u) \\
+        &= \pi^*(\iota\wedge u)0= \iota \times u \\
+    \end{split}\]
+\end{proof}
+
+\begin{thm}{Steenrod squares}{}
+    The total squaring operation \(P_2\) and the Steenrod square are related by
+    \[P_2(x) = \sum_{i = 0}^n \Sq^i(x)\times u^{n-i}\quad \text{ in } H^{2n}(X\times \ir P^\infty, \IF_2)\]
+    for \(x \in H^n(X, \IF_2)\), \(u\in H^1(\ir P^\infty, \IF_2)\).
+\end{thm}
+
+\begin{proof}
+    We define \(T_n\colon H^n(X, \IF_2) \to H^{n+i}(X, \IF_2)\) as the cohomology operation characterized by \(P_2(x) = \sum_{i = 0}^n T_n^i(x)\times u^{n-i}\). We need to show \(T_n^i = \Sq^i\).
+
+    \begin{description}
+        \item[Step 1] \(T_n^n(x) = x^2\) for \(x\) of degree \(n\). We have seen earlier \(j^*(P_2(x)) = x^2\),  where \(j \colon X\to X\times \ir P^\infty\) and
+        \[j^*(y\times u^i) = \begin{cases}
+            y & \text{ if } i = 0 \\
+            0 & i > 0 \\
+        \end{cases}\]
+        We see
+        \[j^*(P_2(x)) = j^*(\sum_{i = 0}^n T_n^i(x)\times u^{n-i}) = T^n_n(x)\]
+        \item[Step 2] Cartan formula: \(T^i_{k+l}(x\times y) = \sum_{a+b = i} T_k^a(x)\times T_l^b(y)\), \(x \in H^k(X, \IF_2), y \in H^l(X, \IF_2)\).
+        We also know \(P_2(x\times y) = \Delta^*(P_2(x)\times P_2(y))\) for \(\Delta\colon X\times Y \times \ir P^\infty \to X\times \ir P^\infty \times Y\times \ir P^\infty\) and in total
+        \[\begin{split}
+            P_2(x\times y) &= \Delta^*(P_2(x)\times P_2(y)) \\
+            &= \Delta^*(\sum_{a,b, \geq 0} T_k^a(x)\times u^{k-a}\times (T_l^b(y)\times u^{l-b})) \\
+            &= \sum_{a, b \geq 0} T_k^a(x)\times T_l^b(y)\times u^{k+l-(a+b)} \\
+            &= \sum_{i\geq 0} (\sum_{a+b = i} T^a_k(x)\times T_l^b(y))\times u^{k+l-i}
+        \end{split}\]
+        And now this is the cartan formula. We have seen for \(\iota\in H^1 (S^1, \IF_2)\)
+        \[\sum_{i\geq 0} T_1^i(\iota)\times u^{1-i} P_2(\iota) = \iota\times u\]
+        and hence
+        \[T_1^i(\iota) = \begin{cases}
+            \iota & i = 0 \\
+            0 & i\geq 0
+        \end{cases}\]
+        \item[Step 3] Stability: \(T_{n+i}^i(x\wedge \iota) = \sum_{j= 0}^i T_n^j(x)\wedge T_1^{i-j}(\iota) = T_n^i(x)\wedge \iota\). This is because \(\wedge \iota\) is exactly the suspension isomorphism. Hence
+        \[T^i = \set{T^i_n}_{n\in \IN}\]
+        form a stable operation. Uniqueness of \(\Sq^i\)'s proove the Theorem.
+    \end{description}
 \end{proof}
 
 
