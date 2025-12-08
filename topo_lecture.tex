@@ -2180,6 +2180,154 @@ Let \(\iota\in H^1(S^1, \iz)\) be a generator. Let \(u \in H^1(\ir P\infty, \IF_
     \end{description}
 \end{proof}
 
+\newLecture{08.12.2025}
+
+We sketch how total power operations work for odd primes. We denote them by \(P^i\).
+
+For the entire lecture \(p\geq 3\)a odd prime
+
+\textbf{Recall.} \(H^*(L(p), \IF_p) = \IF_p[x,y]/(x^2)\) for some \(x \in H^1(L(p), \IF_p), y = \beta(x)\in H^2(L(p), \IF_p)\).
+
+We set \(u = x\cdot y^{p-2}\in H^{2p-3}(L(p), \IF_p)\) and \(v = y^{p-1}\in H^{2p-2}(L(p), \IF_p)\). And then
+\[\beta(u) = \beta(x\cdot y^{p-2}) = \beta(x)\cdot y^{p-2} = y^{p-1} = v\]
+by an exercise from ages ago.
+
+The secret reason why we choose these particular \(u,v\) in \(H^*(L(p),\IF_p)\) to show up.
+\[\IF_p^\times = \IF_p\setminus\set0 \]
+is a multiplicative\footnote{and cyclic!} group of \(\IF_p\) and acts on \((\IF_p, +)\) by multiplication. This \(\IF_p^\times\)-action induces an action-up-to-homotopy on \(L(p)= K(\IF_p,1)\). Earlier: \([K(G,1), K(H,1)]_*\mapsto \hom_{\mathrm{Grp}}(G,H)\) is an isomorphism. So for all \(\lambda\in \IF_p^*\) there is a unique based homotopy class of map \(t_\lambda\colon L(p)\to L(p)\) that induces \(\lambda\cdot\_ \colon \IF_p \to \IF_p\) on \(\pi_1\).
+
+We also get \(t_\mu \circ t_\lambda = t_{\mu\cdot\lambda}\).
+
+We have \(\pi_1(L(p), *) \xrightarrow{\cong} H_1(L(p), \iz) \cong \IF_p\), so \(t_\lambda\) induces multiplication by \(\lambda\) also on \(H^1(\_, \iz)\), hence by UCT also on \(H^1(\_, \IF_p)\). So in particular for \(x \in H^1(L(p), \IF_p)\).
+\[t_\lambda^*(x) = \lambda x \neq x \quad \text{unless } \lambda = 1\]
+and also
+\[t_\lambda^*(y) = t_\lambda^*(\beta(x)) = \beta(t_\lambda^*(x)) = \beta(\lambda \cdot x) = \lambda \cdot\beta(x) = \lambda \cdot y \neq y\]
+so these elements \(x,y\) are \textbf{not} invariant under these automorphisms except for when \(p = 2\).
+
+But we have
+\[t^*_\lambda(u) = t^*_\lambda(x\cdot y^{p-2}) = t_\lambda^*(x)\cdot t_\lambda^*(y)^{p-2}= \lambda \cdot x \cdot (\lambda y)^{p-2} = \underbrace{\lambda^{p-1}}_{= 1} \cdot x\cdot y^{p-1} = u\]
+and
+\[t_\lambda^*(v) = t_\lambda^*(y)^{p-1} = (\lambda y)^{p-1} = \lambda^{p-1} \cdot y^{p-1} = v\]
+So these two elements \(u,v\) are invariant under the action of the automorphism group on \(H^*(L(p), \IF_p)\) induced by the homotopy-action on \(L(p)\). A \enquote{small} Algebra exercise gives
+\[(H^*(L(p), \IF_p))^{\IF_p^\times} = \text{ subring of homogenous elements invariant under the \(\IF_p^\times\)-action} = \IF_p[u,v]/(v^2)\]
+
+\begin{proposition}
+    For every prime \(p\), every space \(X\), all \textbf{even} \(n\geq 0\), the image of
+    \[\cP_p\colon H^n(X,\IF_p) \to H^{np}(X\times L(p), \IF_p)\]
+    is invariant under the \(\IF_p^\times\)-action induced by the homotopy action on \(L(p)\).
+\end{proposition}
+
+\begin{proof}
+    We don't want to do this in full generality. The general argument uses \(X^p\times_{\Sigma_p} E\Sigma_p\). We would need to talk about universal constructions of group actions or something.
+
+    For \(p=2\) the statement is empty.
+
+    For \(p = 3\) we consider the involution \(\Psi\colon (v_1, v_2,\dots) = (\bar V_1, \bar v_2,\dots)\) on \(S^\infty = S(\IC^\infty)\), where \(\bar x\) is the complex conjugate of \(x\in \IC\). Then
+    \[\zeta_3 = e^{2\pi i/3} \text{ has the property that } \bar\zeta_3 = \zeta_3^2\]
+    so \(\Psi(\zeta_3 \cdot v) = \bar \zeta_3 \cdot \Psi(v) = \zeta_3^2 \Psi(v)\).
+
+    This means \(\Psi\colon S^\infty \to S^\infty\) descends to a well defined continuous on the quotient space \(\bar\Psi\colon L(3)\to L(3)\). On fundamental group we get \(\pi_1(\bar\Psi)\colon \pi_1(L(3),*)\to \pi_1(L(3), *)\) and this is the inverse map by covering theory and a picture (I didn't copy). So \(\bar\Psi = t_{-1}\).
+
+    We define an involution \(\bar\Psi_X\colon D_3(X)\to D_3(X)\)
+    \[D_3(X) = X^3\times_{C_3} S^\infty\to X^3\times_{C_3}S^\infty = D_3(X)\]
+    by sending \([x,y,z;v]\mapsto [y,x,z;\Psi(v)]\).
+    We rambled a bit about why \(x,y\) are swapped in the second coordinate. This is well defined:
+    \[(x,y,z;v) \mapsto (y,x,z; \Psi(v)), \quad (y,z,x; \zeta_3 v) \mapsto (z,y,x;\Psi(\zeta_3 v))\]
+
+    The following square commutes:
+    \[\begin{tikzcd}
+        K(\IF_3, n)^{\wedge 3} \ar[r, "j"] \ar[d, "\tau\wedge \id"] & \tilde D_3(K(\IF_3, n)) \ar[d, "\bar\Psi_{K(\IF_3,n)}"] \\
+        K(\IF_3, n)^{\wedge 3} \ar[r, "j"] & \tilde D_3(K(\IF_3,n)) \\
+    \end{tikzcd}\]
+
+
+    by observing for \(\tilde\iota_{n,3}\in H^{3n}(\tilde D_3(K(\IF_3,n)), \IF_3)\)
+    \[\begin{split}
+        j^*(\bar\Psi_{K(\IF_3,n)}^*(\tilde\iota_{n,3})) &= (\tau\wedge \id)^*(j^*(\tilde \iota_{n,3})) \\
+        &= (\tau\wedge \id)^*(\iota_n\wedge \iota_n\wedge \iota_n) \\
+        &= (-1)^{n\cdot n} \iota_n\cdot\iota_n \cdot\iota_n \overset{n\text{ even}} \iota_n\cdot\iota_n\cdot\iota_n = j^*(\tilde\iota_{n,3}) \\
+    \end{split}\]
+    \(j^*\) is injective in \(H^{3n}(\_, \IF_3)\) and this implies \(\bar\Psi_{K(\IF_3,n)} ^*(\tilde \iota_{n,3}) = \bar\iota_{n,3}\).
+
+    The following also commutes
+    \[\begin{tikzcd}
+        D_3(K(\IF_3,n)) \ar[r, "\prod\nolimits"]\ar[d, "\bar\Psi_{K(\IF_3,n)}"] & \tilde D_3(K(\IF_3, n)) \ar[d, "\tilde \Psi_{K(\IF_3, n)}"] \\
+        D_3 (K(\IF_3,n)) \ar[r, "\prod\nolimits"] & \tilde D_3(K(\IF_3,n)) \\
+    \end{tikzcd}\]
+    So
+    \[\begin{split}
+        \bar\Psi_{K(\IF_3,n)}^*(\iota_{n,3}) &= \bar\Psi_{K(\IF_3,n)}(\prod\nolimits^*(\tilde\iota_{n,3})) \\
+        &= \prod\nolimits^*(\tilde \Psi_{K(\IF_3,3)}^*(\tilde\iota_{n,3})) = \prod\nolimits^*(\tilde\iota_{n,3}) = \iota_{n,3}
+    \end{split}\]
+    The following commutes too
+    \[\begin{tikzcd}
+        X\times L(3) \ar[r, "\Delta_X"] \ar[d, "X\times \bar\Psi"] & D_3(X)\ar[d, "\bar\Psi_X"] \\
+        X\times L(3) \ar[r, "\Delta_X"] & D_3(X)
+    \end{tikzcd}\]
+    So we also get setting \(X = K(\IF_3,n)\)
+    \[(K(\IF_3,n) \times \bar\Psi)^*(P_3(\iota_n)) = \Delta^*_{K(\IF_3,n)}(\bar\Psi_X^*(\iota_{n,3})) = \Delta_{K(\IF_3,n)}(\iota_{n,3}) = P_3(\iota_n)\]
+
+    By naturality now all \(P_3(X)\) are invariant under \(X\times \bar\Psi\).
+\end{proof}
+
+We now have
+\[\begin{tikzcd}
+    H^n(X,\IF_p)\ar[rrd, dotted] \ar[r, "\cP_p"] & H^{np}(X\times L(p); \IF_p) \ar[phantom, r, "="] & H^*(X,\IF_p)[x,y]/(x^2) \\
+    & & H^*(X,\IF_p)[u,v]/(u^2) \ar[u, phantom, sloped, "\subseteq"] \\
+\end{tikzcd}\]
+We can expand
+\[\cP_p(x) = \sum_{i = 0}^k (P^i_k(x) \times v^{k-i}) +  (R_k^i(x) \times uv^{k-i-1}) \in H^{np}\]
+
+For \(n = 2k\) even
+\[P_k^i\colon H^{2k}(X,\IF_p)\to H^{2k+2i(p-1)(X, \IF_p)}\]
+\[R_k^i\colon H^{2k}(X, \IF_p) \to H^{2k+2i(p-1)+1}(X;\IF_p)\]
+and we check that the degrees match up properly.
+
+For \(p=2\) we showed that \(P_2(\iota) = \iota\times u\) for \(\iota\in H^1(S^1, \IF_2)\).
+
+\textbf{Fact.} \(\cP_p(\iota\wedge \iota) = (\iota\wedge \iota)\times v \in H^{2p}(S^2\times L(p); \IF_p)\) with \(\iota\wedge \iota \in H^2(S^2, \IF_p)\). So
+\[P_1^0(\iota\wedge \iota) = \iota\wedge \iota\]
+and
+\[P_1^i(\iota\wedge \iota) = 0\]
+for \(i\geq 0\).
+
+\begin{thm}{Total powers for odd primes}{}
+    Let \(p\) be an odd prime. The generators \(P_k^i\) have the following properties:
+    \begin{enumerate}
+        \item We have \(P_k^k(x) = x^p\), \(P_k^i(x) = 0\) for \(i > k\).
+        \item Carten formula For \(x\in H^{2k}(X,\IF_p), y \in H^{2l}(Y, \IF_p)\) we have
+        \[P_{k+l}^i(x\times y) = \sum_{a+b = 1} P_k^a(x)\times P_l^b(y)\]
+        \item The operations \(P_k^i\) commute with 2 fold suspension in the following sense: For \(x\ni H^{2k}(X,\IF_p)\)
+        \[P_{k+1}^i(x\wedge \iota\wedge \iota) P_k^i(x)\wedge \iota\wedge \iota\]
+    \end{enumerate}
+\end{thm}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Earlier: \(j^*\colon H^*(X\times L(p), \IF_p)\to H^*(X,\IF_p)\) satisfies \(j^*(P_p(x)) = x^p\). Also for \(z\in H^*(X,\IF_p), \epsilon\in \set{0,1}\), \(i\geq 0\)
+        \[j^*(z\times u^\epsilon v^i) = \begin{cases}
+            z& \epsilon = 0, i = 0 \\
+            0 & \text{else}
+        \end{cases}\]
+        And we get
+        \[x^p = j^*(P_p(x)) = j^*(\sum_{i = 0}^k P_k^i(x)\times v^{k-i}+ R_k^i(x)\times u v^{k-i-1}) = P_k^k(x)\times 1\]
+        \item For \(\Delta\colon X\times Y\times L(p)\to X\times L(p)\times Y\times L(p)\)
+        \[\begin{split}
+            P_p(x\times y) &=\Delta^*( P_p(x)\times P_p(y)) \\
+            &= \Delta^*(\sum_{a,b\geq 0} (P_k^a(x)\times v^{k-a} + R_k^a(x)\times uv^{k-a-1})\times (R_l^b(y)\times v^{k-b} + R_l^b(y)\times uv^{k-b-1})) \\
+            &= \sum_{a,b\geq 0} P_k^a(x)\times P_l^b(y)\times v^{k+l-(a+b)} + (P_k^a(x)\times R_l^b(y)+ R_k^a(x)\times P_l^b(y)\times uv^{k+l-(a+b)-1})\\
+            &= \sum_{i\geq 0}\sum_{a+b = i} (P_k^a(x)\times P_l^b(y)\times v^{k+l-i}) + \dots 
+        \end{split}\]
+        The change I copied this entirely correctly is low, but never zero.
+
+        Compare coefficient of \(v^{k+l-i}\) on both sides gives \(P_{k+l}^i(x\times y) = \sum_{a+b = i} P_k^a(x) \times P_l^b(y)\).
+        \item
+        \[\begin{split}
+            P_{k+1}^i(x\wedge \iota\wedge \iota) &= \sum_{j = 0}^iP_k^{i-j}(x)\wedge P_1^j(\iota\wedge \iota) \\
+            &= P_k^i(x)\wedge \iota\wedge \iota 
+        \end{split}\]
+    \end{enumerate}
+\end{proof}
 
 
 
