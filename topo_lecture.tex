@@ -2318,16 +2318,150 @@ for \(i\geq 0\).
             &= \sum_{a,b\geq 0} P_k^a(x)\times P_l^b(y)\times v^{k+l-(a+b)} + (P_k^a(x)\times R_l^b(y)+ R_k^a(x)\times P_l^b(y)\times uv^{k+l-(a+b)-1})\\
             &= \sum_{i\geq 0}\sum_{a+b = i} (P_k^a(x)\times P_l^b(y)\times v^{k+l-i}) + \dots 
         \end{split}\]
-        The change I copied this entirely correctly is low, but never zero.
+        The chance I copied this entirely correctly is low, but never zero.
 
         Compare coefficient of \(v^{k+l-i}\) on both sides gives \(P_{k+l}^i(x\times y) = \sum_{a+b = i} P_k^a(x) \times P_l^b(y)\).
         \item
         \[\begin{split}
             P_{k+1}^i(x\wedge \iota\wedge \iota) &= \sum_{j = 0}^iP_k^{i-j}(x)\wedge P_1^j(\iota\wedge \iota) \\
             &= P_k^i(x)\wedge \iota\wedge \iota 
-        \end{split}\]
+        \end{split}\]\qedhere
     \end{enumerate}
 \end{proof}
+
+\newLecture{10.12.2025}
+
+\begin{defi}{Total power operations as stable operations}{}
+    Let \(p\) be an odd prime, \(n \geq 0\). We define the stable mod-\(p\) cohomology operation
+    \[P^i\colon H^n(X, \IF_p) \to H^{n+2i(p-1)}(X, \IF_p)\]
+    by
+    \[P^i(x) = \begin{cases}
+        P^i_k(x) & n = 2k \text{ even} \\
+        \Sigma^{-1}(P^i_k(\Sigma X)) & n = 2k-1 \text{ odd} \\
+    \end{cases}\]
+    For \(\Sigma\) the suspension isomorphism.
+\end{defi}
+
+\begin{thm}{}{}
+    The Steenrod operations \(P^i\) have the following properties:
+    \begin{enumerate}
+        \item \(P^0\) is the identity.
+        \item (Unstability) \(P^i(x) = x^p\) if \(\abs x = 2i\), \(P^i(x)= 0\) for \(2i > \abs x\) where \(\abs x\) denotes the cohomology degree of \(x\).
+        \item Catan formulas:
+        \[P^i(x\cup y) = \sum_{a+b = i} P^a(x)\cup P^b(y)\]
+        for \(x,y \in H^*(X, \IF_p)\) and
+        \[P^i(x\times y) = \sum_{a+b = i} P^a(x)\times P^b(y)\]
+        for \(x \in H^*(X, \IF_p), y \in H^*(Y, \IF_p)\).
+    \end{enumerate}
+\end{thm}
+
+\textbf{Fact.} For \(p = 2\), the operations \(\Sq^i\) generate \(\cA_2\) as a graded \(\IF_2\)-algebra. Note \(\Sq^1 = \beta\), \(\Sq^{n+1} = \Sq^1 \circ \Sq^n = \beta \circ \Sq^n\) for \(n\) even.
+
+For \(p\) odd, the \(P^i\) and the Bockstein \(\beta\) generate \(\cA_p\) as a graded \(\IF_p\)-algebra. And also \((R^i = \beta \circ P^i)\). We have a correspondence
+\[\Sq^i \cong \begin{cases}
+    P^{1/2} & i \text{ even} \\
+    \beta\circ P^{(i-1)/2} & i \text{ odd} \\
+\end{cases}\]
+
+
+\section{Adem relations}
+
+The Adem relations are specific relations for \(\Sq^i \circ \Sq^j = \dots\).
+
+\begin{thm}{}{}
+    Let \(p\) be any prime. Let \(n \geq 0\), suppose that \(n\) is even, if \(p\) is odd. Then the image of the iterated total power operation
+    \[P_p\circ P_p \colon H^2(X, \IF_p) \to H^{np^2}(X\times L(p)\times L(p); \IF_p)\]
+    is invariant under the involution induced by switching the two factors of \(L(p)\).
+\end{thm}
+
+We will not proof this, because this requires \(X^{p^2}\times_{\Sigma_{p^2}} E\Sigma_{p^2}\). And we have never done this. He talks words I don't understand without writing on the board. Something \([K(G,1), K(H,1)]\cong \Hom(G,H)/\text{conjugation}\).
+
+Now take \(p=2\), and we derive the Adem relations from the symmetry property of \(P_2 \circ P_2\).
+
+\begin{construction}
+    \(P(t) = \sum_{i = 0}^\infty \Sq^i \cdot t^i \in \cA_2[[t]]\)
+\end{construction}
+This construction is mainly a trick to shorten our notation vastly.
+
+\begin{proposition}
+    The power series \(P(t)\) satisfies the identity
+    \[P(1+t) \cdot P(t^2) = P(t + t^2) \cdot P(1)\]
+    in \(\cA_2\llbracket t\rrbracket\)
+\end{proposition}
+
+\begin{proof}
+    Künneth isomorphism \(\times \colon H^*(X, \IF_2)\times H^*(L(2), \IF_2) \xrightarrow{\cong} H^*(X\times L(2), \IF_2) = H^*(X, \IF_2)[v]\) For \(v \coloneq 1 \times u\).
+
+    Similarly \(H^*(X\times L(2)\times L(2), \IF_2) = H^*(X, \IF_2)[s, t]\)\footnote{This is a \enquote{tri-graded} ring.} with \(s = 1 \times 1 \times u, t = 1 \times u \times 1\). For \(n = \abs x\) we have
+    \[\cP_2(x) = \sum_{i = 0}^\infty \Sq^i(x) \cdot v^{n-i} \]
+    \[\begin{split}
+        \cP_2(x) &= \sum_{ i = 0}^\infty \Sq^i(1\times u) \times u^{1-i} \\
+        &= 1\times u \times u + 1\times u^2 \times 1 \\
+        &= t \cdot s + t^2
+    \end{split}\]
+    Now we watch in \(H^*(X\times L(2)\times L(2), \IF_2) = H^*(X, \IF_2)[s,t]\)
+    \[\begin{split}
+        \cP_2(\cP_2(x)) &= \cP_2(\sum_{j\geq 0}\Sq^j(x)\cdot v^{n-j}) \\
+        \text{addidivity \& Catan formula } &= \sum_{j \geq0} \cP_2(\Sq^j(x)) \cdot (\cP_2(v))^{n-j} \\
+        &= \sum_{j\geq 0}\sum_{i \geq 0} \Sq^i(\Sq^j(x)) \cdot (ts+ t^2)^{n-j} \\
+        &= s^n(s+t)^n\cdot t^n \sum_{i,j\geq 0} \Sq^i(\Sq^j(x)) \cdot s^{-i}(t+t^2s^{-1})^{-j} \\
+    \end{split}\]
+    where we nov work in the localization \(H^*(X,\IF_2)[s^{\pm 1}, t^{\pm1}]\). By previous proposition, this expression is invariant under exchanging \(s\) and \(t\), so also the sum
+    \[\sum_{i, j \geq 0} \Sq^i(\Sq^j(x)) \cdot s^{-i}(t+ t^2s^{-1})^{-j}\]
+    is invariant under exchanging \(s,t\) and also equals
+    \[= P(s^{-1}) \cdot P((t+t^2s^{-1})^{-1})\]
+    in \(\cA_2^*((s,t))\).
+
+    In particular we get\footnote{Schwede remarks, how we should have a look at the original proof, it this seems to complicated. Afterwards it will seem rather simple.}
+    \[P(s^{-1})\cdot P((t+t^2s^{-1})) = P(t^{-1}) \cdot P((s+s^2t^{-1})^{-1})\]
+
+    We substitute \(s = 1/(1+v)\) where this \(v\) is a new variable. \(t = 1/(v+v^2)\). Then
+    \[t+s^{-1}t^2 = \frac{1}{v+v^2} + \frac{1+v}{(v+v^2)^2} = \frac{v+v^2+1+v}{(v+v^2)^2} = \frac{1+ v^2}{(v+v^2)^2} = \frac{1}{v^2}\]
+    and
+    \[s+t^{-1}s^2 = \frac{1}{1+v} + \frac{v+v^2}{(1+v)^2} = 1\]
+
+    and our relation simplifies to
+    \[P(1+v) \cdot P(v^2) = P(v+v^2)\cdot P(1)\]
+    what we wanted to show. More details to what we are doing here in Schwedes script.
+\end{proof}
+
+We make the above theorem explicit modulo \(t^3\).
+\[\begin{split}
+    P(1+t) \cdot P(t^2) &= (\sum_{i \geq 0} \Sq^i\cdot (1+t)^i)\cdot (\sum_{j\geq 0} \Sq^j t^{2j}) \\
+    \mathrm{mod} t^3 &\equiv (\sum_{i \geq 0} \Sq^{i} \cdot (1 + i\cdot t + \binom{i}{2}t^2))\cdot (1 + \Sq^1 t^2) \\
+    &= (\sum_{i \geq 0} \Sq^i) \cdot 1 + (\sum_{i \geq 0} \Sq^i \cdot i) \cdot t + (\sum_{i \geq 0} \Sq^i \cdot \binom{i }{2} + \Sq^i \cdot \Sq^1) \cdot t^2
+\end{split}\]
+and expanding the other side
+\[\begin{split}
+    P(t+t^2) \cdot P(1) &= (\sum_{i \geq 0} \Sq^i(t+t^2)^i) \cdot (\sum_{j \geq 0} \Sq^j) \\
+    \mathrm{mod} t^3 &\equiv (1 + \Sq^1 (t+t^2) + \Sq^2 \cdot t^2) \cdot (\sum_{j\geq 0} \Sq^j) \\
+    &= (\sum_{j\geq 0} \Sq^j) \cdot 1 + (\sum_{j\geq 0} \Sq^1\cdot \Sq^j) \cdot t + (\sum_{j/geq 0} \Sq^1 \Sq^j + \Sq^2 \Sq^j) t^2
+\end{split}\]
+Now we compare coefficients in front of \(t\) and get
+\[\sum_{i\geq 0}\Sq^i \cdot i = \sum_{j \geq 0} \Sq^1 \Sq^j \in \prod_{j\geq 0} \cA_2^j\]
+In Steenrod degree \(j+1\) we get \(\Sq^{j+1}(j+1) = \Sq^1 \cdot \Sq^j\). And this is
+\[\Sq^1 \circ \Sq^j = \begin{cases}
+    \Sq^{j+1} & j \text{ even } \\
+    0 & j \text{ odd } \\
+\end{cases}\]
+
+And doing this for the coefficients of \(t^2\):
+\[\sum_{i\geq 0} \Sq^i \cdot \binom{i }{2} + \Sq^i \cdot \Sq^1 = \sum_{j \geq 0} \Sq^1 \cdot\Sq^j + \Sq^2\cdot \Sq^j\]
+in Steenrod degree \(j+2\) we get
+\[\binom{j+2}{2} \Sq^{j+2} + \Sq^{j+1}\Sq^1 = \Sq^1 \circ \Sq^{j+1}+ \Sq^2\cdot\Sq^{j}\]
+and rewriting tihs we get
+\[\Sq^2 \circ \Sq^j = \begin{cases}
+    \Sq^{j+1} + \Sq^{j+2}\Sq^1 & j \equiv 0 \mod 4 \\
+    \Sq^{j+2} + \Sq^{j+1}\Sq^1 + \Sq^{j+2} & j \equiv 1 \mod 4 \\
+    \Sq^{j+1}\Sq^1 & j \equiv 2 \mod 4 \\
+    \Sq^{j+1}\Sq^1+ \Sq^{j+2} & j \equiv 3 \mod 4 \\
+\end{cases} = \begin{cases}
+    \Sq^{j+2}+ \Sq^{j+1}\Sq^1 & j\equiv 0,3 \mod 4 \\
+    \Sq^{j+1}\Sq^1 & j \equiv 1,2 \mod 4 \\
+\end{cases}\]
+
+And now we want to do full Adem relations by a clever bookkeping trick.
+
 
 
 
