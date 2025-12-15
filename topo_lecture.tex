@@ -2462,8 +2462,161 @@ and rewriting tihs we get
 
 And now we want to do full Adem relations by a clever bookkeping trick.
 
+\newLecture{15.12.2025}
 
+\subsection{Residue calculuts}
 
+Let \(R\) be a ring, not necessarily commutative.
+\[R((t)) = \text{ring of Laurent power seires over } R\]
+where the elements are formal
+\[f(t) = \sum_{i> -\infty}^\infty f_i \cdot t^i \quad f_i \in R\]
+we can also describe this ring as \(R[[t]](t^{-1})\). Let \(\tau(t)\in \iz{t}\) be an integer polynomial s.t. \(\tau(t) \equiv t \mod (t^2)\). Then
+\[\tau(t) = t\cdot g(t), \quad f = 1 + \text{ integers }\]
+so \(\tau(t)\) is invertible in \(\iz((t))\) and also in \(R((t))\). \(\tau(t) = t+t^2\).
+
+The residue of \(f \in R((t))\) is \(\mathrm{Res}(f) = f_{-1} = \text{coefficient of }t^{-1}\).
+
+\begin{proposition}
+    Let \(R\) be a ring, \(f((t))\in R((t))\). Then
+    \[\Res(f) = \Res(f(t+t^2)\cdot(1+2t)) \in R\]
+\end{proposition}
+
+If you took complex analysis this is motivated by \(\Res(f) = \Res(f(\tau(t))\frac{dt}{dt})\).
+
+\begin{proof}
+    Both sides of the equation are \(R\)-linear. The equation is \(0 = 0\) if \(f\in R[[t]]\). So \(f\in R((t))\) is a finite \(R\)-linear combination of \(t^{-j}\), \(j\geq 1\) and a power series. So wlog \(R= \iz\), \(f = t^{-j}\) for \(j\geq 1\).
+
+    \textbf{Claim.} \(\Res((t+t^2)^{-j} \cdot (1+2t)) = \begin{cases}
+        1 & j = 1\\
+        0 & j\geq 2 \\
+    \end{cases}\)
+    \begin{description}
+        \item[For \(j = 1\)]  \((t+t^2)^{-1} = (t(1+t))^{-1} = t^w{-1}\cdot(1+t)^{-1} = t^{-1} \cdot (1-t+t^2-t^3+\dots) = t^{-1} -1 + t- t^2 + t^3 \dots = \) So \(\Res((t+t^2)^{-1}\cdot (1+2t)) = 1\)
+        \item[For \(j \geq 2\)] The formal derivative of
+        \(f(t)\in \IZ((t))\)
+        is \[f'(t) = \frac{df}{dt} = \sum i\cdot a_i \cdot t^{i-1}\]
+        so \(\Res(f') = 0\). Also for \(n\in \iz\).
+        \[\frac{d}{dt} (f^m) = m \cdot \frac{d}{dt} f^{m-1}\]
+
+        We observe
+        \[\frac{d}{dt}((t+t^2)^{1-j}) = (1-j)(1+2t)\cdot (t+t^2)^{-j} \quad \in \iz((t))\]
+        and then
+        \[0 = \Res(\frac{d}{dt} (t+t^2)^{1-j}) = (1-j) \cdot \Res((1+2t)(t+t^2)^j) \quad \in \IZ\]
+        and because \(1-j \neq 0 \in \iz\) we have \(\Res((1+2t)(t+t^2)^{-j})\).
+    \end{description}
+\end{proof}
+
+\begin{thm}{Adem Relations}{}
+    For all \(a,b \geq 0\)
+    \[\Sq^a \circ \Sq^b = \sum_{i = 0}^{\lfloor a/2 \rfloor} \binom{b-i-1}{a-2i} \Sq^{a+b-i} \circ \Sq^i\]
+    where we use standard convention of \(\binom{n}{m} = 0\) for \(m< 0\).
+\end{thm}
+
+\begin{proof}
+    We fix \(a,b \geq 0\). We blow the composition \(\Sq^a\circ \Sq^b\) up. We use \(P(t+t^2) \circ P(1) = P(1+t)\circ P(t^2)\).
+    \[\begin{split}
+        \Sq^a\circ \Sq^b &= \mathrm{Coeff}_{t^a}(\sum_{j= 0}^{a+b}\Sq^j \circ \Sq^{a+b-j} \cdot t_j) \\
+        &= \Res\klam*{\sum_{j= 0}^{a+b}\Sq^j\circ \Sq^{a+b-j} \cdot t^{j-a-1}} \\
+        &= \Res\klam*{\sum_{j = 0}^{a+b} \Sq^j \circ \Sq^{a+b-j} \cdot (t+t^2)^{j-a-1}} \\
+        &= \Res(\sum_{j = 0}^{a+b} \Sq^j\circ \Sq^{a+b-j} (t+t^2)^j \circ (t+t^2)^{-a-1}) \\
+        &= \Res\klam*{\sum_{j= 0}^{a+b} \Sq^j \circ \Sq^{a+b-j}\cdot (1+t)^j \cdot (t^2)^{a+b-j} (t+t^2)^{-a-1}} \\
+        (i = a+b-j)&= \Res\klam*{\sum_{i = 0}^{a+b}\Sq^{a+b-i}\Sq^i (1+t)^{a+b-i}t^{2i}(t+t^2)^{-a-1}} \\
+        &= \mathrm{Coeff}_{t^a}\klam*(\sum_{i = 0}^{a+b} \Sq^{a+b-i}\circ \Sq^{i}(1+t)^{b-i-1}\cdot t^{2i}) \\
+        &= \sum_{i = 0}^{a+b} \binom{b-i-1}{a-2i} \Sq^{a+b-i}\circ \Sq^i \\
+    \end{split}\]
+\end{proof}
+
+We now learn, why we did Adem relations, except for the fact that we are masochistic.
+
+We note some more relations.
+\[\Sq^3 = \Sq^1 \circ \Sq^2\]
+\[\Sq^5 = \Sq^1 \circ \Sq^4\]
+\[\Sq^6 = \Sq^2 \circ \Sq^4 + \Sq^5 \circ \Sq^1 = \Sq^2 \circ \Sq^4 + \Sq^1 \circ \Sq^4 \circ \Sq^1\]
+\[\Sq^7 = \Sq^1 \circ \Sq^6 = \Sq^1 \circ \Sq^2 \circ \Sq^4\]
+
+Everything here is a sum of composite of \(Sq^{2^i}\).
+
+\textbf{Fact.} The Steenrod Algebra \(\cA_2\) is generated as a graded \(\IF_2\)-algebra by \(\Sq^{2^i}\) for \(i\geq 0\).
+
+\begin{corollary}
+    Let \(n\in \in_{\geq 1}\) s.t. \(n\) is not a power of 2. then \(\Sq^n\) is decomposable in \(\cA_2\), i.e. it is in the square of the ideal of positive dimensional elements. More concretely, \(\Sq^n\) is a sum of products of \(\Sq^i\)-s for lower degrees of \(i\).
+\end{corollary}
+
+\begin{proof}
+    We can write \(n = 2^i(2k+1)\) for \(k \geq 1\). We then have a Adem relation:
+    \[\Sq^{2^i} \circ \Sq^{n-2^i} = \sum_{j = 0}^{2^{i-1}} \binom{n-2^i-j-1}{2^i- 2j}\Sq^{n-j}\Sq^j\]
+    For \(j = 0\), we have \(\binom{n-2^i-1}{2^i} \Sq^n\).
+    
+    \textbf{Claim.} \(\binom{n-2^i-1}{2^i}\) is odd.
+
+    Assuming this then
+    \[\Sq^n = \Sq^{2^i}\circ \Sq^{n-2^i} + \sum_{j = 1}^{2^{i-1}} \binom{n-2^i-j-1}{2^i-2j} \Sq^{n-j}\circ \Sq^j\]
+    That would complete the proof.
+
+    Going back to the claim:
+    \[\begin{split}
+        n-2^i - 1 &= 2^i(2k+1)-2^i - 1 \\
+        &= 2^i(2k)-1  = 2^{i+1} \cdot k -1 \\
+    \end{split}\]
+    \(\binom{2^{i+1}\cdot k - 1}{2^i}\) is the coefficient of \(tw{2^i}\) in \((1+t)^{2^{i+1} k-1}\).
+    \[\begin{split}
+        ((1+t)^{2^{i+1}})\cdot (1+t)^{-1} &= (1+t^{2^{i+1}})^k (1+t+t^2 +\dots) \\
+        &\equiv 1 \mod t^{2^{i+1}k}
+    \end{split}\]
+    So the coefficient of \(t^{2^i}\) is 1 (\(\mod 2\)).
+\end{proof}
+
+\textbf{Fact.} \(\IF_2\inner{\mathcal{Sq}^i : i\geq 1}\) The free associative graded \(\IF_2\)-algebra modding out the adem Relations becomes isomorphic to \(\cA_2\).
+
+I.e. We found all \(\mod 2\)-stable cohomology actions and the Adem relations are also all the relations we could have found. We don't show this.
+
+\begin{construction}
+    Consider continuous based maps \(\alpha\colon S^m\to S^k\), \(\beta\colon S^n\to S^m\), \(k\geq 1\). Suppose that \(\alpha\circ \beta\) is null-homotopic. Let \(H\colon S^n\times [0,1]\to S^k\) be pa nullhomotopy of \(\alpha\circ \beta\). Let
+    \[\bar H\colon CS^n= \frac{S^n\times [0,1]}{S^n\times \set1} \to S^k\]
+    be the factorisation of \(H\). \(\bar H\) and \(\alpha\) are compatible to glue to a continuous map
+    \[\alpha\cup H\colon C(\beta) = S^m\cup \beta C(S^n)\to S^k\]
+    Let \(C(\alpha,\beta, H)\) denote the mapping cone of \(\alpha \cup \bar H \colon C(\beta) \to S^k\).
+
+    Some pictures on what this means. This is a \(4\)-cell CW-complex.
+\end{construction}
+
+\textbf{Claim.} \(\eta^2 \neq 0\) in \(\pi_2^{\mathrm{St}}\)
+
+\begin{proof}
+    We argue by contradiction. If \(\eta^2 = 0\) in \(\pi_2^{\mathrm{st}}\), then for some \(n \geq 2\), the following composite
+    \[S^{n+2}\xrightarrow{\eta} S^{n+1}\xrightarrow{\eta} S^n\]
+    where formally we have \(\Sigma^{n-1}\eta\) and \(\Sigma^{n-2}\eta\). So we could study \(C(\eta, \eta, H)\).
+
+    By a picture we get \(\Sq^2\circ \Sq^2 \colon H^n (C(\eta, \eta, H) \IF_2) \to H^{n+4}(C(\eta, \eta, H), \IF_2)\) is an isomorphism between \(1\)-dimensional \(\IF_2\) vector spaces, so \(\Sq^2 \circ \Sq^2 \neq 0\).
+
+    But Adem relations tell us \(\Sq^2 \circ \Sq^2 = \Sq^3 \circ \Sq^1\) and that map factors through a zero-group for \(C(\eta, \eta, H)\) and is hence not 0.
+\end{proof}
+
+\textbf{Fact.} We have \(\eta^3 \neq 0\), but \(\eta^4 = 0\) in \(\pi_4^{\mathrm{St}}\).
+
+The analoguos argument shows that some other products of Hopf maps are stably essential:
+
+\begin{example}
+    \(\eta \in \pi_1^{\mathrm{st}}\), \(\sigma\in \pi_7^{\mathrm{st}}\).
+    \[\eta \circ \sigma \neq 0 \in \pi_8^{\mathrm{st}}\]
+
+    By contradiction, if a null homotopy exists, we could build \(C(\eta, \sigma, H)\), but this is not possible due to a picture I did not draw.
+\end{example}
+
+We also get that the following are non-zero
+
+\begin{center}
+    \begin{tabular}{c|c}
+        Adem relation & Product of Hopf maps \\
+        \(\Sq^1\Sq^4 = \Sq^4\Sq^1 + \Sq^2\Sq^3\) & \(2\nu\) \\
+        \(\Sq^1 \Sq^8 = \Sq^8\Sq^1+ \Sq^2\Sq^7\) & \(2\sigma\) \\
+        \(\Sq^2\Sq^2 = \Sq^3\Sq^1\) & \(\eta^2\) \\
+        \(\Sq^2\Sq^8 = \Sq^9\Sq^1 + \Sq^8\Sq^2+\Sq^4\Sq^6\) & \(\eta\sigma\) \\
+        \(\Sq^4\Sq^4 = \Sq^7\Sq^1 + \Sq^6\Sq^2\) & \(\nu\nu\) \\
+        ?? & \(\sigma\sigma\) \\
+    \end{tabular}
+\end{center}
+We have that \(2\eta, \eta\nu, \nu\sigma\) are zero due to spectral sequences.
 
 
 \end{document}
