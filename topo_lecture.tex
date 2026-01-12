@@ -2749,10 +2749,176 @@ for \((y,s)\in X_m\times \nabla^m\). We need to check that this definition is co
 
     \begin{enumerate}
         \item Suppose \((y,s)\) is of minimal dimension of all pairs in its equivalence class.
-        \[[n] \xhookleftarrow{\delta} [k] \xrightarrow{\sigma} [l], (y,s) n\geq k\geq l\]
-        so \(n = l, n = k= l\) and \(\delta = \id_{[n]} = \sigma\)
+        \[[n] \xhookleftarrow{\delta} [k] \xrightarrow{\sigma} [l]\]
+        so \(n = l, n = k= l\) and \(\delta = \id_{[n]} = \sigma\), \(u = s\), \(\rho(y,s) = y,s\). If \((y', s')\) is another representative of minimal dimension, then
+        \[(y,s) = \rho(y,s) = \rho(y',s') = (y',s')\]
+        \item The proof of 1. shows that \(\rho(y,s)\) is the minimal representative in its equivalence class and \(\rho(y,s) \in X_l^{\text{nd}}\times \mathrm{int}(\nabla^l)\). So if \((y,s)\) is of minimal dimension in its class, then \(y\) is nondegenerate and \(s\) is interior. Conversely, if \(y\) is non-degenerate and \(s\) interior, \((y,s) = \rho(y,s)\) which is the minimal representative in its class.
+        \item Let \((\delta, u, \sigma, x)\) be the data from the calculation of \(\rho(y,s)\), the minimal representative in the class of \((y,s)\), Then those data have the properties in 3. by construction.
     \end{enumerate}
 \end{proof}
+
+\newLecture{12.1.2026}
+
+\begin{corollary}
+    Let \(f\colon X \to Y\) be a morphism of simplicial sets, such that \(f_n\colon X_n \to Y_n\) is injective for all \(n \geq 0\) (this is precisely a monomorphism in \(\mathbf{sset}\). You could show this as a exercise)
+    \begin{enumerate}
+        \item For every non-degenerate \(x\in X_n\), the simplex \(f_n(x) \in Y_n\) is also non-degenerate.
+        \item The continuous map \(\abs f\colon \abs X\to \abs Y\) is injective.
+    \end{enumerate}
+\end{corollary}
+
+\textbf{Note.} We will later see that this injective map is even the inclusion of a subcomplex.
+
+\begin{proof}
+    \begin{enumerate}
+        \item Let \(x\in X_n\) be non-degenerate. Suppose by contradiction that \(f_n(x)\) is degenerate, i.e. \(f_n(x) = s_i^*(y)\) for some \(y \in Y_{n-1}\). Then
+        \[f_n(s_i^*(d_i^*(x))) = s_i^*(d_i^*(f_n(x))) = s_i^*(d_i^*(s_i^*(y))) = s_i^*(y) =  f_n(x)\]
+        Since \(f_n\) is injective, \(s_i^*(d_i^*(x)) = x\), so it is degenerate, contradicting the hypothesis.
+        \item Let \((x,t \in X_n\times \nabla^n)\) and \((x',t') \in X_m \times \nabla^m\) the unique minimal representatives in two equivalence classes that have the same image under \(\abs f\colon \abs X\to \abs Y\).
+        \[[f_n(x), t] = \abs f[x,t] = \abs f[x',t'] = [f_m(x'), t']\]
+        So \((f_n(x),t)\sim (f_m(x'), t')\). By minimality \(x, x'\) are non-degenerate. By \((i)\), \(f_n(x)\) and \(f_m(x')\) are non degenerate. So \((f_n(x), t)\) and \((f_m(x'), t')\) are the minimal representatives in their class.
+
+        By uniqueness of minimal representatives, \(m= n\), \(f_n(x) = f_m(x) = f_m(x'), t= t'\). Since \(f_m\) is injective, also \(x = x'\) so \(\abs f\) is injective.
+    \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+    For every simplicial set \(X\) the followving composite is surjective:
+    \[\coprod_{n\geq 0} X_n^{\text{non-deg}}\times \nabla^n \hookrightarrow \coprod_{n\geq 0} \nabla^n \twoheadrightarrow \abs X\]
+    If \(X\) has only finitely many non-degenerate simplices, then \(\abs X\) is quasi-compact.
+\end{corollary}
+
+\textbf{Remark.} \(\coprod_{n\geq 0} X_n ^{\mathrm{non-deg}}\times \mathrm{int}(\nabla^n)\to \coprod_{n\geq 0} X_n\times \nabla^n \to \abs X\) is continuous and bijective, but not a homeomorphism except for constant simplicial sets.
+
+\textbf{From an exercise.} \(\abs \Delta^m \cong \nabla^m\) by mutually inverse homeomorphisms: \([\alpha, t] \mapsto \alpha_*(t)\) for \(\alpha\in (\Delta^m)_n, t \in \Delta^m\) and \(t\mapsto [\id_{[n]}, t]\)
+
+\(\partial\nabla^m = \text{ boundary of } \nabla^m = \set{(t_0,\dots, t_m)\in \nabla^m : \text{ some } t_i = 0}\)
+
+\begin{proposition}
+    The composite
+    \[\abs{\partial\Delta^m} \xrightarrow{\abs \incl} \abs {\Delta^m} \xrightarrow{\cong} \nabla^m\]
+    is a homeomorphism onto \(\partial(\nabla^m)\).
+\end{proposition}
+
+\begin{proof}
+    By a previos corollary, this is a continuous injection. \(\Delta^m\) only has finitely many non-degenerate simplices, hence so does \(\partial\Delta^m\), so \(\abs{\partial\Delta^m}\) is quasicompact. So the inclusion is a closed embedding, and hence a homeomorphism onto its image. For
+    \[d_i\colon [m-1] \to [m]\in (\partial\Delta^m)_{m-1}\]
+    its image is precisely \(\set{(t_0, \dots, t_m)\in \nabla^m: t_i = 0}\).
+
+    So the image of \(\abs{\partial\Delta^m}\) is precisely \(\bigcup_{i = 0, \dots, n} \set{(t_0, \dots, t_m) : t_i = 0} = \partial(\nabla^m)\).
+\end{proof}
+
+\subsection{The preferred CW-structure on \(\abs{X}\)}
+
+\begin{defi}{Simplicial skeleta}{}
+    Let \(X\) be a simplicial set, \(m \geq 0\). The \(m\)-skeleton \(\sk^m(X)\) of \(X\) is the simplicial subset with
+    \[(\sk^m X)_n = \set{x\in X_n : x = \alpha^*(y) \text{ for some } y \in X_m}\]
+    with \(\alpha\colon [n] \to [m]\). This is the smallest simclicial subset of \(X\) that contains \(X_m\).
+\end{defi}
+
+\begin{example}
+    \(X\) is \(0\)-dimensional, i.e. \(X = \sk^0 X\) iff \(X\) is constant, i.e. all \(\alpha^*\colon X_m \to X_n\) are bijective.
+
+    \(\Delta^m\) is \(m\)-dimensional, i.e. \(\sk^m(\Delta^m) = \Delta^m\), because \(\alpha = \alpha^*(\id_{[n]})\) \(\id_{[n]}\in (\Delta^m)_m\).
+    \(\partial\Delta^m\) is \((m-1)\)-dimensional, i.e. \(\sk^{m-1}(\partial\Delta^m) = \partial\Delta^m = \sk^{m-1}(\Delta^m)\).
+\end{example}
+
+\begin{proposition}
+    Let \(X\) be a simplicial set \(m \geq 0\).
+    \begin{enumerate}
+        \item For \(n \leq m\) \((\sk^m X)_n = X_n\)
+        \item For \(n > m\) every simlex in \((\sk^m X)_n\) is degenerate
+        \item \(\sk^m X\subseteq \sk^{m+1} X\)
+        \item \(X\) is a colimit of the sequence \(\sk^0 X\subseteq \sk^1 X \subseteq \sk^2 X\subseteq \dots\)
+        \item For \(f\colon X \to Y\) a morphism of simplicial sets, \(f(\sk^m X) \subseteq \sk^m(Y)\)
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item For \(n \leq m\) we can choose morphism in \(\Delta\) \(\alpha\colon [n] \to [m], \sigma\colon [m] \to [n]\) \(\sigma\circ \alpha = \id_{[n]}\). Then for every \(x \in X_n\)
+        \[x = (\sigma\circ \alpha)^*(x) = \alpha^*(\underbrace{\sigma^*(x)}_{\in X_m})\in (\sk^m X)_n\]
+        \item Let \(n > m\), \(x = \alpha^*(y)\in X_n\), since \(\alpha\colon [n]\to [m], y \in X_m \in (\sk^m X)_n\) Because \(n > m\) \(\alpha\) cannot be injective, so there is some \(0 \leq i \leq n-1\) such that \(\alpha(i) = \alpha(i+1)\) so \(\alpha = \beta\circ s_i\) for some \(\beta\colon [n-1]\to [m]\) so \(x = \alpha^*(y) = s_i^*(\beta^*(y))\) so \(x\) is degenerate
+        \item Let \(x \in (\sk^m X)_n\) so \(x = \alpha^*(y)\) for some \(y\in X_m\), some \(\alpha\colon [n]\to [m]\). Then
+        \item \[x = \alpha^*(y) = (s_0 \circ d_q \circ \alpha)^*(y) = (d_0 \circ \alpha)^*(\underbrace{s_0^*(y)}_{\in X_{m+1}})\]
+        so \(x \in (\sk^{m+1}X)_n\)
+        \item Colimits and limits in functor categories are objectwise. So colimits of simplicias sets are objectwise. So we must show thot for all \(n \geq 0\)
+        \[(\sk^0 X)_n \subseteq (\sk^1 X)_n \subseteq\dots\]
+        is a colimit diagram of sets. But from \(n\) onwards this is just identities.
+        \item Let \(x \in (\sk^m X)_n\), i.e. \(x = \alpha^*(y), y \in X_m, \alpha\colon [n] \to [m]\). Let \(f \colon X \to Y\) be a morphism of simplicia sets. Then \(f_n(x) = f_n(\alpha^*(y)) = \alpha^*(f_m(y))\in Y_m\) so \(f_n(x)\in (\sk^m Y)_n\).
+    \end{enumerate}
+\end{proof}
+
+We note \(\sk^m\colon \mathbf{sset}\to \mathbf{sset}\) is a functor and the inclusions \(\sk^m X \to \sk^{m+1} X\) are natural transformations of functors.
+
+\textbf{Note.} Let \(X\) be a simplicial set, \(Y\subseteq X\) simplicial subset, \(Y_{m-1} = X_{m-1}\) ore equally \(\sk^{m-1} Y = \sk^{m-1}X\). Then the following square commutes for all \(x \in X_m\)
+\[\begin{tikzcd}
+    \partial\Delta^m & \sk^{m-1}(\Delta^m)\ar[r, phantom, "\subseteq"] & \Delta^m \ar[d, "x^\flat"] \\
+    \sk^{m-1} Y & \sk^{m-1} X \ar[r, hook] & X \\
+\end{tikzcd}\]
+He outspeeded me.
+
+So the characteristic morphism \(x^\flat \colon \Delta^m \to X\) sends \(\partial \Delta^m\) into \(Y\).
+
+\begin{proposition}
+    Let \(X\) be a simplicial set, \(m \geq 0\). Let \(Y \subseteq X\) be a simplicial subset such that \(Y_{m-1} = X_{m-1}\). Suppose moreover that for all \(n > m\), all simplices in \(X_n \setminus Y_n\) are degenerate.
+    \begin{enumerate}
+        \item The commutative square
+        \[\begin{tikzcd}
+            \coprod_{x\in X_m \setminus Y_m} \partial \Delta^m \ar[r, hook]\ar[d] & \coprod_{x \in X_m\setminus Y_m} \Delta^m \ar[d, "x^\flat"] \\
+            Y\ar[r, hook] & X \\
+        \end{tikzcd}\]
+        is a pushout in the category of simplicial sets.
+        \item The square above after applying \(\abs\cdot\) is a pushout of spaces.
+        \item The realization \(\abs X\) can be obtained from \(\abs Y\) by attaching \(m\)-cells indexed by \(X_m\setminus Y_m\) along the boundaries
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    All the work goes into proofing 1. That is combinatorics.
+    \begin{enumerate}
+        \item Because simclicial sets are a functor category, all colimits --- such as pushouts and \(\coprod\) --- are objectwise. So we must show that for all \(k \geq 0\), the following is a pushout of sets.
+        \[\begin{tikzcd}
+            \coprod_{x \in X_m \setminus Y_m} (\partial\Delta^m)_k \ar[r, hook] \ar[d] & \coprod_{x \in X_m \setminus Y_m} (\Delta^m)_k \ar[d, "(x^\flat)_k"] \\
+            Y_k \ar[r, hook] & X_k \\
+        \end{tikzcd}\]
+        So it suffices to show that the right vertical map restricts to a bijection between the complements of the horizontal maps:
+        \[(X_m\setminus Y_m) \times \set{(\Delta^m)_k\setminus (\partial\Delta^m)_k} \to X_k \setminus Y_k, \quad (x, \alpha)\mapsto \alpha^*(x)\]
+        we rewrite \((X_m \setminus Y_m)\times \set{\alpha\colon [k] \twoheadrightarrow [m] \text{ surjective}} X_k\setminus Y_k\). We look at
+        \begin{description}
+            \item[\(k < m\)]  No surjections and \( Y_k = X_k\) so both sides are empty.
+            \item[\(k = m\)] \((X_m\setminus Y_m)\times \set{\id_{[m]}} \xrightarrow{\cong} X_m \setminus Y_m\), \((x, \id_{[m]})\mapsto x\).
+            \item[\(k > m\)] We consider \(x \in X_k \setminus Y_k\) and write \(x\) uniquely as \(\alpha^*(\bar x)\) for some surjective morphism \(\alpha\colon [k]\to [n]\), some non-degenerate simplex \(\bar x \in X_n\). Because \(x \not \in Y_k\), also \(\bar x \not \in Y_n\) So \(n \geq m\). Also \(n \leq m\), because \(X_n = Y_n\) and all simplices in \(X_n \setminus Y_n\) are degenerate, but \(\bar x\) is not. So \(x \in (\sk^m X)_k\)
+        \end{description}
+        \item \(\abs \cdot\colon \mathbf{sset} \to \mathbf{Top}\) is left adjoint to \(\cS\colon \mathbf{Top} \to \mathbf{sset}\). So \(\abs\cdot\) preserves all colimits.
+    \end{enumerate}
+\end{proof}
+
+\begin{thm}{preferred CW-structure}{}
+    Let \(X\) be a simplicial set.
+    \begin{enumerate}
+        \item The subspaces \(\abs{\sk^m X}\) for \(m \geq 0\) form a CW-structure on \(\abs X\)
+        \item The \(m\)-cells of this CW-structure biject with the non-degenerate \(m\)-simplices of \(X\)
+        \item Suppose that for \(n > m\), all \(n\)-simlices of \(X\) are degenerate. Then \(\abs X\) is \(m\)-dimensional.
+        \item For any morhpism of simplicial sets \(f\colon X \to Y\), \(\abs f\colon \abs X\to \abs Y\) is cellular.
+        \item If \(Y\) is a simplicial subset of \(X\), then \(\abs{\incl}\colon \abs Y\to \abs X\) identifies \(\abs Y\) with a subcomplex of \(\abs X\).
+        \item Suppose \(X\) has only finitely many non-degenerate simplices. Then \(\abs X\) is a finite CW-complex.
+    \end{enumerate}
+\end{thm}
+
+\begin{proof}
+    \begin{itemize}
+        \item[1. + 2.] \((\sk^{m-1} X)_{m-1} = X_{m-1} = (\sk^m X)_{m-1}\) and for \(n > m\), every \(n\)-simplex of \(\sk^m X\) is degenerate. So we can apply the proposition to \((X,Y) = (\sk^m X, \sk^{m-1} Y)\). So we get
+        \[\begin{tikzcd}
+            X_m^{\text{n.d.}} \times \abs{\partial\Delta^m} \ar[r]\ar[d] & X_m^{\text{n.d.}} \times \abs{\Delta^m} \ar[d] \\
+            \abs{\sk^{m-1}X}\ar[r, hook] & \abs{\sk^m X} \\
+        \end{tikzcd}\]
+        So \(\abs{\sk^m X}\) contains \(\abs{\sk^{m-1} X}\) as a closed subspace and can be obtained by attaching \(m\)-cells indexed by \(X_m^{\text{n.d.}}\).
+        \(X = \colim_\IN \sk^m X\) implies \(\abs X = \colim_\IN \abs{\sk^m X}\), i.e. \(\abs X\) has the weak topology.
+    \end{itemize}
+    The rest he deems to clear to elaborate on.
+\end{proof}
+
 
 
 
