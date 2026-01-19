@@ -2920,6 +2920,141 @@ So the characteristic morphism \(x^\flat \colon \Delta^m \to X\) sends \(\partia
 \end{proof}
 
 
+\newLecture{14.01.2025}
+
+I slept very well, unfortunately that was during the lecture.
+
+\newLecture{19.01.2025}
+
+The aim for today is:
+
+
+
+The adjunction unit \(\eta_X \colon X \to \cS\abs X\) is a homology isomorphism. We will later see, that the counit is a weak homotopy equivalence.
+
+\begin{thm}{}{}
+    Let \((K,L)\) be a pair of simplicial sets, \(L\subseteq K\) We have the following commutative square of chain complexes:
+    \[\begin{tikzcd}
+        {C_*(L,A)} \ar[r, hook] \ar[d, "{C_*(\eta_L, A)}"] & C_*(K,A) \ar[d, "{C_*(\eta_K, A)}"] \ar[r, two heads] & \frac{C_*(K,A)}{C_*(L,A)} \ar[d, "{\eta_{K,L}}"] \\
+        {C_*(\cS\abs L, A)} \ar[r, hook] & {C_*(\cS\abs K, A)} \ar[r, two heads] & {\frac{C_*(\cS\abs K, A)}{C_*(\cS\abs L, A)}} \\
+    \end{tikzcd}\]
+    The chain map \(\eta_{K,L}\) is a quasi-isomorphism. In particular, the induced map on homology
+    \[(\eta_{K,L})_*\colon H_k(K,L;A) \to H_*(\abs K, \abs L, A)\]
+    is an isomorphism.
+\end{thm}
+
+
+\begin{proof}
+    We proof this in 6 steps. The first 3 from last lecture
+    \begin{enumerate}
+        \item Compatibility with pushout squares.
+        \item Let \(M\subseteq L\subseteq K\) be a triple of simplicial sets. If two of \(\eta_{K,M}, \eta_{K,L}, \eta_{L,M}\) are quasi-isomorphisms, then so is the third.
+        \item \(\eta_{\Delta^m, \partial\Delta^m}\) is a quasi isomorphism for all \(m\geq 0\).
+        \item Let \(\set{(K_i, L_i)}_{i\in I}\) be a family of pairs of simplicial sets. If \(\eta_{K_i, L_i}\) is a quasi-iso for all \(i \in I\), then so is \(\eta_{\coprod_{i\in I}K_i, \coprod_{i\in I} L_i}\). We see this by
+        \[\bigoplus_{i\in I} C_*(K_i, A)/C_*(L_i, A) \xrightarrow{\bigoplus \eta_{K_i,L_i}} \bigoplus \frac{C_*(\cS\abs {K_i}, A)}{C_*(\cS\abs{L_i}), A}\]
+        and using that
+        \[\bigoplus_{i\in I} C_*(K_i, A)/ C_*(L_i, A) \cong \frac{C_*(\coprod_{i\in I} K_i, A)}{C_*(\coprod_{i\in I} L_i; A)}\]
+        and using that \(\abs \cdot\) preserves corpoducts, but also \(\cS\) preserves coproducts by definition so
+        \[\bigoplus\frac{C_*(\cS\abs{K_i}, A)}{C_*(\cS\abs{L_i}, A)} \cong \frac{C_*(\cS\abs{ \coprod K_i}, A)}{C_*(\cS\abs{\coprod L_i}, A)}\]
+        \item The claim holds for \(((\sk^m K) \cup L, L)\) for all \(m \geq -1\) setting the \(m-1\)-skeleton to be empty. We show this by induction over \(m\). For \(m= -1\) this statement is clear.
+        
+        We set \(N\coloneq K_m^{\mathrm{nd}} \setminus L_m^{\mathrm{nd}}\) There is a pushout square of simplicial sets
+        \[\begin{tikzcd}
+            \coprod \partial\Delta^m \ar[r, hook] \ar[d] & \coprod_{N} \Delta^m \ar[d] \\
+            (\mathrm{sk}^{m-1} K)\cup L \ar[r, hook] & (\sk^m K) \cup L \\
+        \end{tikzcd}\]
+        Now applying first claim 4 to see the top to be ok, Claim 1 to see the bottom to be ok too and then claim 2 together with the induction hypothesis for what we desired to be ok.
+        \item \(\eta_{K,L}\) is a quasi-isomorphism in general. We fix a homological dimension \(n\). Then
+        \[\begin{tikzcd}
+            ((\sk^{n+1} K)\cup L, L) \ar[r, hook] & (K,L) \\
+        \end{tikzcd}\]
+        iduces an isomorphism on \(H_n(\_, \_; A)\) and similarly
+        \[(\abs{(\sk^{n+1}K) \cup L}, \abs L) \to (\abs K, \abs L)\]
+        induces an isomorphism on \(H_n(\_, \_; A)\).
+    \end{enumerate}
+\end{proof}
+
+
+\begin{corollary}
+    For every space \(Z\), the adjunction counit \(\varepsilon_Z\colon \abs{\cS(Z)} \to Z\) induces isomorphisms of all singular homology groups.
+\end{corollary}
+
+\begin{proof}
+    The composite
+    \[\cS(Z) \xrightarrow{\eta_{\cS(Z)}} \cS(\abs{\cS(Z)}) \xrightarrow{\cS(\varepsilon_Z)} \cS(Z)\]
+    is the identity. So the composite
+    \[H_*(Z;A) \xrightarrow{H_*(\eta_{\cS(Z)})} H_*(\abs{\cS(Z)}; A) \xrightarrow{H(\varepsilon_Z)} H_*(Z,A)\]
+    is the identity and the first map is a isomorphism.
+\end{proof}
+
+\begin{proposition}
+    Let \(X\) be a non-empty simplicial set. Suppose that:
+    \begin{enumerate}
+        \item for all simplices \(x, y \in X_0\), there is a \(w\in X_1\) s.t. \(d_1^*(w) = x, d_0^*(w) = y\).
+        \item For all \(1\)-simplices \(u,v,w \in X_1\) such that \(d_0^*(u) = d_1^*(v), d_0^*(v) = d_0^*(w), d_1^*(u) = d_1^*(w)\), there is \(z \in X_2\) such that \(d_0^*(z) = v, d_1^*(z) = w, d_2^*(z) = u\)
+    \end{enumerate}
+    Then \(\abs X\) is simply connected.
+\end{proposition}
+
+\begin{proof}
+    We choose a vertex \(x_0 \in X_0\). By \(i\) we can choose for every \(y \in X_0 \in X_0\setminus\set{x_0}\) a \(1\)-simplex \(s(y)\in X_1\), s.t. \(d_0^*(s(y)) = y, d_1^*(s(y) = x)\).
+    We let \(T\) be the simplicial subset of \(X\) containing \(s(y)\) for all \(y \in X_0\), and \(x_0\). Then \(\abs T\) is a \(1\)-dimensional simplicial set, \(\abs T\) is a \(1\)-dimensional CW-subcomplex of \(\abs X\) and \(\abs T\) is contractible. Since \(\abs T\) is a CW-subcomplex of \(\abs X\), the inclusion has the HEP and \(\abs X \to \abs X /\abs T \cong \abs{X/T}\) is a homotopy equivalence.
+
+    So we may show that \(\abs{X/T}\) is simply connected.
+    \[\sk^1\abs{X/T} = \abs{\sk^1(X/T)} \cong \bigvee_{X_1^{\mathrm{nd}}\setminus\set{s(y)}_{y\neq x_0}} S^1\]
+    \(X/T\) has a unique \(0\)-simplex, because \(T_0 = X_0\) so by van Kampens theorem \(\pi_1(\abs{\sk^1(X/T)}, x_0)\) is a free group with basis the class of loops indexed by \(X_1^{\mathrm{nd}}\setminus\set{s(y)}_{y\neq x_0}\). By cellular approximation we know
+    \[\pi_1(\abs{\sk^1(X/T)}, x_0) \to \pi_1(\abs{X/T}, x_0)\]
+    is surjective. So it suffices to show that all generators of the sort become trivial in the realization. Let \(v \in X_1^{\mathrm{nd}}\), \(v\neq s(y)\) for all \(y\). Then the conditions are perfectly satisfied to use 2. of the prerequistes. So we have a \(z \in X_2\), whose \(2\)-cell in the geometric realization parameterises a nullhomotopy.
+\end{proof}
+
+We could rephrase the conditions as maps from \(\partial\Delta^1\) extend to \(\Delta^1\) and similarly for \(\Delta^2\).
+
+\begin{proposition}
+    Let \(X\) be a simplicial set such that for all \(0 \leq k \leq n\), every morphism \(\partial \Delta^k \to X\) can be extended to \(\Delta^k\). Then \(\abs X\) is \((n-1)\) connected.
+\end{proposition}
+
+We don't need this so we don't proof this.
+
+\begin{corollary}
+    Let \(Z\) be a simply connected space.
+    \begin{enumerate}
+        \item The simplicial complex \(\cS(X)\) satisfies the conditions 1 and 2 of the previous proposition.
+        \item \(\abs {\cS(Z)}\) is simply connected.
+    \end{enumerate}
+\end{corollary}
+
+\begin{proof}
+    I was to lazy to copy the proof of 1.
+\end{proof}
+
+\begin{thm}{}{}
+    For every space \(Z\) the adjuntcion counit \(\varepsilon_Z\colon \abs{\cS(Z)}\to Z\) is a weak homotopy equivalence.
+\end{thm}
+
+\textbf{Note.} \(\varepsilon_Z\) is a natural CW-approximation!
+
+\begin{proof}
+    In 4 cases
+    \begin{description}
+        \item[Case 1] \(Z\) is simply connected and admits a CW-structure. Then by the previous proposition, \(\abs \cS(Z)\) is also simply connected. So \(\varepsilon_Z\colon \abs{\cS(Z)}\to Z\) is a homology isomorphism between simply connected CW-complexes, hence a homotopy equivalence.
+        \item[Case 2] The spaece \(Z\) is path-connected and admits a CW-structure. There exists a universal cover \(p\colon \tilde Z\to Z\); in particular \(\tilde Z\) is simply connected and admits a CW-structure.
+        
+        \textbf{Claim.} \(\abs{\cS(\tilde Z)} \xrightarrow{\abs{\cS(p)}} \abs{\cS(Z)}\) is also a universal cover.
+        
+        Let \(G\) be the group of deck transformations of \(p\colon \tilde Z\to Z\). This is a free \(G\)-action on \(\tilde Z\), such that \(p\) descends to a homeomorphism \(\tilde Z/G\to Z\). By exercise 9.2 \(\cS(\tilde Z)/G \xrightarrow{\cong} \cS(\tilde Z/G) \cong \cS(Z)\). Since the \(G\)-action on \(\cS(Z)\) is dimensionwise free, also the action on \(\abs{\cS(\tilde Z)}\) is free. So
+        \[\abs {\cS(\tilde Z)} \to \abs{\cS(\tilde Z)}/G \cong \abs{\cS(\tilde Z)/G} \cong \abs{\cS(\tilde Z/G)} \cong \abs{\cS(Z)}\]
+
+        So altogether we get a commutative diagram
+        \[\begin{tikzcd}
+            \abs{\cS(\tilde Z)}\ar[d]\ar[r, "\varepsilon_{\tilde Z}"] & \tilde Z \ar[d, "p"] \\
+            \abs{\cS(Z)} \ar[r, "\varepsilon_Z"] & Z \\
+        \end{tikzcd}\]
+        By case 1 \(\varepsilon_{\tilde Z}\) is a homotopy equivalence. So \(\varepsilon_{\tilde Z}\) induces isomorphisms on \(\pi_n\) for \(n \geq 2\). 
+    \end{description}
+\end{proof}
+
+Rest next week
+
 
 
 \end{document}
