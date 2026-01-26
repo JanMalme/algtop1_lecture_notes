@@ -3053,7 +3053,159 @@ We don't need this so we don't proof this.
     \end{description}
 \end{proof}
 
-Rest next week
+\newLecture{21.01.2026}
+
+I seem to not be able to wake up well on Wednesdays.
+
+\newLecture{26.01.2026}
+
+The Aim for today is to construct equivalences of categories.
+\[\begin{tikzcd}
+    \mathbf{Top}[\text{w.eq}^{-1}] \ar[d, bend left, "\cS"] & \mathrm{Ho}(\mathrm{CW}) \ar[l, "\incl_*"] \\
+    \mathbf{sset}[\text{w.eq}^{-1}] \ar[u, bend left, "\abs\cdot"] \ar[ru, "\abs\cdot"] \\
+\end{tikzcd}\]
+
+\begin{defi}{Weak equivalence}{}
+    A morphism \(f\colon X \to Y\)  of simplicial sets is a \emph{weak equivalence}, if
+    \[\abs f\colon \abs X\to \abs Y\]
+    is a homotopy equivalence
+\end{defi}
+
+This is a weaker notion than homotopy equivalence.
+
+\begin{proposition}
+    For every simplicial set \(X\), the adjunction unit \(\eta_X\colon X \to \cS\abs X\) is a weak equivalence of simplicial sets.
+\end{proposition}
+
+\begin{construction}[localization of simplicial sets at weak equivalences]
+    We define a category \(\mathbf{sset}[\mathrm{w.eq}^{-1}]\) with objects the same as \(\mathbf{sset}\).
+    \[\Hom_{\mathbf{sset}[\mathrm{w.eq}^{-1}]}(X,Y) \coloneq \Hom_{\mathbf{Top}}(\abs X, \abs Y)/\text{Homotopy } = \mathbf{Ho}(\mathrm{CW})(\abs X, \abs Y)\]
+    This comes with a functor
+    \[\gamma\colon \mathbf{sset} \to \mathbf{sset}[\mathrm{w.eq}^{-1}]\]
+    such that \(\gamma = \id\) on objects and \(\gamma(f) = [\abs f] = \text{ homotopy class of } \abs f\colon \abs X \to \abs Y\)
+\end{construction}
+
+\begin{proposition}[\enquote{calculus of fractions}]
+    Let \(X,Y\) be simplicial sets and \(\alpha\colon \abs X \to \abs Y\) a continuous map.
+    \begin{enumerate}
+        \item The following square of continuous maps
+        \[\begin{tikzcd}
+            \abs X \ar[r, "\abs{\eta_X}"]\ar[d, "\alpha"] & \abs{\cS\abs X} \ar[d, "\abs{\cS(\alpha)}"] \\
+            \abs Y \ar[r, "\abs{\eta_Y}"] & \abs{\cS\abs Y} \\
+        \end{tikzcd}\]
+        commutes up to homotopy.
+        \item The relation
+        \[\begin{split}
+            [\alpha] &= \gamma(\eta_Y)^{-1} \circ \gamma(\cS(\alpha)\circ \eta_X)
+        \end{split}\]
+        holds.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item \[\begin{tikzcd}
+            \abs X \ar[r, "\abs{\eta_X}"] \ar[d, "\alpha"] & \abs{\cS\abs X} \ar[d, "\abs{\cS(\alpha)}"] \ar[r, "\varepsilon_{\abs X}"] & \abs X \ar[d, "\alpha"] \\
+            \abs Y \ar[r, "\abs{\eta_Y}"] & \abs{\cS \abs Y} \ar[r, "\varepsilon_{\abs Y}"] & \abs Y \\
+        \end{tikzcd}\]
+        And the outside of the diagram commutes. \(\varepsilon_{\abs Y}\) is a weak equivalence between CW-complexes, hence a homotopy equivalence so the left square commutes up to homotopy.
+        \item Because the left square commutes up to homotopy, it is ?? commutatvie square in \(\mathbf{sset}[\mathrm{w.eq}^{-1}]\)
+        and somehow that helps.
+    \end{enumerate}
+\end{proof}
+
+\begin{thm}{localization of simplicial sets}{}
+    The functor \(\gamma\colon \mathbf{sset}\to \mathbf{sset}[\mathrm{w.eq}^{-1}]\) is a localisation of simplicial sets at weak equivalences.
+\end{thm}
+
+\begin{proof}
+    The functor \(\abs \cdot \colon \mathbf{sset}\to \mathbf{Top}\) takes weak equivalences to homotopy equivalences, which are isomorphisms in \(\mathrm{Ho}(\mathrm{Top})\) hence also in \(\mathbf{sset}[w.eq^{-1}]\). So \(\gamma\) inverts weak equivalences.
+
+    Let \(F\colon \mathbf{sset}\to \cD\) be any functor that inverts weak equivalences.
+    \begin{description}
+        \item[Uniqueness] Let \(G\colon \mathbf{sset}[\mathrm{w.eq.}^{-1}]\to D\) be a functor such that \(G \circ \gamma = F\). Since \(\gamma\) is the identity on objects, we have \(G = F\) on objects. For uniqueness on morphisms. apply \(G\) to the fraction realation.
+        \[\begin{split}
+            G[\alpha] &= G(\gamma(\eta_Y)^{-1}\circ \gamma(\cS(\alpha)\circ \varepsilon_X)) \\
+            &= G(\gamma(\eta_Y))^{-1} \circ G(\gamma(\cS(\alpha)\circ \varepsilon_X)) \\
+            &= F(\eta_Y)^{-1} \circ F(\cS(\alpha) \circ \varepsilon_X) \\
+        \end{split}\]
+        \item[Existence] Given \(F\colon \mathbf{sset} \to \cD\), inverting weak equivalences, we define \(G\) on objects as \(F\) and on morphisms Let \(\alpha\colon \abs X \to \abs Y\) be any continuos map, we define \(([\alpha]\colon X \to Y \text{ in } \mathbf{sset}[\mathrm{w.eq}^{-1}])\)
+        \[G[\alpha] = F(\eta_Y)^{-1} \circ F(\cS(\alpha)\circ \varepsilon_X)\]
+        We check well definedness. We show first that \(F\) takes simplicially homotopic morphisms to the same morphism.
+        Let \(H\colon X \times \Delta^1\to Y\) be a simplicial homotopy. The projection \(X\times \Delta^1\to X\) realizes to a homotopy equivalence
+        \[\begin{tikzcd}
+            \abs{X\times \Delta^1} \ar[d, phantom, sloped, "\cong"]\ar[r, "\abs p"] & \abs X \\
+            \abs X \times \abs {\Delta^1} \ar[ru, "pr"] \\
+        \end{tikzcd}\]
+        so \(p\) is a equivalence hence \(F(p)\colon F(X\times \Delta^1)\to F(X)\) is an isomorphism. Moreover \(p\circ i_0 = \id_X = p\circ i_1\). Since \(F(p)\) is an isomorphism, this yields \(F(i_0) = F(i_1)\). Then \(F(f) = F(g)\). So \(F\) takes simpilcially homotopic morphisms of simplicial sets to the same morphism in \(D\).
+
+        Now let \(\alpha\colon \alpha' \colon \abs X\to \abs Y\) be homotopic continuous maps. Then \(\cS(\alpha), \cS(\alpha')\) are simplicially homotopic. So \(F(\cS(\alpha)) = F(\cS(\alpha'))\). So \(G[\alpha]\) is well defined, i.e. only depends on the homotopy class of \(\alpha\).
+
+        We still need to check that \(G\) is a functor. Let \(\alpha\colon \abs X \to \abs Y, \beta\colon \abs Y\to \abs Z\) be continuous maps, representing morphisms \([\alpha]\colon X\to Y, \beta \colon Y\to Z\) in \(\mathbf{sset}[\mathrm{w.eq.}^{-1}]\)
+        \[\begin{split}
+            G[\beta]\circ G[\alpha] &= F(\eta_Z)^{-1} \circ F(\cS(\beta)\circ \eta_Y) \circ F(\eta_Y)^{-1} \circ F(\cS(\alpha)\circ \eta_X) \\
+            &= F(\eta_Z)^{-1} \circ F(\cS(\beta))\circ F(\eta_Y) \circ F(\eta_Y)^{-1} \circ F(\cS(\alpha)\circ \eta_X) \\
+            &= F(\eta_Z)^{-1} \circ F(\cS(\beta\circ \alpha)\circ \eta_X) \\
+        \end{split}\]
+        Checking the identity is easy. We need to check \(G\circ \eta = F\). Let \(f\colon X \to Y\) be a morphism of simplicial sets. Naturality of \(\eta\colon \id_{\mathbf{sset}} \to \cS \circ \abs \cdot\) gives a long equation that helps.
+    \end{description}
+\end{proof}
+
+The equivalences between \(\mathbf{sset}[\mathrm{w.eq.}^{-1}]\) and \(\mathrm{Ho}(\mathbf{Top}_{\mathrm{CW}})\).
+
+The functor \(\abs\cdot\colon \mathbf{sset}\to \mathbf{Top}\) takes values in \(\mathbf{Top}_{\mathrm{CW}}\) the full subcategory of spaces admitting a CW-structure. The composite functor
+\[\mathbf{sset}\xrightarrow{\abs \cdot} \mathbf{Top}_{\mathrm{CW}} \xrightarrow{\text{proj.}} \mathrm{Ho}(\mathbf{Top}_{\mathrm{CW}})\]
+inverts weak equivalences. The universal property of the localization \(\gamma\colon \mathbf{sset} \to \mathbf{sset}[\mathrm{w.eq.}^{-1}]\) provieds a unique functor \(\Psi\colon \mathbf{sset}[\mathrm{w.eq.}^{-1e}] \to \mathrm{Ho}(\mathbf{Top}_{\mathrm{CW}})\).
+
+\begin{thm}{}{}
+    The functor \(\Psi\colon \mathbf{sset}[\mathrm{w.eq}^{-1}] \to \mathrm{Ho}(\mathbf{Top}_{\mathrm{CW}})\) is an equivalence of categories.
+\end{thm}
+
+\begin{proof}
+    Unraveling all definitions shows that on objects \(\Psi(X) = \abs X\) and on morphisms
+    \[\Hom_{\mathbf{sset}[\mathrm{w.eq.}^{ -1}]}(X, Y) = \mathbf{Top}(\abs X, \abs Y)/\text{homotopy} \xrightarrow{\id} \mathbf{Top}(\abs X, \abs Y)/\text{homotopy}\]
+    so \(\Psi\) is fully faithful.
+
+    For essential surjectivity of \(\Psi\) let \(K\) be a space that admits a CW-structure. Then
+    \[\varepsilon_K\colon \abs{\cS(K)} \to K\]
+    is a weak homotopy equivalence between CW-complexes, hence a homotopy equivalence. So \([\varepsilon_X]\colon \abs{\cS(K)} \xrightarrow{\cong} K\) is an isomorphism in \(\mathrm{Ho}(\mathbf{Top}_{\mathrm{CW}})\). So every object of \(\mathrm{Ho}(\mathbf{Top}_{\mathrm{CW}})\) is isomorphic to an object in the image of \(\Psi\)
+\end{proof}
+
+Now we do this for the second equivalence.
+
+\begin{construction}[Localization of spaces at weak equivalences.]
+    we define the category \(\mathbf{Top}[\mathrm{w.eq.}^{-1}]\) on Objects just as objects of \(\mathbf{Top}\).
+    \[\Hom_{\mathbf{Top}[\mathrm{w.eq.}^{-1}]}(A,B) \coloneq \Hom_{\mathbf{Top}}(\abs{\cS(A)}, \abs{\cS(B)})/\text{homotopy}\]
+
+    note that \(\abs{\cS(A)}\xrightarrow{\varepsilon_A} A\) is a functorial CW-approximation. We define a functor \(\gamma\colon \mathbf{Top} \to \mathbf{Top}[\mathrm{w.eq.}^{-1}]\) as the identity on objects and on morphisms by
+    \[\gamma(f\colon A\to B) = [\abs{\cS(f)}]\]
+\end{construction}
+
+\begin{proposition}
+    Let \(A\) and \(B\) be topological spaces, Let \(\alpha\colon \abs{\cS(A)}\to \abs{\cS(B)}\) be a continuous map. Then
+    \[[a] = \gamma(\varepsilon_B \circ \alpha) \circ \gamma(\varepsilon_A)^{-1}\]
+    in \(\Hom_{\mathbf{Top}[\mathrm{w.eq.}^{-1}]}(A,B)\)
+\end{proposition}
+
+\begin{proof}
+    We will show that the diagram of spaces and continuous maps commutes up to homotopy.
+    \[\begin{tikzcd}
+        \abs{\cS\abs{\cS(A)}} \ar[r, "\abs{\cS(\varepsilon_A)}"]\ar[d, "\abs{\cS(\alpha)}"] & \abs \cS(A) \ar[d, "\alpha"] \\
+        \abs{\cS\abs{\cS(B)}} \ar[r, "\abs{\cS(\varepsilon_B)}"] & \abs{\cS(B)} \\
+    \end{tikzcd}\]
+    We show this by extending the diagram on the left. We then use triangle identities and naturality of \(\eta\).
+
+    We take
+    \[\begin{split}
+        \abs{\cS(\varepsilon_B)}\circ \abs \cS(\alpha) \circ \abs{\eta_{\cS(A)}} &\sim \abs{\cS(\varepsilon_B)} \circ \abs {\eta_{\cS(B)}} \circ \alpha \\
+        &= ?? = \alpha \\
+        &= \alpha\circ \abs{\cS(\varepsilon_A)} \circ \abs{\eta_{\cS(A)}}
+    \end{split}\]
+    Since \(\abs{\eta_{\cS(A)}}\) is a homotopy equivalence, we can cancel it up to homotopy, and conclude that the square commutes up to homotopy.
+
+    And then he somehow concluded the proof.
+\end{proof}
+
 
 
 
