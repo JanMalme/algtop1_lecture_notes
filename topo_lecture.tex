@@ -264,7 +264,7 @@ Section 6.4 in tom Deicks book
 \end{defi}
 
 \textbf{Note.} If \(X\) is well based, i.e. \(\set{x_0} \hookrightarrow X\) has the HEP, then the quotient map
-\[X^\diamond \sigma X = \frac{X\times [0,1]}{X\times \set{0,1}\cup \set{x_0}\times [0,1]}\]
+\[X^\diamond \to \Sigma X = \frac{X\times [0,1]}{X\times \set{0,1}\cup \set{x_0}\times [0,1]}\]
 is a homotopy equivalence.
 
 The suspension homomorphism \(S\colon \pi_k(X,x_0) \to \pi_{k+1}(X^\diamond, S)\) for \(k \geq 1\) is \(S[f\colon S^k \to X] \coloneq [f^\diamond \colon S^{k+1}= (S^k)^\diamond \to X^\diamond]\)
@@ -413,14 +413,6 @@ This is a \enquote{trivial}\footnote{meaning 1.5 lectures of intermediate steps}
 
 \textbf{Group Homomorphism:} Let \(\Delta\colon S^n \to S^n \vee S^n\) be a pinch map.
 Group structure on \(\pi_n(X,x)\) is given by \([f]+[g] = [S^n\xrightarrow{\Delta}S^n\vee S^n \xrightarrow{f+g} X]\). Then
-\iffalse
-\[
-\begin{tikzcd}
-    \pi_n(X, x) \arrow[d, "\cong"'] \arrow[rd, "h"] & \\
-    \pi_n(X, y) \arrow[r, "h"] & H_n(X, \mathbb{Z})
-\end{tikzcd}
-\]
-\fi
 
 A diagram is missing here. 
 
@@ -428,7 +420,7 @@ A diagram is missing here.
 So Hurewicz is a homomorphism.
 
 \begin{lem}{}{}
-    Let \(w\colon [0,1]\to X\)be a path from \(x = w(0)\) to \(y = w(1)\). Then the following commutes:
+    Let \(w\colon [0,1]\to X\) be a path from \(x = w(0)\) to \(y = w(1)\). Then the following commutes:
     \[\begin{tikzcd}
         \pi_n(X,x) \ar[d, "\cong"] \ar[rd, "h"] & \\
         \pi_n(X,y) \ar[r, "h"] & H_n(X, \iz) \\ 
@@ -436,7 +428,7 @@ So Hurewicz is a homomorphism.
 \end{lem}
 
 \begin{proof}
-    \(f\) and \(f *w\) are freely homotopic \(h_n(\_, \iz)\) is homotopy invariant
+    \(f\) and \(f *w\) are freely homotopic \(H_n(\_, \iz)\) is homotopy invariant
 \end{proof}
 
 For \(n = 1\) we have Poincaré: \(X\) based path conneted, \(h\colon \pi_1(X,x)\to H_1(X,\IZ)\) is surjective with kernel the commutator subgroup or equivalently
@@ -501,7 +493,7 @@ We will need to work a bit for the proof.
     \end{tikzcd}\]
 
     \begin{remark}
-        \(X\) \(k\)-connected \(\Lra\) \(\set{*}\to X\) \(k\)-connected \(\Lra\) \(X\to \set{*}\) is \((n+1)\)-connected.
+        \(X\) \(k\)-connected \(\Lra\) \(\set{*}\to X\) \(k\)-connected \(\Lra\) \(X\to \set{*}\) is \((k+1)\)-connected.
     \end{remark}
 \end{proof}
 
@@ -511,7 +503,7 @@ We will need to work a bit for the proof.
         \item The inclusion \(X\vee Y\to X\times Y\) induces isomorphisms
         \[\pi_k(X\vee Y, *) \to \pi_k(X\times Y, *)\]
         for all \(0 \leq k \leq m+n\).
-        \item \(\pi_k(X\times Y, X\vee D, *)\) and \(\pi_k(X\wedge @, *)\) are trivial for all \(0 \leq k\leq m+n+1\).
+        \item \(\pi_k(X\times Y, X\vee Y, *)\) and \(\pi_k(X\wedge Y, *)\) are trivial for all \(0 \leq k\leq m+n+1\).
         \item The map \((pr_*^X, pr_*^Y)\colon \pi_k(X\vee Y, x) \to \pi_k(X, x_0)\times \pi_k(Y, y_0)\) is an isomorphism for all \(1 \leq k \leq m+n\).
     \end{enumerate}
 \end{proposition}
@@ -945,12 +937,12 @@ We follow Lück's notes and Schwede's notes (which are in German!).
 (In full generality, Eilenberg-MacLane spaces are very abstract.)
 
 \begin{example}
-    \(S^1\) is a \(K(\iz,1)\) since \(\pi_1(S^1,z) \cong \iz\) and \(\pi_i(S^1,z) = 0\) for all \(i \ge 2\) by covering space theory, because the universal cover \(\exp \colon \ir^ \to S^1\) of~\(S^1\) has a contractible total space.
+    \(S^1\) is a \(K(\iz,1)\) since \(\pi_1(S^1,z) \cong \iz\) and \(\pi_i(S^1,z) = 0\) for all \(i \ge 2\) by covering space theory, because the universal cover \(\exp \colon \ir \to S^1\) of~\(S^1\) has a contractible total space.
     More generally, if \(p \colon \tilde{X} \to X\) is a universal cover of a path connected space with \(\tilde{X}\) contractible, then \(X\) is a \(K(G,1)\) with \(G \cong \operatorname{Deck}(p)\).
     Hence:
     \begin{itemize}
         \item \(\ir P^0 = K(\iz/2, 1)\) with universal cover \(S^{\infty} \simeq *\).
-        \item \(S^1 \times \dots \times S^1 = K(\iz^m, 1)\) (\(m\)~times) with universal cover~\(\ir^^m\).
+        \item \(S^1 \times \dots \times S^1 = K(\iz^m, 1)\) (\(m\)~times) with universal cover~\(\ir^m\).
         \item Klein bottle (insert diagram of a square with arrows on the edges that indicate how the Klein bottle is glued) is a \(K(\iz \rtimes \iz, 1)\) with universal cover~\(\ir^2\).
             Here, \(\rtimes\)~is a semidirect product with \(\iz\)-action on~\(\iz\) by sign.
     \end{itemize}
@@ -1121,7 +1113,7 @@ We want to show, that for CW-complexes, Eilenberg-Maclane-spaces are unique up t
     Moreover \(f\) is a weak homotopy equivalence, and a homotopy equivalence if \(Y\) is also CW.
 \end{corollary}
 
-\section{Representativity of cohomology}
+\section{Representability of cohomology}
 
 Here \(A\) is abelian group and \(n \geq 0\). The Aim of this subsection is a natural transformation of functors in \(Y\)
 \[[Y, K(A,n)]\to H^n(Y; A)\]
@@ -1228,7 +1220,7 @@ Since \(X\) is \((n-1)\)-connected, the \(\Phi\colon H^n(X,A)\xrightarrow{\cong}
 
 \begin{lem}{}{}
     Let \(n\geq 1\), \(A\) an abelian group. \(Y\) an based CW-complex. Then the forgetful map
-    \[[Y, K(A,n)_*\to [Y, K(A,n)]]\]
+    \[[Y, K(A,n)]_*\to [Y, K(A,n)]\]
     is bijective.
 \end{lem}
 
@@ -1305,7 +1297,7 @@ Schwede remarks that when he was a student someone cleaned the board for the pro
 \begin{example}
     If you have already heard about vector bundles somewhere:
 
-    \(K(\IZ/2, 1) = \ir P^{\infty}\). For \(X\) a CW-complex, Also \(\mathrm{Pic}(X) \xleftarrow{\cong} [X, \ir P^\infty] H^1(X,\iz /2)\). \([\gamma\colon E\to X] \mapsto w_1(\gamma)\) is called the first Stiefel-Whitney class. So real line bundles are completely classified by their first Stiefel-Whitney class.
+    \(K(\IZ/2, 1) = \ir P^{\infty}\). For \(X\) a CW-complex, Also \(\mathrm{Pic}(X) \xleftarrow{\cong} [X, \ir P^\infty] \to H^1(X,\iz /2)\). \([\gamma\colon E\to X] \mapsto w_1(\gamma)\) is called the first Stiefel-Whitney class. So real line bundles are completely classified by their first Stiefel-Whitney class.
 \end{example}
 
 \begin{example}
@@ -2682,7 +2674,7 @@ where we \enquote{localize} categories, as one can localize rings.
     We define
     \[\nabla^n = \set{(t_0,\dots, t_n)\in\ir^{n+1} | t_i \geq 0, t_0+\dots+t_n = 1}\]
     or equivalently
-    \(\nabla^n\) is the conveq hull of the standard basis vectors \(e_i = (0, \dots, 0, 1, 0, \dots, 0)\in \ir^{n+1}\) where the \(1\) is at the \(i\)-th place, starting with \(0\).
+    \(\nabla^n\) is the convex hull of the standard basis vectors \(e_i = (0, \dots, 0, 1, 0, \dots, 0)\in \ir^{n+1}\) where the \(1\) is at the \(i\)-th place, starting with \(0\).
 \end{defi}
 
 This extends to a covariant functor
@@ -2705,7 +2697,7 @@ Geometric realization becomes a covariant functor \(\abs\cdot\colon \mathbf{sset
 \[\abs f[y,s]\colon [f_m(y), s]\]
 for \((y,s)\in X_m\times \nabla^m\). We need to check that this definition is compatible with the equivalence relation.
 
-\(\abs X\) is also the coend of the functor \(\Delta^{text{op}}\times \Delta \to \mathbf{Top}, ([m], [n])\mapsto X_m\times \nabla^n\)\footnote{no idea what a coend is.}.
+\(\abs X\) is also the coend of the functor \(\Delta^{\text{op}}\times \Delta \to \mathbf{Top}, ([m], [n])\mapsto X_m\times \nabla^n\)\footnote{no idea what a coend is.}.
 
 \begin{proposition}
     Let \(X\) be a simplicial set. Then
@@ -2851,7 +2843,7 @@ for \((y,s)\in X_m\times \nabla^m\). We need to check that this definition is co
 
 We note \(\sk^m\colon \mathbf{sset}\to \mathbf{sset}\) is a functor and the inclusions \(\sk^m X \to \sk^{m+1} X\) are natural transformations of functors.
 
-\textbf{Note.} Let \(X\) be a simplicial set, \(Y\subseteq X\) simplicial subset, \(Y_{m-1} = X_{m-1}\) ore equally \(\sk^{m-1} Y = \sk^{m-1}X\). Then the following square commutes for all \(x \in X_m\)
+\textbf{Note.} Let \(X\) be a simplicial set, \(Y\subseteq X\) simplicial subset, \(Y_{m-1} = X_{m-1}\) or equally \(\sk^{m-1} Y = \sk^{m-1}X\). Then the following square commutes for all \(x \in X_m\)
 \[\begin{tikzcd}
     \partial\Delta^m & \sk^{m-1}(\Delta^m)\ar[r, phantom, "\subseteq"] & \Delta^m \ar[d, "x^\flat"] \\
     \sk^{m-1} Y & \sk^{m-1} X \ar[r, hook] & X \\
@@ -2899,14 +2891,14 @@ So the characteristic morphism \(x^\flat \colon \Delta^m \to X\) sends \(\partia
     \begin{enumerate}
         \item The subspaces \(\abs{\sk^m X}\) for \(m \geq 0\) form a CW-structure on \(\abs X\)
         \item The \(m\)-cells of this CW-structure biject with the non-degenerate \(m\)-simplices of \(X\)
-        \item Suppose that for \(n > m\), all \(n\)-simlices of \(X\) are degenerate. Then \(\abs X\) is \(m\)-dimensional.
+        \item Suppose that for \(n > m\), all \(n\)-simplices of \(X\) are degenerate. Then \(\abs X\) is \(m\)-dimensional.
         \item For any morhpism of simplicial sets \(f\colon X \to Y\), \(\abs f\colon \abs X\to \abs Y\) is cellular.
         \item If \(Y\) is a simplicial subset of \(X\), then \(\abs{\incl}\colon \abs Y\to \abs X\) identifies \(\abs Y\) with a subcomplex of \(\abs X\).
         \item Suppose \(X\) has only finitely many non-degenerate simplices. Then \(\abs X\) is a finite CW-complex.
     \end{enumerate}
 \end{thm}
 
-\begin{proof}
+\begin{proof}\leavevmode
     \begin{itemize}
         \item[1. + 2.] \((\sk^{m-1} X)_{m-1} = X_{m-1} = (\sk^m X)_{m-1}\) and for \(n > m\), every \(n\)-simplex of \(\sk^m X\) is degenerate. So we can apply the proposition to \((X,Y) = (\sk^m X, \sk^{m-1} Y)\). So we get
         \[\begin{tikzcd}
